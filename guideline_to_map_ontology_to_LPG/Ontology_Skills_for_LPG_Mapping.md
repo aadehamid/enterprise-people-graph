@@ -20,13 +20,13 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 | # | Skill | Priority | Playbook rule it supports |
 |---|---|---|---|
-| 1 | RDF 1.2 data model & IRIs | ★★★ | Rules 3, 4 |
-| 2 | Turtle 1.2 syntax (incl. reifiers) | ★★★ | Rule 4 |
+| 1 | RDF data model & IRIs (RDF 1.2 triple terms for Rule 4b) | ★★★ | Rules 3, 4 |
+| 2 | Turtle syntax (reifiers only for Rule 4b) | ★★★ | Rule 4 |
 | 3 | RDFS: classes, properties, domain/range | ★★★ | Rule 1 |
 | 4 | OWL 2: property kinds, OWL 2 EL profile, reasoning | ★★★ | Rule 1, Step 2 |
 | 5 | XSD datatypes & literals | ★★★ | Rule 1, §8 |
 | 6 | SHACL core shapes | ★★★ | Rule 2, Steps 1 & 5 |
-| 7 | SPARQL 1.2 (CONSTRUCT, triple terms) | ★★ | Step 3 |
+| 7 | SPARQL (CONSTRUCT; triple terms for Rule 4b) | ★★ | Step 3 |
 | 8 | Modelling patterns (n-ary, reification, qualified relations) | ★★ | Rule 4 |
 | 9 | SKOS for taxonomies and labels | ★★ | Add-on B |
 | 10 | Reusing standard vocabularies (QUDT, PROV-O, OWL-Time) | ★ | Add-ons E, F |
@@ -46,7 +46,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 - Reifying triples (`rdf:reifies`), and the difference between asserting a triple and only reifying it.
 - IRI design: stable, opaque or business-key IRIs; why blank nodes break determinism.
 
-**Practice:** model TK-101 feeds CDU-1 with two reifiers for two validity periods. Explain why that becomes two Neo4j relationships.
+**Practice:** model TK-101 feeds CDU-1 for two validity periods as two qualified-relation nodes (Rule 4a). Explain why that becomes two `:Feed` nodes in Neo4j. If you will use Rule 4b, repeat it with two reifiers and explain why that becomes two relationships.
 
 **Resources:**
 
@@ -60,7 +60,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 ## 2. Turtle 1.2 syntax ★★★
 
-**Why it matters:** you'll write ontologies, shapes and test fixtures in Turtle. The reifier syntax is how relationship properties are written.
+**Why it matters:** you'll write ontologies, shapes and test fixtures in Turtle. With the default Rule 4a, relationship properties are ordinary triples on a qualified-relation node. The reifier syntax below is needed only for Rule 4b.
 
 **Master:**
 
@@ -157,7 +157,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 - SHACL-SPARQL constraints, for the meta-shapes that check the 5 Rules.
 - Which constraints n10s supports inside Neo4j.
 
-**Practice:** write `TankShape` and `FeedReifierShape` (literal-only annotations, IRI reifier). Validate with pySHACL in a notebook.
+**Practice:** write `TankShape` and `FeedShape` (an IRI, exactly one `feedSource` and one `feedTarget`). Validate with pySHACL in a notebook. For Rule 4b, write `FeedReifierShape` (literal-only annotations, IRI reifier) and validate it with Jena SHACL.
 
 **Resources:**
 
@@ -172,7 +172,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 ## 7. SPARQL 1.2 ★★
 
-**Why it matters:** Step 3 (flattening reifiers) is a single SPARQL CONSTRUCT. SPARQL is also how you write meta-checks and fidelity reports.
+**Why it matters:** with Rule 4b, Step 3 (flattening reifiers) is a single SPARQL CONSTRUCT. With either rule, SPARQL is how you write meta-checks and fidelity reports.
 
 **Master:**
 
@@ -263,11 +263,11 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 | Week | Focus | Deliverable |
 |---|---|---|
-| 1 | RDF 1.2 + Turtle 1.2 (skills 1–2) | `data.ttl` with reifiers, converted to sorted N-Triples |
+| 1 | RDF + Turtle (skills 1–2) | `data.ttl` with qualified-relation nodes, converted to sorted N-Triples |
 | 2 | RDFS + XSD (skills 3, 5) | Class/property hierarchy with typed ranges |
 | 3 | OWL 2 + Protégé + ROBOT (skill 4) | EL ontology + `inferred.ttl` |
 | 4 | SHACL (skill 6) | `shapes.ttl` + meta-shapes for the 5 Rules |
-| 5 | SPARQL 1.2 (skill 7) | Step 3 flatten query working in Jena |
+| 5 | SPARQL (skill 7) | Meta-check queries; for Rule 4b, the Step 3 flatten query working in Jena 6.1+ |
 | 6 | Neo4j + n10s (skill 12) | Steps 4–5 working end-to-end |
 | 7 | Patterns + SKOS (skills 8–9) | Equipment taxonomy in SKOS; transfer modelled both ways |
 | 8 | Vocabularies + canonicalisation (skills 10–11) | QUDT units, determinism test passing in CI |
@@ -278,8 +278,9 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 - IRI object → ? *(relationship)*
 - `rdf:reifies` object must be a ? *(triple term)*
 - Where can a triple term appear in RDF 1.2? *(object position only)*
-- Two reifiers for one triple → how many Neo4j relationships? *(two)*
+- Two qualified-relation nodes for one link (4a) → how many Neo4j nodes? *(two)*
+- Two reifiers for one triple (4b) → how many Neo4j relationships? *(two)*
 - Which SHACL property decides single value vs array? *(`sh:maxCount`)*
-- Why must reifiers be IRIs? *(they become the relationship's stable `uri`)*
+- Why must qualified-relation nodes and reifiers be IRIs? *(the IRI becomes the stable `uri` in Neo4j)*
 - What does Neo4j not do that OWL needs? *(open-world reasoning)*
 - Which OWL profile suits large hierarchies? *(EL, with the ELK reasoner)*

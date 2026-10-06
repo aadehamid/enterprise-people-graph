@@ -6,7 +6,7 @@ Version 2.1 · October 2026 · Author: Hamid Adesokan (with Perplexity; v2.1 wit
 
 > **What changed in v2.1**
 > - Rule 4 now has two options. **4a, qualified-relation nodes,** is the default: plain RDF that every common tool reads today. **4b, RDF 1.2 reifiers,** is for toolchains that support RDF 1.2.
-> - Status corrections, checked in October 2026: RDF 1.2 is a W3C Candidate Recommendation (Snapshot of 7 April 2026), not yet a Recommendation. Apache Jena (since 5.4.0) and Eclipse RDF4J read and write RDF 1.2. rdflib, and pySHACL, which is built on it, do not support it yet.
+> - Status corrections, checked in October 2026: RDF 1.2 is a W3C Candidate Recommendation (Snapshot of 7 April 2026), not yet a Recommendation. Apache Jena 6.1.0 or later (May 2026) and Eclipse RDF4J 6.0.0 or later (July 2026) read and write RDF 1.2; Jena 5.4.0 to 6.0.x was an experimental preview without Turtle output of reifiers or annotations. rdflib, and pySHACL, which is built on it, do not support it yet.
 > - One loadable file, `loadable.nt`, for both options (Step 3), so every load and diff step names a file the chosen option produces.
 > - The flatten part of Step 3 is needed only with option 4b.
 >
@@ -96,6 +96,9 @@ ex:feed_0042 a ex:Feed ;
     ex:maxFlowBblPerDay 120000 ;
     ex:validFrom "2026-01-01"^^xsd:date ;
     ex:source "P&ID-0042 rev C" .
+
+ex:feedSource lpg:name "FEED_SOURCE" .   # Rule 5: name the relationship types
+ex:feedTarget lpg:name "FEED_TARGET" .
 ```
 
 **LPG result:** a `:Feed` node with its properties and two relationships.
@@ -114,7 +117,7 @@ Rules for 4a:
 
 #### Rule 4b: RDF 1.2 reifiers
 
-Use this only when every tool in the pipeline supports RDF 1.2 triple terms. As of October 2026, Apache Jena (RDF 1.2 syntax in and out since 5.4.0; current release 6.2.0) and Eclipse RDF4J do. rdflib and pySHACL do not, so a Python pipeline built on them must use 4a.
+Use this only when every tool in the pipeline supports RDF 1.2 triple terms. As of October 2026, Apache Jena 6.1.0 or later (RDF 1.2 syntax in and out and SPARQL 1.2; current release 6.2.0) and Eclipse RDF4J 6.0.0 or later do. Earlier versions do not qualify: Jena 5.4.0 to 6.0.x was an experimental preview that could not write the `{| |}` annotation syntax, and RDF4J 5.x lacks RDF 1.2. rdflib and pySHACL do not, so a Python pipeline built on them must use 4a.
 
 **RDF 1.2 Turtle, short form (asserts the triple and annotates it):**
 
@@ -177,7 +180,7 @@ Tools (all free / open source):
 
 | Purpose | Tool |
 |---|---|
-| Parse RDF / run SPARQL | Rule 4a: any of rdflib, Jena or RDF4J. Rule 4b (RDF 1.2): Apache Jena (since 5.4.0) or Eclipse RDF4J. rdflib has no RDF 1.2 support yet (RDFLib/rdflib#3524, all stages open in October 2026) |
+| Parse RDF / run SPARQL | Rule 4a: any of rdflib, Jena or RDF4J. Rule 4b (RDF 1.2): Apache Jena 6.1.0+ or Eclipse RDF4J 6.0.0+. rdflib has no RDF 1.2 support yet (RDFLib/rdflib#3524, all stages open in October 2026) |
 | Reason | ROBOT (`robot reason --reasoner ELK`) |
 | Validate | pySHACL (Rule 4a only, since it is built on rdflib) / Jena SHACL |
 | Load into Neo4j | neosemantics (n10s) |
@@ -193,7 +196,7 @@ Run SHACL "meta-shapes" over the ontology file itself:
 
 - Every property is typed and has a concrete range (Rule 1).
 - Every data property has a shape with `sh:maxCount` defined or deliberately omitted (Rule 2).
-- No blank-node individuals, qualified-relation nodes or reifiers (Rule 3).
+- No blank nodes: every individual, qualified-relation node and reifier has an IRI (Rule 3).
 - One Rule 4 pattern is recorded for the ontology (Rule 4).
 - 4a: every qualified-relation node has an IRI and exactly one value for each end (Rule 4).
 - 4b: every reifier has only literal-valued properties, or `_uri` handling is declared (Rule 4).
@@ -378,7 +381,8 @@ The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonica
 - W3C: RDF 1.2 Concepts (triple terms, `rdf:reifies`, reifiers). Candidate Recommendation Snapshot, 7 April 2026. https://www.w3.org/TR/rdf12-concepts/
 - W3C: Organization Ontology (`org:Membership`, the qualified-relation pattern). https://www.w3.org/TR/vocab-org/
 - W3C: PROV-O qualified relations. https://www.w3.org/TR/prov-o/#description-qualified-terms
-- Apache Jena CHANGES (RDF 1.2 syntax support since 5.4.0). https://github.com/apache/jena/blob/main/CHANGES.txt
+- Apache Jena CHANGES (RDF 1.2 syntax input and output, and SPARQL 1.2, from 6.1.0). https://github.com/apache/jena/blob/main/CHANGES.txt
+- Eclipse RDF4J 6.0.0 release notes (RDF 1.2 and SPARQL 1.2). https://rdf4j.org/release-notes/6.0.0/
 - W3C: RDF 1.2 Primer. https://www.w3.org/TR/rdf12-primer/
 - W3C: RDF 1.2 Turtle (`<<( )>>`, `~ reifier`, `{| |}` annotation syntax). https://www.w3.org/TR/rdf12-turtle/
 - W3C: RDF 1.2 Interoperability. https://w3c.github.io/rdf-interop/spec/
