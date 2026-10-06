@@ -1,4 +1,4 @@
-# Ontology_to_LPG_Conversion_Playbook (v2: RDF 1.2 edition)
+# Ontology_to_LPG_Conversion_Playbook (v2.1)
 
 **Converting a W3C ontology (RDF 1.2 / RDFS / OWL 2 / SKOS / SHACL) into a Neo4j Labelled Property Graph: deterministic, repeatable, high fidelity, and as simple as possible.**
 
@@ -6,11 +6,12 @@ Version 2.1 · October 2026 · Author: Hamid Adesokan (with Perplexity; v2.1 wit
 
 > **What changed in v2.1**
 > - Rule 4 now has two options. **4a, qualified-relation nodes,** is the default: plain RDF that every common tool reads today. **4b, RDF 1.2 reifiers,** is for toolchains that support RDF 1.2.
-> - Status corrections, checked in October 2026: RDF 1.2 is a W3C Candidate Recommendation (Snapshot of 7 April 2026), not yet a Recommendation. rdflib, and pySHACL, which is built on it, do not support RDF 1.2 yet.
-> - Step 3 (flatten) is needed only with option 4b.
+> - Status corrections, checked in October 2026: RDF 1.2 is a W3C Candidate Recommendation (Snapshot of 7 April 2026), not yet a Recommendation. Apache Jena (since 5.4.0) and Eclipse RDF4J read and write RDF 1.2. rdflib, and pySHACL, which is built on it, do not support it yet.
+> - One loadable file, `loadable.nt`, for both options (Step 3), so every load and diff step names a file the chosen option produces.
+> - The flatten part of Step 3 is needed only with option 4b.
 >
 > **What changed in v2**
-> - Relationship properties now use **RDF 1.2 triple terms with `rdf:reifies`** (W3C RDF 1.2) instead of RDF-star. This is now the standard pattern.
+> - Relationship properties now use **RDF 1.2 triple terms with `rdf:reifies`** (W3C RDF 1.2) instead of RDF-star. *(v2.1: this is now option 4b; qualified-relation nodes, 4a, are the default.)*
 > - The playbook is split into a **Core Path** (5 rules + 5 steps, which work at any scale and for any use case) and **optional add-ons** that you adopt only when needed.
 > - One collapse mechanism handles every relationship property, which keeps the pipeline small.
 
@@ -25,7 +26,7 @@ If the ontology follows the **5 Core Rules** (§3), the Core Path produces an LP
 | Preserved | How |
 |---|---|
 | Every individual, type, literal value and link | Nodes, labels, properties, relationships |
-| Statement-level metadata (flow rate, valid-from, source, confidence) | Relationship properties, via RDF 1.2 reifiers |
+| Statement-level metadata (flow rate, valid-from, source, confidence) | Properties of the qualified-relation node (Rule 4a), or relationship properties via RDF 1.2 reifiers (Rule 4b) |
 | Class / property hierarchy, domain, range | Schema nodes (`:Class`, `:Relationship`, `:Property`) |
 | Cardinality and constraints | SHACL shapes, checked in Neo4j |
 | A full round trip back to RDF | Verified by an automated diff |
@@ -77,7 +78,7 @@ ex:TankShape a sh:NodeShape ; sh:targetClass ex:StorageTank ;
 ### Rule 3: Stable IRIs and fixed prefixes
 
 - Individuals get permanent IRIs (`ex:asset/TK-101`). Never generate them per run.
-- No blank nodes in data. Reifiers in particular must be IRIs (`~ ex:feed/TK-101_CDU-1_2026`), because the reifier's IRI becomes the relationship's identity.
+- No blank nodes in data. Qualified-relation nodes (4a) and reifiers (4b) in particular must be IRIs (`ex:feed/TK-101_CDU-1_2026`), because that IRI becomes the identity of the node or relationship in the LPG.
 - Each namespace has one registered prefix in `prefixes.ttl`.
 
 ### Rule 4: Relationship properties use one of two patterns, chosen once per ontology
@@ -108,11 +109,12 @@ Rules for 4a:
 - The qualified-relation node has an IRI (Rule 3), never a blank node.
 - It has exactly one value for each end (`sh:minCount 1 ; sh:maxCount 1` in SHACL, Rule 2).
 - If a consumer also wants a direct edge, assert the plain triple (`ex:TK-101 ex:feeds ex:CDU-1`) as well, or derive it with a SPARQL CONSTRUCT before loading. Do not hand-write it in Cypher.
-- Choose 4a while any tool in your pipeline lacks RDF 1.2 support. It is also the right choice when the relationship has its own lifecycle or other things point at it (see the node-versus-relationship test in the learning guide, skill 8).
+- Choose 4a while any tool in your pipeline lacks RDF 1.2 support.
+- If the link has its own lifecycle, or other things point at it, it is a node in any case: model it as a qualified-relation node (4a) even when the toolchain supports 4b (learning guide, skill 8).
 
 #### Rule 4b: RDF 1.2 reifiers
 
-Use this only when every tool in the pipeline supports RDF 1.2 triple terms. As of October 2026, RDF4J does, Jena's support is still tracked as an open issue, and rdflib and pySHACL do not.
+Use this only when every tool in the pipeline supports RDF 1.2 triple terms. As of October 2026, Apache Jena (RDF 1.2 syntax in and out since 5.4.0; current release 6.2.0) and Eclipse RDF4J do. rdflib and pySHACL do not, so a Python pipeline built on them must use 4a.
 
 **RDF 1.2 Turtle, short form (asserts the triple and annotates it):**
 
@@ -166,20 +168,20 @@ That's the whole required design discipline. Optional annotations (`lpg:cypherTy
 
 ```
  ontology.ttl ─┐
- shapes.ttl ───┤  1 check  ─▶  2 reason  ─▶  3 flatten  ─▶  4 load  ─▶  5 verify
- data.ttl ─────┤   (SHACL)     (ELK)         (RDF 1.2 →     (n10s)      (round-trip diff
- prefixes.ttl ─┘                              loadable)                   + fingerprint)
+ shapes.ttl ───┤  1 check  ─▶  2 reason  ─▶  3 loadable.nt  ─▶  4 load  ─▶  5 verify
+ data.ttl ─────┤   (SHACL)     (ELK)         (serialise;       (n10s)      (round-trip diff
+ prefixes.ttl ─┘                              4b: flatten)                + fingerprint)
 ```
 
 Tools (all free / open source):
 
 | Purpose | Tool |
 |---|---|
-| Parse RDF / run SPARQL | Rule 4a: any of rdflib, Jena or RDF4J. Rule 4b (RDF 1.2): Eclipse RDF4J supports triple terms; Jena's support is tracked in apache/jena#2805; rdflib has none yet (RDFLib/rdflib#3524, all stages open in October 2026) |
+| Parse RDF / run SPARQL | Rule 4a: any of rdflib, Jena or RDF4J. Rule 4b (RDF 1.2): Apache Jena (since 5.4.0) or Eclipse RDF4J. rdflib has no RDF 1.2 support yet (RDFLib/rdflib#3524, all stages open in October 2026) |
 | Reason | ROBOT (`robot reason --reasoner ELK`) |
 | Validate | pySHACL (Rule 4a only, since it is built on rdflib) / Jena SHACL |
 | Load into Neo4j | neosemantics (n10s) |
-| Diff | rdflib `compare` (on the flattened form), or Jena `rdfcompare` |
+| Diff | rdflib `compare` (on `loadable.nt`), or Jena `rdfcompare` |
 
 ---
 
@@ -191,8 +193,10 @@ Run SHACL "meta-shapes" over the ontology file itself:
 
 - Every property is typed and has a concrete range (Rule 1).
 - Every data property has a shape with `sh:maxCount` defined or deliberately omitted (Rule 2).
-- No blank-node reifiers or individuals (Rule 3).
-- Every reifier has only literal-valued properties, or `_uri` handling is declared (Rule 4).
+- No blank-node individuals, qualified-relation nodes or reifiers (Rule 3).
+- One Rule 4 pattern is recorded for the ontology (Rule 4).
+- 4a: every qualified-relation node has an IRI and exactly one value for each end (Rule 4).
+- 4b: every reifier has only literal-valued properties, or `_uri` handling is declared (Rule 4).
 - No `lpg:name` collisions (Rule 5).
 
 Then validate the data against `shapes.ttl`. **Any violation stops the build.**
@@ -206,9 +210,12 @@ robot reason --reasoner ELK --input ontology.ttl --axiom-generators "SubClass Cl
 
 Load the inferred `rdf:type` / `subClassOf` triples into a separate named graph (`ex:graph/inferred`), so you can always tell them apart from asserted triples.
 
-### Step 3: Flatten RDF 1.2 into a loadable form (Rule 4b only)
+### Step 3: Produce `loadable.nt`
 
-With Rule 4a there are no triple terms, so skip this step and load the checked, reasoned files directly. Serialise them as **sorted N-Triples** and take the SHA-256 as the input fingerprint.
+Every later step loads and diffs one file, `loadable.nt`: the checked data plus the inferred triples, as **sorted N-Triples**. Its SHA-256 is the *input fingerprint*.
+
+- **Rule 4a:** serialise the checked, reasoned data as sorted N-Triples. There are no triple terms, so nothing else is needed.
+- **Rule 4b:** flatten the RDF 1.2 reifiers first, as below, then serialise.
 
 n10s is built around RDF 1.1 / RDF-star, not RDF 1.2 triple terms. So the pipeline does one small, deterministic conversion with SPARQL 1.2 (Jena / RDF4J). Each reifier becomes a plain node that n10s can load:
 
@@ -228,7 +235,7 @@ WHERE {
 ```
 
 - Output: the original triples, minus the `rdf:reifies` triples, plus these `EdgeRecord` triples. The reifier's own literal properties stay attached to `?r`.
-- Serialise as **sorted N-Triples**. Its SHA-256 is the *input fingerprint*.
+- Serialise the result as `loadable.nt` (sorted N-Triples).
 
 ### Step 4: Load into Neo4j
 
@@ -251,7 +258,7 @@ CALL n10s.graphconfig.init({
 // 4d. Load in fixed order: schema, shapes, data, inferred
 CALL n10s.onto.import.fetch('file:///ontology.ttl','Turtle');
 CALL n10s.validation.shacl.import.fetch('file:///shapes.ttl','Turtle');
-CALL n10s.rdf.import.fetch('file:///flattened.nt','N-Triples');
+CALL n10s.rdf.import.fetch('file:///loadable.nt','N-Triples');
 
 // 4e. Rule 4b only. The ONE post-load transform: EdgeRecord → relationship with properties.
 //     With Rule 4a there are no EdgeRecords; qualified-relation nodes load as ordinary nodes.
@@ -261,7 +268,7 @@ CALL apoc.merge.relationship(s, coalesce(p.lpgName, n10s.rdf.getIRILocalName(p.u
      {uri: r.uri}, apoc.map.removeKeys(properties(r), ['uri']), t, {}) YIELD rel
 DETACH DELETE r;
 
-// 4f. Remove plain edges that duplicate a reified one. An asserted triple with
+// 4f. Rule 4b only. Remove plain edges that duplicate a reified one. An asserted triple with
 //     reifiers is represented only by its reified edges; the round trip restores it.
 MATCH (s)-[plain]->(t), (s)-[reified]->(t)
 WHERE type(plain) = type(reified) AND plain.uri IS NULL AND reified.uri IS NOT NULL
@@ -276,12 +283,12 @@ Every statement uses `MERGE` / `SET` with explicit ordering, so running it again
 ### Step 5: Verify
 
 1. `CALL n10s.validation.shacl.validate()` returns **zero** violations.
-2. **Round trip:** export with `n10s.rdf.export.cypher` and diff against the loaded N-Triples (`flattened.nt` with Rule 4b, after rebuilding `EdgeRecord`s from relationships that have a `uri`):
+2. **Round trip:** export with `n10s.rdf.export.cypher` and diff against `loadable.nt`. With Rule 4b, first rebuild `EdgeRecord`s from relationships that have a `uri`:
 
 ```python
 from rdflib import Graph
 from rdflib.compare import to_isomorphic, graph_diff
-src = to_isomorphic(Graph().parse("flattened.nt"))
+src = to_isomorphic(Graph().parse("loadable.nt"))
 out = to_isomorphic(Graph().parse("roundtrip.nt"))
 both, lost, added = graph_diff(src, out)
 assert len(lost) == 0 and len(added) == 0, (len(lost), len(added))
@@ -298,7 +305,7 @@ If all three pass, the LPG is a verified, repeatable projection of the ontology.
 | Size | Loader | What changes |
 |---|---|---|
 | Up to ~10M triples | n10s `rdf.import.fetch` (Step 4) | Nothing |
-| ~10M – 1B+ triples | Generate node/edge CSVs from `flattened.nt` using the **same** mapping, then run `neo4j-admin database import` | Only Step 4. Steps 1–3 and 5 stay the same |
+| ~10M – 1B+ triples | Generate node/edge CSVs from `loadable.nt` using the **same** mapping, then run `neo4j-admin database import` | Only Step 4. Steps 1–3 and 5 stay the same |
 | Incremental updates | Load each delta with n10s (`MERGE` by `uri`); for deletions, use `n10s.rdf.delete` | Add a nightly full-rebuild comparison |
 
 The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonical intermediate → bulk import" approach.
@@ -343,7 +350,7 @@ The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonica
 
 - [ ] Every predicate has one kind and a concrete range.
 - [ ] SHACL `sh:maxCount` defined for every property.
-- [ ] Stable IRIs, no blank nodes, IRI reifiers, fixed prefixes.
+- [ ] Stable IRIs, no blank nodes, fixed prefixes; qualified-relation nodes (4a) or reifiers (4b) have IRIs.
 - [ ] One Rule 4 pattern chosen and recorded: qualified-relation nodes with IRIs (4a), or RDF 1.2 `rdf:reifies` reifiers with literal-valued annotations (4b).
 - [ ] `lpg:name` where needed, with no collisions.
 
@@ -371,7 +378,7 @@ The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonica
 - W3C: RDF 1.2 Concepts (triple terms, `rdf:reifies`, reifiers). Candidate Recommendation Snapshot, 7 April 2026. https://www.w3.org/TR/rdf12-concepts/
 - W3C: Organization Ontology (`org:Membership`, the qualified-relation pattern). https://www.w3.org/TR/vocab-org/
 - W3C: PROV-O qualified relations. https://www.w3.org/TR/prov-o/#description-qualified-terms
-- Apache Jena RDF 1.2 support (tracking issue). https://github.com/apache/jena/issues/2805
+- Apache Jena CHANGES (RDF 1.2 syntax support since 5.4.0). https://github.com/apache/jena/blob/main/CHANGES.txt
 - W3C: RDF 1.2 Primer. https://www.w3.org/TR/rdf12-primer/
 - W3C: RDF 1.2 Turtle (`<<( )>>`, `~ reifier`, `{| |}` annotation syntax). https://www.w3.org/TR/rdf12-turtle/
 - W3C: RDF 1.2 Interoperability. https://w3c.github.io/rdf-interop/spec/
