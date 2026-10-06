@@ -195,7 +195,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 **Master:**
 
-- **The node vs relationship-with-properties test:** if anything points at it, or it has its own lifecycle, it's a domain class (an event or connection class, such as a `Transfer`): an ordinary node, outside Rule 4. Otherwise it is a relationship with properties, and the ontology's single Rule 4 choice decides how it is written: a qualified-relation node (4a, the default) or an RDF 1.2 reifier (4b).
+- **The node vs relationship-with-properties test:** if the business tracks the link as a thing in its own right (it has its own lifecycle or identity, and other domain records refer to it, such as a `Transfer` with a ticket number), it's a domain class: an ordinary node, outside Rule 4. Otherwise it is a relationship with properties, and the ontology's single Rule 4 choice decides how it is written: a qualified-relation node (4a, the default) or an RDF 1.2 reifier (4b). The arcs that define a qualified relation, including an inverse link such as `prov:qualifiedAssociation`, don't count toward the test.
 - N-ary relations and qualified relations (e.g. PROV-O `qualifiedAssociation`).
 - RDF 1.2 reification vs old `rdf:Statement` reification vs RDF-star.
 

@@ -85,7 +85,7 @@ ex:TankShape a sh:NodeShape ; sh:targetClass ex:StorageTank ;
 
 Rule 4 covers a link whose only job is to carry properties about one relationship (a flow rate, a validity period, a source). Choose one pattern for all such links in the ontology and record the choice. Mixing them makes the conversion code guess.
 
-A link that has its own lifecycle, or that other things point at, is not a Rule 4 case. It is a domain class (an event or connection class, such as a `Transfer`) and is modelled as an ordinary node under either option.
+A link that the business tracks as a thing in its own right is not a Rule 4 case: it has its own lifecycle or identity, and other domain records refer to it (a `Transfer` with a ticket number, say). It is a domain class (an event or connection class) and is modelled as an ordinary node under either option. The arcs that define a qualified-relation node do not count toward this test: its links to its two ends, and an inverse link from an end to it, such as PROV-O's `prov:qualifiedAssociation` or ORG's `org:hasMembership`.
 
 #### Rule 4a (default): qualified-relation nodes
 
@@ -115,7 +115,7 @@ Rules for 4a:
 - It has exactly one value for each end (`sh:minCount 1 ; sh:maxCount 1` in SHACL, Rule 2).
 - If a consumer also wants a direct edge, assert the plain triple (`ex:TK-101 ex:feeds ex:CDU-1`) as well, or derive it with a SPARQL CONSTRUCT before loading. Do not hand-write it in Cypher.
 - Choose 4a while any tool in your pipeline lacks RDF 1.2 support.
-- A 4a qualified-relation node looks like a domain class, but it exists only to carry the relationship's properties. A link with its own lifecycle is a domain class instead (see above and skill 8 in the learning guide).
+- A 4a qualified-relation node looks like a domain class, but it exists only to carry the relationship's properties. A link the business tracks in its own right is a domain class instead (see above and skill 8 in the learning guide).
 
 #### Rule 4b: RDF 1.2 reifiers
 
@@ -202,6 +202,7 @@ Run SHACL "meta-shapes" over the ontology file itself:
 - One Rule 4 pattern is recorded for the ontology (Rule 4).
 - 4a: every qualified-relation node has an IRI and exactly one value for each end (Rule 4).
 - 4b: every reifier has only literal-valued properties, or `_uri` handling is declared (Rule 4).
+- 4b: triple terms appear only as objects of `rdf:reifies` (Step 3 depends on it).
 - No `lpg:name` collisions (Rule 5).
 
 Then validate the data against `shapes.ttl`. **Any violation stops the build.**
@@ -210,26 +211,37 @@ Then validate the data against `shapes.ttl`. **Any violation stops the build.**
 
 ```bash
 robot reason --reasoner ELK --input ontology.ttl --axiom-generators "SubClass ClassAssertion" \
+             --create-new-ontology true \
              --output inferred.ttl
 ```
 
 Load the inferred `rdf:type` / `subClassOf` triples into a separate named graph (`ex:graph/inferred`), so you can always tell them apart from asserted triples.
 
-### Step 3: Produce `loadable.nt`
+### Step 3: Produce `loadable.nt` and `inferred.nt`
 
-Every later step loads and diffs two files, both **sorted N-Triples**:
+Every later step loads and diffs two files, both **sorted N-Triples** (one triple per line, sorted, duplicates removed):
 
-- `loadable.nt`: the checked, asserted data.
-- `inferred.nt`: the triples from the inferred named graph (Step 2), kept in their own file so assertions and inferences stay apart.
+- `loadable.nt`: the checked, asserted data, with no triple terms.
+- `inferred.nt`: the inferred triples from Step 2, kept in their own file so assertions and inferences stay apart.
 
 The SHA-256 of the two files together is the *input fingerprint*.
 
-- **Rule 4a:** serialise the checked data as `loadable.nt`. There are no triple terms, so nothing else is needed.
-- **Rule 4b:** flatten the RDF 1.2 reifiers first, as below, then serialise.
+**Both options: `inferred.nt`.** Step 2's `--create-new-ontology true` makes `inferred.ttl` hold only the new inferences, not the input ontology. Convert it to N-Triples with Jena's `riot` (or any RDF library), drop its `owl:Ontology` header triples, then sort and remove duplicates. Check that `inferred.nt` and `loadable.nt` share no triple (for example `comm -12 loadable.nt inferred.nt` prints nothing); a shared triple means asserted content leaked into the inference file.
 
-With Rule 4b only: n10s is built around RDF 1.1 / RDF-star, not RDF 1.2 triple terms. So a 4b pipeline does one small, deterministic conversion with SPARQL 1.2 (Jena 6.1.0+ / RDF4J 6.0.0+). Each reifier becomes a plain node that n10s can load. The CONSTRUCT output is then serialised, with the rest of the data, as `loadable.nt`:
+**Rule 4a: `loadable.nt`.** Convert the checked data to N-Triples the same way. There are no triple terms, so nothing else is needed.
+
+**Rule 4b: `loadable.nt`.** n10s is built around RDF 1.1 / RDF-star and cannot load RDF 1.2 triple terms, and RDF 1.1 N-Triples cannot write them. So a 4b pipeline turns each reifier into a plain `EdgeRecord` node with SPARQL 1.2 (Jena 6.1.0+ or RDF4J 6.0.0+). Run two CONSTRUCT queries over the checked data, write both results as N-Triples, then concatenate, sort and remove duplicates:
 
 ```sparql
+# keep.rq: every triple whose object is not a triple term.
+# This drops the rdf:reifies triples and keeps everything else,
+# including the asserted s p o triple and the reifier's own properties.
+CONSTRUCT { ?s ?p ?o }
+WHERE     { ?s ?p ?o FILTER(!isTRIPLE(?o)) }
+```
+
+```sparql
+# edges.rq: one EdgeRecord per reifier.
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX lpg: <https://example.org/lpg-mapping#>
 CONSTRUCT {
@@ -244,8 +256,7 @@ WHERE {
 }
 ```
 
-- Output: the original triples, minus the `rdf:reifies` triples, plus these `EdgeRecord` triples. The reifier's own literal properties stay attached to `?r`.
-- Serialise the result as `loadable.nt` (sorted N-Triples).
+The union is the original data minus its triple terms, plus the `EdgeRecord` triples. The reifier's literal properties (for example `ex:maxFlowBblPerDay`) come through `keep.rq` on the same subject `?r`, so Step 4e finds them on the `EdgeRecord`. Step 1 must confirm that triple terms appear only as objects of `rdf:reifies`, so `keep.rq` drops nothing else.
 
 ### Step 4: Load into Neo4j
 
