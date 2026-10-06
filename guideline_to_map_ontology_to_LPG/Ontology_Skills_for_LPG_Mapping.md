@@ -2,7 +2,7 @@
 
 **What you need to get good at in the W3C stack so your ontologies map cleanly and deterministically to a Neo4j LPG**
 
-Companion to *Ontology_to_LPG_Conversion_Playbook v2* · October 2026
+Companion to *Ontology_to_LPG_Conversion_Playbook v2.1* · October 2026
 
 ---
 
@@ -195,7 +195,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 **Master:**
 
-- **The node vs relationship-with-properties test:** if anything points at it, or it has its own lifecycle, it's a node (an event or connection class). Otherwise use a reifier.
+- **The node vs relationship-with-properties test:** if anything points at it, or it has its own lifecycle, it's a node (an event or connection class). Otherwise it is a relationship with properties: a qualified-relation node (Rule 4a, the default) or a reifier (Rule 4b, when the toolchain supports RDF 1.2).
 - N-ary relations and qualified relations (e.g. PROV-O `qualifiedAssociation`).
 - RDF 1.2 reification vs old `rdf:Statement` reification vs RDF-star.
 
