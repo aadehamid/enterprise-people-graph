@@ -172,14 +172,14 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 ## 7. SPARQL 1.2 ★★
 
-**Why it matters:** with Rule 4b, Step 3 (flattening reifiers) is a single SPARQL CONSTRUCT. With either rule, SPARQL is how you write meta-checks and fidelity reports.
+**Why it matters:** with Rule 4b, Step 3 flattens reifiers with two SPARQL CONSTRUCT queries: `keep.rq` keeps every triple whose object is not a triple term, and `edges.rq` builds the `EdgeRecord`s. `loadable.nt` is their union. With either rule, SPARQL is how you write meta-checks and fidelity reports.
 
 **Master:**
 
 - SELECT / CONSTRUCT / ASK, `FILTER`, `OPTIONAL`, `EXISTS`, `BIND`, `GRAPH`.
 - SPARQL 1.2 triple-term functions: `SUBJECT()`, `PREDICATE()`, `OBJECT()`, `isTRIPLE()`.
 
-**Practice:** run the Step 3 query in Jena `arq` on your feed example and inspect the `EdgeRecord`s.
+**Practice:** run both Step 3 queries (`keep.rq` and `edges.rq`) in Jena `arq` on your feed example, take the union, and check that the `EdgeRecord` carries the flow rate and that no triple term is left.
 
 **Resources:**
 
@@ -265,9 +265,9 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 |---|---|---|
 | 1 | RDF + Turtle (skills 1–2) | `data.ttl` with qualified-relation nodes, converted to sorted N-Triples |
 | 2 | RDFS + XSD (skills 3, 5) | Class/property hierarchy with typed ranges |
-| 3 | OWL 2 + Protégé + ROBOT (skill 4) | EL ontology + `inferred.ttl` |
+| 3 | OWL 2 + Protégé + ROBOT (skill 4) | EL ontology, `reasoned.ttl`, and `inferred.nt` (Step 3) |
 | 4 | SHACL (skill 6) | `shapes.ttl` + meta-shapes for the 5 Rules |
-| 5 | SPARQL (skill 7) | Meta-check queries; for Rule 4b, the Step 3 flatten query working in Jena 6.1+ |
+| 5 | SPARQL (skill 7) | Meta-check queries; for Rule 4b, the two Step 3 queries working in Jena 6.1+ |
 | 6 | Neo4j + n10s (skill 12) | Steps 4–5 working end-to-end |
 | 7 | Patterns + SKOS (skills 8–9) | Equipment taxonomy in SKOS; transfer modelled both ways |
 | 8 | Vocabularies + canonicalisation (skills 10–11) | QUDT units, determinism test passing in CI |

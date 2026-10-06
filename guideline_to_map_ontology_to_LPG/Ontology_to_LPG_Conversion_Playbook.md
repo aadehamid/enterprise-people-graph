@@ -211,11 +211,10 @@ Then validate the data against `shapes.ttl`. **Any violation stops the build.**
 
 ```bash
 robot reason --reasoner ELK --input ontology.ttl --axiom-generators "SubClass ClassAssertion" \
-             --create-new-ontology true \
-             --output inferred.ttl
+             --output reasoned.ttl
 ```
 
-Load the inferred `rdf:type` / `subClassOf` triples into a separate named graph (`ex:graph/inferred`), so you can always tell them apart from asserted triples.
+`reasoned.ttl` holds the input ontology plus the inferences. Step 3 extracts the inferred `rdf:type` / `rdfs:subClassOf` triples into their own file, so you can always tell them apart from asserted triples.
 
 ### Step 3: Produce `loadable.nt` and `inferred.nt`
 
@@ -226,7 +225,13 @@ Every later step loads and diffs two files, both **sorted N-Triples** (one tripl
 
 The SHA-256 of the two files together is the *input fingerprint*.
 
-**Both options: `inferred.nt`.** Step 2's `--create-new-ontology true` makes `inferred.ttl` hold only the new inferences, not the input ontology. Convert it to N-Triples with Jena's `riot` (or any RDF library), drop its `owl:Ontology` header triples, then sort and remove duplicates. Check that `inferred.nt` and `loadable.nt` share no triple (for example `comm -12 loadable.nt inferred.nt` prints nothing); a shared triple means asserted content leaked into the inference file.
+**Both options: `inferred.nt`.** Build it as a set difference, so it does not depend on what the reasoner copies into its output:
+
+1. Convert the reasoner's input (`ontology.ttl`) and output (`reasoned.ttl`) to sorted N-Triples, `input.nt` and `reasoned.nt`, with Jena's `riot` or any RDF library.
+2. Keep the lines of `reasoned.nt` that are not in `input.nt` (`comm -13 input.nt reasoned.nt`).
+3. Of those, keep only `rdf:type` and `rdfs:subClassOf` triples whose subject and object are both IRIs. Drop anything with a blank node: OWL axioms are written with blank nodes whose labels change from run to run, so they would look new every time.
+
+The result is `inferred.nt`. By construction it holds no triple from the reasoner's input.
 
 **Rule 4a: `loadable.nt`.** Convert the checked data to N-Triples the same way. There are no triple terms, so nothing else is needed.
 
