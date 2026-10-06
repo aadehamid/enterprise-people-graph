@@ -7,7 +7,7 @@ Version 2.1 · October 2026 · Author: Hamid Adesokan (with Perplexity; v2.1 wit
 > **What changed in v2.1**
 > - Rule 4 now has two options. **4a, qualified-relation nodes,** is the default: plain RDF that every common tool reads today. **4b, RDF 1.2 reifiers,** is for toolchains that support RDF 1.2.
 > - Status corrections, checked in October 2026: RDF 1.2 is a W3C Candidate Recommendation (Snapshot of 7 April 2026), not yet a Recommendation. Apache Jena 6.1.0 or later (May 2026) and Eclipse RDF4J 6.0.0 or later (July 2026) read and write RDF 1.2; Jena 5.4.0 to 6.0.x was an experimental preview without Turtle output of reifiers or annotations. rdflib, and pySHACL, which is built on it, do not support it yet.
-> - One loadable file, `loadable.nt`, for both options (Step 3), so every load and diff step names a file the chosen option produces.
+> - Step 3 produces the same two files under both options, `loadable.nt` (asserted data) and `inferred.nt` (inferences), so every load and diff step names files the chosen option produces.
 > - The flatten part of Step 3 is needed only with option 4b.
 >
 > **What changed in v2**
@@ -186,7 +186,7 @@ Tools (all free / open source):
 | Reason | ROBOT (`robot reason --reasoner ELK`) |
 | Validate | pySHACL (Rule 4a only, since it is built on rdflib) / Jena SHACL |
 | Load into Neo4j | neosemantics (n10s) |
-| Diff | rdflib `compare` (on `loadable.nt`), or Jena `rdfcompare` |
+| Diff | rdflib `compare` (on `loadable.nt` + `inferred.nt`), or Jena `rdfcompare` |
 
 ---
 
@@ -217,9 +217,14 @@ Load the inferred `rdf:type` / `subClassOf` triples into a separate named graph 
 
 ### Step 3: Produce `loadable.nt`
 
-Every later step loads and diffs one file, `loadable.nt`: the checked data plus the inferred triples, as **sorted N-Triples**. Its SHA-256 is the *input fingerprint*.
+Every later step loads and diffs two files, both **sorted N-Triples**:
 
-- **Rule 4a:** serialise the checked, reasoned data as sorted N-Triples. There are no triple terms, so nothing else is needed.
+- `loadable.nt`: the checked, asserted data.
+- `inferred.nt`: the triples from the inferred named graph (Step 2), kept in their own file so assertions and inferences stay apart.
+
+The SHA-256 of the two files together is the *input fingerprint*.
+
+- **Rule 4a:** serialise the checked data as `loadable.nt`. There are no triple terms, so nothing else is needed.
 - **Rule 4b:** flatten the RDF 1.2 reifiers first, as below, then serialise.
 
 With Rule 4b only: n10s is built around RDF 1.1 / RDF-star, not RDF 1.2 triple terms. So a 4b pipeline does one small, deterministic conversion with SPARQL 1.2 (Jena 6.1.0+ / RDF4J 6.0.0+). Each reifier becomes a plain node that n10s can load. The CONSTRUCT output is then serialised, with the rest of the data, as `loadable.nt`:
@@ -264,6 +269,9 @@ CALL n10s.graphconfig.init({
 CALL n10s.onto.import.fetch('file:///ontology.ttl','Turtle');
 CALL n10s.validation.shacl.import.fetch('file:///shapes.ttl','Turtle');
 CALL n10s.rdf.import.fetch('file:///loadable.nt','N-Triples');
+CALL n10s.rdf.import.fetch('file:///inferred.nt','N-Triples');
+// n10s keeps no graph names, so inside Neo4j asserted and inferred triples are merged.
+// The two files keep them apart; use Add-on F if the LPG itself must tell them apart.
 
 // 4e. Rule 4b only. The ONE post-load transform: EdgeRecord → relationship with properties.
 //     With Rule 4a there are no EdgeRecords; qualified-relation nodes load as ordinary nodes.
@@ -288,12 +296,12 @@ Every statement uses `MERGE` / `SET` with explicit ordering, so running it again
 ### Step 5: Verify
 
 1. `CALL n10s.validation.shacl.validate()` returns **zero** violations.
-2. **Round trip:** export with `n10s.rdf.export.cypher` and diff against `loadable.nt`. With Rule 4b, first rebuild `EdgeRecord`s from relationships that have a `uri`:
+2. **Round trip:** export with `n10s.rdf.export.cypher` and diff against the union of `loadable.nt` and `inferred.nt`. With Rule 4b, first rebuild `EdgeRecord`s from relationships that have a `uri`:
 
 ```python
 from rdflib import Graph
 from rdflib.compare import to_isomorphic, graph_diff
-src = to_isomorphic(Graph().parse("loadable.nt"))
+src = to_isomorphic(Graph().parse("loadable.nt").parse("inferred.nt"))
 out = to_isomorphic(Graph().parse("roundtrip.nt"))
 both, lost, added = graph_diff(src, out)
 assert len(lost) == 0 and len(added) == 0, (len(lost), len(added))
@@ -310,7 +318,7 @@ If all three pass, the LPG is a verified, repeatable projection of the ontology.
 | Size | Loader | What changes |
 |---|---|---|
 | Up to ~10M triples | n10s `rdf.import.fetch` (Step 4) | Nothing |
-| ~10M – 1B+ triples | Generate node/edge CSVs from `loadable.nt` using the **same** mapping, then run `neo4j-admin database import` | Only Step 4. Steps 1–3 and 5 stay the same |
+| ~10M – 1B+ triples | Generate node/edge CSVs from `loadable.nt` and `inferred.nt` using the **same** mapping, then run `neo4j-admin database import` | Only Step 4. Steps 1–3 and 5 stay the same |
 | Incremental updates | Load each delta with n10s (`MERGE` by `uri`); for deletions, use `n10s.rdf.delete` | Add a nightly full-rebuild comparison |
 
 The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonical intermediate → bulk import" approach.
