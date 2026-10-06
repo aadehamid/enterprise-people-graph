@@ -195,7 +195,7 @@ Suggested pace: about 6–8 weeks at a few hours per week.
 
 **Master:**
 
-- **The node vs relationship-with-properties test:** if anything points at it, or it has its own lifecycle, it's a node (an event or connection class), modelled as a qualified-relation node (Rule 4a). Otherwise it can be a relationship with properties, which needs RDF 1.2 reifiers (Rule 4b) and a toolchain that supports them. If any tool in the pipeline lacks RDF 1.2 support, model it as a qualified-relation node (4a) anyway: it lands in the LPG as a node, not as one relationship.
+- **The node vs relationship-with-properties test:** if anything points at it, or it has its own lifecycle, it's a domain class (an event or connection class, such as a `Transfer`): an ordinary node, outside Rule 4. Otherwise it is a relationship with properties, and the ontology's single Rule 4 choice decides how it is written: a qualified-relation node (4a, the default) or an RDF 1.2 reifier (4b).
 - N-ary relations and qualified relations (e.g. PROV-O `qualifiedAssociation`).
 - RDF 1.2 reification vs old `rdf:Statement` reification vs RDF-star.
 

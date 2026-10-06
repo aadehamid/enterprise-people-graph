@@ -83,7 +83,9 @@ ex:TankShape a sh:NodeShape ; sh:targetClass ex:StorageTank ;
 
 ### Rule 4: Relationship properties use one of two patterns, chosen once per ontology
 
-Choose one pattern for the whole ontology and record the choice. Mixing them makes the conversion code guess.
+Rule 4 covers a link whose only job is to carry properties about one relationship (a flow rate, a validity period, a source). Choose one pattern for all such links in the ontology and record the choice. Mixing them makes the conversion code guess.
+
+A link that has its own lifecycle, or that other things point at, is not a Rule 4 case. It is a domain class (an event or connection class, such as a `Transfer`) and is modelled as an ordinary node under either option.
 
 #### Rule 4a (default): qualified-relation nodes
 
@@ -113,7 +115,7 @@ Rules for 4a:
 - It has exactly one value for each end (`sh:minCount 1 ; sh:maxCount 1` in SHACL, Rule 2).
 - If a consumer also wants a direct edge, assert the plain triple (`ex:TK-101 ex:feeds ex:CDU-1`) as well, or derive it with a SPARQL CONSTRUCT before loading. Do not hand-write it in Cypher.
 - Choose 4a while any tool in your pipeline lacks RDF 1.2 support.
-- If the link has its own lifecycle, or other things point at it, it is a node in any case: model it as a qualified-relation node (4a) even when the toolchain supports 4b (learning guide, skill 8).
+- A 4a qualified-relation node looks like a domain class, but it exists only to carry the relationship's properties. A link with its own lifecycle is a domain class instead (see above and skill 8 in the learning guide).
 
 #### Rule 4b: RDF 1.2 reifiers
 
@@ -220,7 +222,7 @@ Every later step loads and diffs one file, `loadable.nt`: the checked data plus 
 - **Rule 4a:** serialise the checked, reasoned data as sorted N-Triples. There are no triple terms, so nothing else is needed.
 - **Rule 4b:** flatten the RDF 1.2 reifiers first, as below, then serialise.
 
-n10s is built around RDF 1.1 / RDF-star, not RDF 1.2 triple terms. So the pipeline does one small, deterministic conversion with SPARQL 1.2 (Jena / RDF4J). Each reifier becomes a plain node that n10s can load:
+With Rule 4b only: n10s is built around RDF 1.1 / RDF-star, not RDF 1.2 triple terms. So a 4b pipeline does one small, deterministic conversion with SPARQL 1.2 (Jena 6.1.0+ / RDF4J 6.0.0+). Each reifier becomes a plain node that n10s can load. The CONSTRUCT output is then serialised, with the rest of the data, as `loadable.nt`:
 
 ```sparql
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
