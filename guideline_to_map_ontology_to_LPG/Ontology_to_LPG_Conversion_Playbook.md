@@ -403,7 +403,7 @@ The big biomedical graphs (RTX-KG2, BioCypher-based KGs) use this same "canonica
 | boolean | BOOLEAN |
 | integer, long, int, nonNegativeInteger | INTEGER (64-bit, range-checked) |
 | double, float | FLOAT |
-| decimal | FLOAT (or STRING with Add-on C). *(v2.2)* Refuse a decimal a double cannot hold exactly (Step 1), or adopt Add-on C |
+| decimal | FLOAT (or STRING with Add-on C). *(v2.2)* Refuse a decimal whose value, printed as a double, is not its own lexical form (Step 1: 0.64 passes, 0.1000000000000000055 does not), or adopt Add-on C |
 | date | DATE |
 | dateTimeStamp / dateTime with timezone | ZONED DATETIME |
 | dateTime without timezone | LOCAL DATETIME (better: forbid it in SHACL) |
