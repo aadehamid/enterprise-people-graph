@@ -7,6 +7,7 @@ Version 2.2 · October 2026 · Author: Hamid Adesokan (with Perplexity; v2.1 and
 > **What changed in v2.2**
 > v2.2 records what the first full run of the pipeline found, on the Enterprise Performance Model ontology with Neo4j 2025.06.2, n10s 2025.06.1 and ROBOT 1.9.10 (October 2026).
 > - **SHORTEN replaces MAP** in the n10s configuration (Step 4). In MAP mode, n10s 2025.06.1 would not import the shapes ("The graph is not namespace aware"). MAP also drops the namespace of terms without a mapping, which breaks the round trip (this repo's issue #2, item 2). SHORTEN keeps both, at the cost of the Rule 5 names (Rule 5).
+> - **Step 4's worked example uses SHORTEN names** (`ex__alias`, `lpg__EdgeRecord`). The Rule 4b collapse is generated once per predicate with the predicate's SHORTEN name, which answers this repo's issue #2, item 1. The run behind v2.2 used Rule 4a, so the 4b path has not been run end to end.
 > - **The full shapes run upstream, and a subset runs in the graph** (Steps 1, 4 and 5). n10s cannot run every SHACL constraint, and loading one it cannot run is not a check.
 > - **`inferred.nt` drops the reasoner's declarations** (Step 3). The OWL API writes `owl:NamedIndividual`, `owl:Class` and similar declarations into ROBOT's output. They are not inferences.
 > - **The round trip compares values, not spellings** (Step 5), and the build refuses values that cannot survive the trip.
@@ -171,7 +172,7 @@ ex:alias  lpg:name "aliases" .
 ex:feeds  lpg:name "FEEDS" .
 ```
 
-Where there's no `lpg:name`, the IRI local name is used as-is. A CI check fails the build if two IRIs end up with the same name.
+In MAP mode (v2.1), n10s uses the `lpg:name` where there is one and the IRI local name as-is where there is not. A CI check fails the build if two IRIs end up with the same name. In SHORTEN mode (v2.2), see below.
 
 **v2.2: Rule 5 names need MAP mode.** n10s applies `lpg:name` mappings only when `handleVocabUris` is `'MAP'` ([n10s mapping reference](https://neo4j.com/labs/neosemantics/4.0/mapping/)). Step 4 now uses `'SHORTEN'`, because in-graph SHACL needs it (Step 4c). In SHORTEN mode every name is the registered prefix plus the local name (`skos__prefLabel`), so no two IRIs share a name and the collision check passes by construction, but the custom names are not applied. If the graph's consumers need the Rule 5 names, add them as a generated, idempotent rename after the load and before Step 5, and reverse it in the round-trip export. Do not switch to MAP until n10s validates SHACL in MAP mode (neosemantics issue [#237](https://github.com/neo4j-labs/neosemantics/issues/237), open since 2021-11-09; the proposed fix, PR [#361](https://github.com/neo4j-labs/neosemantics/pull/361), is open as of 2026-10-13).
 
@@ -287,9 +288,12 @@ The union is the original data minus its triple terms, plus the `EdgeRecord` tri
 CREATE CONSTRAINT n10s_unique_uri IF NOT EXISTS FOR (r:Resource) REQUIRE r.uri IS UNIQUE;
 
 // 4b. Fixed prefixes (generated from prefixes.ttl), in a fixed order, so n10s
-//     never invents an ns0-style prefix. In SHORTEN mode n10s ignores
-//     n10s.mapping.add, so the lpg:name mappings are not generated here (Rule 5).
+//     never invents an ns0-style prefix. Register every namespace in the data,
+//     including the lpg: vocabulary that Rule 4b's EdgeRecords use. In SHORTEN
+//     mode every name is prefix__localName (ex:alias -> ex__alias), and n10s
+//     ignores n10s.mapping.add, so no lpg:name mappings are generated (Rule 5).
 CALL n10s.nsprefixes.add('ex','https://example.org/refinery#');
+CALL n10s.nsprefixes.add('lpg','https://example.org/lpg-mapping#');
 
 // 4c. Config (generated; multivalPropList comes from SHACL maxCount).
 //     SHORTEN, not MAP: n10s 2025.06.1 imports and validates SHACL only in a
@@ -310,9 +314,14 @@ CALL n10s.rdf.import.fetch('file:///inferred.nt','N-Triples');
 
 // 4e. Rule 4b only. The ONE post-load transform: EdgeRecord → relationship with properties.
 //     With Rule 4a there are no EdgeRecords; qualified-relation nodes load as ordinary nodes.
-MATCH (r:EdgeRecord)-[:edgeSource]->(s), (r)-[:edgeTarget]->(t), (r)-[:edgePredicate]->(p)
-WITH r, s, t, p ORDER BY r.uri
-CALL apoc.merge.relationship(s, coalesce(p.lpgName, n10s.rdf.getIRILocalName(p.uri)),
+//     Generated once per reified predicate. The relationship type is the predicate's SHORTEN
+//     name, computed by the generator from prefixes.ttl, so it equals the type n10s gave the
+//     plain edge and 4f can match them (this repo's issue #2, item 1).
+//     v2.2 has not run the 4b path end to end; the run behind v2.2 used Rule 4a.
+MATCH (r:lpg__EdgeRecord)-[:lpg__edgeSource]->(s), (r)-[:lpg__edgeTarget]->(t),
+      (r)-[:lpg__edgePredicate]->(p {uri: 'https://example.org/refinery#feeds'})
+WITH r, s, t ORDER BY r.uri
+CALL apoc.merge.relationship(s, 'ex__feeds',
      {uri: r.uri}, apoc.map.removeKeys(properties(r), ['uri']), t, {}) YIELD rel
 DETACH DELETE r;
 
@@ -322,13 +331,13 @@ MATCH (s)-[plain]->(t), (s)-[reified]->(t)
 WHERE type(plain) = type(reified) AND plain.uri IS NULL AND reified.uri IS NOT NULL
 DELETE plain;
 
-// 4g. Sort array properties (generated per multivalued key)
-MATCH (n:Resource) WHERE n.aliases IS NOT NULL SET n.aliases = apoc.coll.sort(n.aliases);
+// 4g. Sort array properties (generated per multivalued key, with its SHORTEN name)
+MATCH (n:Resource) WHERE n.ex__alias IS NOT NULL SET n.ex__alias = apoc.coll.sort(n.ex__alias);
 ```
 
 Every statement uses `MERGE` / `SET` with explicit ordering, so running it again gives the same graph.
 
-**v2.2: load only the shapes n10s can run.** n10s 2025.06.1 rejects `sh:datatype rdf:langString` and does not support `sh:not`, `sh:languageIn`, `sh:node`, `sh:targetSubjectsOf` or `sh:targetObjectsOf`. It validates only shapes with a `sh:targetClass`, so a shape with a SPARQL target never runs in the graph. A node-level `sh:nodeKind` (one on a node shape, not a property shape) compiles to no check. Generate `shapes-in-graph.ttl` from `shapes.ttl`: remove those constraints (and `sh:message` and `sh:severity`), then remove every node shape left without a `sh:targetClass`, with its property shapes. Record what was removed and why. Step 1 already ran all of them, and an empty round-trip diff (Step 5) shows the graph holds exactly the triples that passed. Treat the number of constraints n10s compiles as a reported figure, not an assumption.
+**v2.2: load only the shapes n10s can run.** n10s 2025.06.1 rejects `sh:datatype rdf:langString` and does not support `sh:not`, `sh:languageIn`, `sh:node`, `sh:targetSubjectsOf` or `sh:targetObjectsOf`. It never runs a shape with a SPARQL target, and it does not read `sh:targetSubjectsOf` or `sh:targetObjectsOf`. The subset below keeps only node shapes with a `sh:targetClass`, which loses nothing Step 1 does not already check. A node-level `sh:nodeKind` (one on a node shape, not a property shape) compiles to no check. Generate `shapes-in-graph.ttl` from `shapes.ttl`: remove those constraints (and `sh:message` and `sh:severity`), then remove every node shape left without a `sh:targetClass`, with its property shapes. Record what was removed and why. Step 1 already ran all of them, and an empty round-trip diff (Step 5) shows the graph holds exactly the triples that passed. Treat the number of constraints n10s compiles as a reported figure, not an assumption.
 
 **v2.2: install n10s from its release, pinned by checksum.** Download the jar that matches the Neo4j version from the [neosemantics releases](https://github.com/neo4j-labs/neosemantics/releases) (for Neo4j 2025.06, `neosemantics-2025.06.1.jar`), record its SHA-256, and mount it as the container's `/plugins` folder. The Neo4j image installs APOC itself through `NEO4J_PLUGINS='["apoc"]'`. Allow both with `NEO4J_dbms_security_procedures_unrestricted='apoc.*,n10s.*'`.
 
