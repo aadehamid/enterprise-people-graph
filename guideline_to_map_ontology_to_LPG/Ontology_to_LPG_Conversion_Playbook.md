@@ -36,7 +36,7 @@ If the ontology follows the **5 Core Rules** (§3), the Core Path produces an LP
 |---|---|
 | Every individual, type, literal value and link | Nodes, labels, properties, relationships |
 | Statement-level metadata (flow rate, valid-from, source, confidence) | Properties of the qualified-relation node (Rule 4a), or relationship properties via RDF 1.2 reifiers (Rule 4b) |
-| Class / property hierarchy, domain, range | Schema nodes (`:Class`, `:Relationship`, `:Property`) |
+| Class / property hierarchy, domain, range | Schema nodes from `n10s.onto.import`: in SHORTEN mode (v2.2) `:n4sch__Class`, `:n4sch__Relationship`, `:n4sch__Property`, linked by `n4sch__SCO`, `n4sch__DOMAIN`, `n4sch__RANGE` (MAP mode, v2.1: `:Class`, `:Relationship`, `:Property`) |
 | Cardinality and constraints | SHACL shapes: all of them checked before the load (Step 1), and the subset n10s supports checked again in Neo4j (Step 5) |
 | A full round trip back to RDF | Verified by an automated diff |
 
@@ -112,7 +112,7 @@ ex:feedSource lpg:name "FEED_SOURCE" .   # Rule 5: name the relationship types
 ex:feedTarget lpg:name "FEED_TARGET" .
 ```
 
-**LPG result:** a `:Feed` node with its properties and two relationships.
+**LPG result:** a `:Feed` node with its properties and two relationships. The names shown are the Rule 5 names. In SHORTEN mode (v2.2) they appear only after the rename that Rule 5 describes; without it they are `ex__Feed`, `ex__feedSource`, `ex__maxFlowBblPerDay` and so on.
 
 ```
 (TK-101)<-[:FEED_SOURCE]-(feed_0042:Feed {uri:"…feed_0042", maxFlowBblPerDay:120000, validFrom:date('2026-01-01'), source:"P&ID-0042 rev C"})-[:FEED_TARGET]->(CDU-1)
@@ -146,7 +146,7 @@ ex:feed_0042 ex:maxFlowBblPerDay 120000 ;
              ex:source "P&ID-0042 rev C" .
 ```
 
-**LPG result:** one relationship per reifier.
+**LPG result:** one relationship per reifier. As in 4a, the names shown are the Rule 5 names; in SHORTEN mode without the rename they are `ex__feeds`, `ex__maxFlowBblPerDay` and so on.
 
 ```
 (TK-101)-[:FEEDS {uri:"…feed_0042", maxFlowBblPerDay:120000, validFrom:date('2026-01-01'), source:"P&ID-0042 rev C"}]->(CDU-1)
