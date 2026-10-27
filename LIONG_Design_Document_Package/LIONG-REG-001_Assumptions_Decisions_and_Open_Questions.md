@@ -5,8 +5,8 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.20 |
-| Date | 2026-10-03 |
+| Version | 0.21 |
+| Date | 2026-10-27 |
 | Status | Working register |
 
 ## Current package status — 2026-10-03
@@ -278,6 +278,8 @@ OI-10: Resolve the PSDO artifact license mismatch, imported dependency terms, an
 
 OI-11: Pin shortlist artifacts, inspect licenses/imports, and complete definition-level mappings. Owners: LIONG-005/006/007. Status: open.
 
+OI-12: Does the later supplied People Graph plan change the approved MVP, or does it only clarify the problem and inform later scope? Its two SOW options differ, and the supplied text marks the original calibration outcomes as struck through. Owner: project owner. Status: open. Until resolved, LIONG-001 and the approved LIONG-003 scope remain authoritative. No named source system, conversation trigger, eligibility cutoff, or skills inference rule from that plan is an approved simulation requirement.
+
 ## 7. Deferred scope
 
 Recruiting workflows, career recommendations, internal opportunity marketplaces, and learning-effect analysis remain later scope. Their shared concepts can appear in the model without requiring their complete implementation in the MVP.
@@ -324,9 +326,9 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 | Artifact | Version | Change |
 | --- | --- | --- |
-| LIONG-001 | 0.18 | Current approved-package maintenance revision |
+| LIONG-001 | 0.19 | Clarified problem and graph boundary; maintenance draft |
 | LIONG-002 | 0.3 | Current approved-package maintenance revision |
-| LIONG-REG-001 | 0.20 | Current approved-package maintenance revision |
+| LIONG-REG-001 | 0.21 | Source-plan scope question; maintenance draft |
 | LIONG-004 | 0.3 | Current approved-package maintenance revision |
 | LIONG-005 | 0.6 | Current approved-package maintenance revision |
 | LIONG-006 | 0.5 | Current approved-package maintenance revision |
@@ -335,7 +337,7 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-009 | 0.4 | Current approved-package maintenance revision |
 | LIONG-010 | 0.4 | Current approved-package maintenance revision |
 | LIONG-011 | 0.6 | Current approved-package maintenance revision |
-| LIONG-012 | 0.5 | Current approved-package maintenance revision |
+| LIONG-012 | 0.6 | Clarified analytical and graph responsibilities; maintenance draft |
 | LIONG-013 | 0.3 | Current approved-package maintenance revision |
 | LIONG-014 | 0.3 | Current approved-package maintenance revision |
 | LIONG-015 | 0.3 | Current approved-package maintenance revision |
@@ -371,4 +373,6 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 Maintenance record: 0.20 consolidates the approved package status and index links on 2026-10-03.
 
-Consolidation drafts: README v0.1 and LIONG-REF-001 v0.1. No new policy decisions.
+Maintenance record: 0.21 records the later source plan as context and leaves its scope choice open on 2026-10-27. README v0.2 is a maintenance draft.
+
+Consolidation drafts: README v0.2 and LIONG-REF-001 v0.1. No new policy decisions.

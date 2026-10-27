@@ -5,8 +5,8 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-001 |
-| Version | 0.18 |
-| Date | 2026-10-02 |
+| Version | 0.19 |
+| Date | 2026-10-27 |
 | Status | Maintenance revision; version 0.1 approved |
 | Enterprise | Lagos Integrated Oil and Gas Company (LIONG) |
 | Initial scope | Promotion calibration, rating calibration, and conversational people insights |
@@ -27,6 +27,10 @@ A **People Graph** represents people and the relationships that give their work 
 The central question is:
 
 > What evidence supports a proposed rating or promotion, which criteria apply, and can an authorized reviewer trace the decision?
+
+The practical problem starts earlier than the decision. Employment, role, goal, skill, feedback, review, and decision records sit in different systems. A manager or reviewer cannot reliably see which records describe the same person, which were available at a given date, and how they relate to a specific question. A count or a dashboard can show a pattern, but it cannot by itself trace the people, evidence, and decisions behind one case.
+
+The simulation tests whether a governed People Graph can connect those records for authorized questions. It must show the source and time of each connection, distinguish a recorded fact from an assessment or inference, and expose missing or restricted evidence. The intended result is a traceable answer or a useful prompt for a human conversation. It is not an automated judgment about an employee.
 
 The project will first support three minimum viable product (MVP) use cases:
 
@@ -56,6 +60,8 @@ The following requirements come from the current project instructions and the va
 | CR-08 | Exclude the build-versus-buy narrative from the project. |
 
 The supplied notes also establish design intent: consumers use conversational interfaces; the semantic model connects distributed sources; and analytical queries and graph queries can serve different needs.
+
+The later supplied People Graph plan describes an employee profile assembled from HR, performance, feedback, skills, learning, talent review, promotion, and goal records. It also proposes conversation signals and skills inference. This charter uses that plan to clarify the business problem and the analytical versus graph boundary. The plan does not establish that any named source, data access, pilot rule, or proposed SOW change applies to the fictional simulation. The scope question is tracked in LIONG-REG-001 as OI-12.
 
 These intentions do not establish a selected stack, a measured latency target, or a verified ingestion capability for LIONG.
 
@@ -136,6 +142,23 @@ Managers and HR partners should be able to ask ordinary business questions. The 
 An answer must identify its supporting evidence, review period, and known gaps. It must respect the user's access rights before retrieving or summarizing sensitive records.
 
 The language model must not invent an authoritative rating, policy, calculation, or promotion decision.
+
+### 3.6 Timely conversations need more than a single trigger
+
+A manager may need to discuss career growth, year-end expectations, a recent role change, or a documented follow-up action. Each possible prompt depends on several records and a time window. For example, a prior nomination alone does not establish that a career conversation is needed. A recent check-in may already have covered it. Missing documentation can mean that an action did not occur, that a source has not delivered it, or that the user cannot see it.
+
+The first release tests governed questions about these relationships through the approved conversational use case. Proactive signal delivery, pilot eligibility thresholds, and skills inference require separate requirements and approval. LIONG-003 owns the first-release workflows; OI-12 records the unresolved scope choice.
+
+The supplied plan suggests four possible conversation pilots. They illustrate the questions the model may need to support; they are not first-release triggers:
+
+| Possible conversation | Relationship question | Unsettled rule |
+| --- | --- | --- |
+| Career growth | Does the person's role, performance context, and prior conversation history support a useful discussion now? | A prior nomination or long tenure cannot trigger a prompt on its own. |
+| Year-end preparation | Do documented goals, feedback, and assessments show a gap worth clarifying before the review? | The audience and exact signal have not been defined. |
+| New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Eligibility dates and minimum time in role need approval. |
+| Performance follow-up | Is there a documented follow-up after a recorded concern? | The interval and qualifying actions need approval. |
+
+The plan also suggests skills inference for career opportunities and redeployment. A later design would need a defined skill taxonomy and separate labels for supplied, assessed, and inferred skills. LIONG-001 §6 keeps that capability outside the approved MVP.
 
 ## 4. Intended users and responsibilities
 
@@ -310,6 +333,8 @@ The logical design must distinguish four responsibilities:
 
 A People Graph does not replace every analytical query. The implementation may combine relational calculations, graph traversal, and document retrieval.
 
+The analytical layer computes counts, distributions, and other defined measures from governed records. The graph stores only the identities, selected attributes, and links needed for traversal and filtering. Detailed records and raw narratives remain in their governed source or evidence store and are retrieved by stable reference under the user's access rights. A graph edge must identify its source record and valid time. This boundary is a design rule for the simulation; LIONG-012 defines its physical serving copies and storage authority.
+
 An open-standard ontology can define shared meaning. Physical implementations still need mappings, constraints, and performance tests.
 
 The MVP should begin with the minimum components required to demonstrate these responsibilities. Streaming, multiple graph engines, and large orchestration stacks require a demonstrated need.
@@ -465,3 +490,5 @@ Related document IDs in this charter identify planned documents. They are not do
 | 0.17 | Records evaluation approval and roadmap draft; scope unchanged | Maintenance revision |
 
 Maintenance record: 0.18 consolidates the approved package status and index links on 2026-10-03.
+
+Maintenance record: 0.19 clarifies the source problem, conversation context, and analytical versus graph boundary on 2026-10-27. It does not change the approved MVP scope.

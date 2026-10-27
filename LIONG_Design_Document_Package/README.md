@@ -1,12 +1,14 @@
 # LIONG People Graph — Document Index
 
-Version: 0.1. Date: 2026-10-03. Status: consolidation draft for review.
+Version: 0.2. Date: 2026-10-27. Status: maintenance draft for review.
 
 The 17 design documents are approved at the baselines identified in the decision register. Current file versions include maintenance updates. No application has been built or deployed and no acceptance benchmark has been executed.
 
 ## 1. Approved boundaries
 
 The MVP covers promotion calibration, rating calibration, and conversational people insights for a fictional oil-and-gas company. All identities and personnel records are synthetic. Later talent, learning and recruiting scope requires its own requirements.
+
+The problem is that a person's role, goals, skills, feedback, assessments, and decisions can be spread across records with different identifiers and dates. An authorized reviewer needs to trace the evidence behind a case and see what is missing. [LIONG-001](LIONG-001_Problem_Statement_and_Simulation_Charter.md) owns this problem statement and the scope boundary. The newly supplied People Graph plan informs that explanation; its proposed conversation pilots and skills inference have not replaced the approved MVP. The scope choice is open in the [decision register](LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md) as OI-12.
 
 All durable data, including synthetic data and private evaluation truth, resides in Cloudflare R2. PostgreSQL and Neo4j are serving copies. Cloudflare, Databricks and model choices are exempt from the open-source criterion. Other used components require exact license and dependency checks. Databricks remains optional.
 
@@ -16,7 +18,7 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 
 | Document | Current version | Purpose | Design approval |
 | --- | --- | --- | --- |
-| [LIONG-001 — Problem Statement and Simulation Charter](LIONG-001_Problem_Statement_and_Simulation_Charter.md) | 0.18 | Problem, scope and simulation boundary | Approved; see register |
+| [LIONG-001 — Problem Statement and Simulation Charter](LIONG-001_Problem_Statement_and_Simulation_Charter.md) | 0.19 | Problem, scope and simulation boundary | Approved baseline; maintenance draft |
 | [LIONG-002 — Enterprise and Workforce Profile](LIONG-002_Enterprise_and_Workforce_Profile.md) | 0.3 | Fictional organization, roles and workforce | Approved; see register |
 | [LIONG-003 — Use Cases and MVP Requirements](LIONG-003_Use_Cases_and_MVP_Requirements.md) | 0.3 | MVP workflows and policy requirements | Approved; see register |
 | [LIONG-004 — Competency Questions and Data Requirements](LIONG-004_Competency_Questions_and_Data_Requirements.md) | 0.3 | Business questions and required data | Approved; see register |
@@ -27,7 +29,7 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 | [LIONG-009 — Source Systems and Integration Architecture](LIONG-009_Source_Systems_and_Integration_Architecture.md) | 0.4 | Source contracts, integration, temporal authority and replay | Approved; see register |
 | [LIONG-010 — Enterprise Evidence Corpus Strategy](LIONG-010_Enterprise_Evidence_Corpus_Strategy.md) | 0.4 | Versioned author-visible evidence and passage retrieval | Approved; see register |
 | [LIONG-011 — Open Source Technology Options and Reference Stack](LIONG-011_Open_Source_Technology_Options_and_Reference_Stack.md) | 0.6 | Reference stack, exemptions and component gates | Approved; see register |
-| [LIONG-012 — End-to-End Solution Architecture](LIONG-012_End_To_End_Solution_Architecture.md) | 0.5 | R2 boundaries, serving projections and end-to-end flow | Approved; see register |
+| [LIONG-012 — End-to-End Solution Architecture](LIONG-012_End_To_End_Solution_Architecture.md) | 0.6 | R2 boundaries, serving projections and end-to-end flow | Approved baseline; maintenance draft |
 | [LIONG-013 — Calibration Analytics and Decision Provenance](LIONG-013_Calibration_Analytics_and_Decision_Provenance.md) | 0.3 | Exact calibration measures and decision provenance | Approved; see register |
 | [LIONG-014 — Agent, MCP, and User Experience Design](LIONG-014_Agent_MCP_and_User_Experience_Design.md) | 0.3 | Read tools, MCP boundary, human forms and UI | Approved; see register |
 | [LIONG-015 — Governance, Access, Quality, and Observability](LIONG-015_Governance_Access_Quality_and_Observability.md) | 0.3 | Access, disclosure, retention, quality and monitoring | Approved; see register |

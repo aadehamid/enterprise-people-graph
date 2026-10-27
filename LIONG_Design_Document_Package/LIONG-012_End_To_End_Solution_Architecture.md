@@ -5,8 +5,8 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-012 |
-| Version | 0.5 |
-| Date | 2026-10-03 |
+| Version | 0.6 |
+| Date | 2026-10-27 |
 | Status | Version 0.3 approved; maintenance revision |
 | Approved dependencies | LIONG-001 through LIONG-010 v0.1; LIONG-011 v0.2; DEC-047/048 |
 | Implementation status | Design only; no services or integrations deployed |
@@ -24,6 +24,8 @@ Cloudflare R2 holds all durable data. This includes public reference packages, s
 Cloudflare, Databricks, and model choices are explicit exceptions to the open-source requirement. All other used components require the version-specific assessment in LIONG-011. An allowed service is not automatically required. Databricks remains optional. No exact model or deployment version is selected here.
 
 The first build supports promotion calibration, rating calibration, and conversational people insights. It does not automatically authorize a promotion or assign an employee rating.
+
+The business boundary is in LIONG-001 §11. Analytical products answer defined count and distribution questions. The graph connects identities, organizational context, roles, skills, review periods, evidence references, and decisions for scoped traversal. Detailed source records and raw narratives remain in governed R2 records and the evidence corpus. A graph result carries references that the application resolves only after an access check. This is the simulation's translation of the later supplied People Graph plan; it does not add its named source systems or proposed pilots to the approved build.
 
 ## 2. Terms and authority
 
