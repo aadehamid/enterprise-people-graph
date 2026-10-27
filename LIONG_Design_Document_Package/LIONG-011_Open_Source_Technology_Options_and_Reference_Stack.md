@@ -5,15 +5,15 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-011 |
-| Version | 0.6 |
-| Date | 2026-10-03 |
-| Status | Version 0.2 approved; maintenance revision |
+| Version | 0.7 |
+| Date | 2026-10-27 |
+| Status | Version 0.2 approved; expansion mapping draft |
 | Approved dependencies | LIONG-001 through LIONG-010, each approved at version 0.1 |
 | Research scope | Official repositories, license files, and model cards inspected on 2026-10-03 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft maps the owner's expanded scope to existing component candidates. Exact versions, licenses, and capabilities remain implementation gates. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and recommendation
 
@@ -102,6 +102,16 @@ This is a design recommendation based on the approved workload. No measured perf
 | Documents | Versioned templates and files | Original project artifacts | Required initial corpus route |
 
 Frappe HR does not by itself establish that the complete LIONG panel workflow exists. Moodle completion does not establish person proficiency. Adapters must preserve the approved semantics.
+
+The expanded source plan maps to the existing open-source path as follows. These are responsibilities, not claims that an optional application already has every required field or workflow.
+
+| Needed record or function | Simulation route | Gate |
+| --- | --- | --- |
+| Employment, role, reporting, and talent-review context | Contract emulator first; Frappe HR may supply a later application pilot | Check each required record and history field before selecting the adapter |
+| Check-ins, feedback, goals, ratings, promotion cases, and follow-up | Existing custom source and workflow services | Keep dated source records, authority, and evidence snapshots separate |
+| Skill vocabulary and role requirements | Bounded O*NET scaffold with reviewed ESCO and NICE candidates from LIONG-005 | Pin release, terms, concept IDs, and local mappings |
+| Person-skill suggestions | Governed application logic over permitted synthetic records | Label inferences and test evidence; no proprietary inference service |
+| Learning activity | Contract emulator first; Moodle may supply a later application pilot | Completion does not prove skill proficiency |
 
 Check each application's framework, database, cache, worker, frontend, and plugin dependencies. A root GPL license does not approve every optional dependency.
 
@@ -314,3 +324,5 @@ The original review inspected the sources below on 2026-10-03. Moving repository
 | 0.5 | Adds authorized ontology shortlist, descriptions, links, and reuse boundaries | Targeted revision |
 
 Maintenance record: 0.6 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.7 maps the expanded source responsibilities to existing open-source candidates and custom synthetic services. It selects no new runtime component.

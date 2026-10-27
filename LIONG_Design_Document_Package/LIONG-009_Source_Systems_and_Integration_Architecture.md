@@ -5,14 +5,14 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-009 |
-| Version | 0.4 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.5 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 through LIONG-008, each approved at version 0.1 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft adds logical fields for the owner's expanded scope under REQ-11. Exact source mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -114,10 +114,10 @@ The exact digest algorithm and serialization rules belong in implementation cont
 | Source | Required payload groups |
 | --- | --- |
 | SYS-HR | Source person ID, employment ID, position ID, assignment ID, organization IDs, role/track/level IDs, effective intervals, manager assignment reference |
-| SYS-PERF | Review ID, cycle, subject reference, assignment periods, criteria versions, assessor, assessment status, rating stage/category, rationale, evidence references |
+| SYS-PERF | Review ID, cycle, subject reference, assignment periods, criteria versions, assessor, assessment status, rating stage/category, rationale, evidence references; for expanded pilots, check-in status and topics, goal progress, and follow-up references |
 | SYS-LEARN | Subject reference, item/credential definition, completion or issue event, status, validity dates, assessment-result reference where present |
 | SYS-WORK | Work item, participation, individual contribution, assignment context, work dates, outcome records, author or responsible source |
-| SYS-CAL | Case ID, target, window, state, participants, conflict status, decision authority, rationale, snapshot membership, reopening and effective-change references |
+| SYS-CAL | Case ID, target, window, state, participants, conflict status, decision authority, rationale, snapshot membership, reopening and effective-change references; for expanded pilots, dated talent-review placements |
 | SYS-DOC | Artifact/version ID, author, audience, creation and availability times, classification, content reference, linked case or work item |
 | REF-BUNDLE | Publisher/source, release, concept IDs, mapping status, license notices, checksums, transformation version |
 
@@ -284,3 +284,5 @@ Sequence reference (approved design): LIONG-010 — Enterprise Evidence Corpus S
 | 0.3 | Aligns source and publication storage with R2; authority and replay rules unchanged | Maintenance revision |
 
 Maintenance record: 0.4 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.5 adds logical source payloads for the conversation and skills pilots; it does not select a named external system.

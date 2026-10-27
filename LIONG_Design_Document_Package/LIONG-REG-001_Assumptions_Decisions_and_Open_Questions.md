@@ -5,13 +5,13 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.21 |
+| Version | 0.22 |
 | Date | 2026-10-27 |
 | Status | Working register |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines. REQ-11 records the owner's 2026-10-27 scope expansion. The current document revisions describe that expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -37,7 +37,8 @@ Retain decision IDs. Record a rationale and affected documents when a choice cha
 | ID | Requirement | Authority | Status |
 | --- | --- | --- | --- |
 | REQ-01 | Use fictional LIONG and exclude original company and participant identities | User instruction | Confirmed |
-| REQ-02 | First MVPs: promotion calibration, rating calibration, conversational people insights | User instruction and supplied notes | Confirmed |
+| REQ-02 | Retain promotion calibration, rating calibration, and conversational people insights in the MVP | User instruction and supplied notes | Confirmed |
+| REQ-11 | Expand the existing scope with four purpose-driven conversation pilots and bounded skills inference | User instruction, 2026-10-27: "it does not replace it . it expands it" | Confirmed scope; exact rules open |
 | REQ-03 | Retain later talent use cases in the roadmap | User instruction | Confirmed |
 | REQ-04 | Use public reference data and synthetic enterprise records | User instruction | Confirmed |
 | REQ-05 | Every non-exempt used component must be open source; Cloudflare, Databricks, and model choices are explicit exceptions | User instruction | Confirmed |
@@ -77,7 +78,7 @@ Retain decision IDs. Record a rationale and affected documents when a choice cha
 
 | APR-018 | LIONG-017 | 0.1 | User response: “reviewed and approved”, 2026-10-03 | Approves DEC-079 through DEC-083; implementation and measured acceptance remain pending |
 
-The charter's versions 0.2 and 0.3 are maintenance revisions. It records approval of version 0.1 and references the new drafts. It does not change approved scope.
+The charter's versions 0.2 and 0.3 were maintenance revisions. Version 0.1 remains the approved baseline. REQ-11 records the later scope expansion; OI-12 and OI-13 keep its exact rules open.
 
 ## 5. Workforce decisions
 
@@ -278,11 +279,13 @@ OI-10: Resolve the PSDO artifact license mismatch, imported dependency terms, an
 
 OI-11: Pin shortlist artifacts, inspect licenses/imports, and complete definition-level mappings. Owners: LIONG-005/006/007. Status: open.
 
-OI-12: Does the later supplied People Graph plan change the approved MVP, or does it only clarify the problem and inform later scope? Its two SOW options differ, and the supplied text marks the original calibration outcomes as struck through. Owner: project owner. Status: open. Until resolved, LIONG-001 and the approved LIONG-003 scope remain authoritative. No named source system, conversation trigger, eligibility cutoff, or skills inference rule from that plan is an approved simulation requirement.
+OI-12: Define the audience, evidence, suppression rules, eligibility dates, and waiting periods for each conversation pilot. Owner: project owner. Status: open. The four pilot purposes are in scope under REQ-11; exact triggers are not approved.
+
+OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007. Status: open. REQ-11 includes the pilot, not an automatic employee decision.
 
 ## 7. Deferred scope
 
-Recruiting workflows, career recommendations, internal opportunity marketplaces, and learning-effect analysis remain later scope. Their shared concepts can appear in the model without requiring their complete implementation in the MVP.
+Recruiting workflows, full career recommendations, internal opportunity placement, and learning-effect analysis remain later scope. The bounded skills pilot may show target-role gaps and redeployment options for human review; it does not run a marketplace or make a placement.
 
 LIONG-011 v0.2 reference recommendations are approved. Exact releases and deployment gates remain open. Optional tools remain optional; approval does not require their deployment.
 
@@ -326,24 +329,25 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 | Artifact | Version | Change |
 | --- | --- | --- |
-| LIONG-001 | 0.19 | Clarified problem and graph boundary; maintenance draft |
-| LIONG-002 | 0.3 | Current approved-package maintenance revision |
-| LIONG-REG-001 | 0.21 | Source-plan scope question; maintenance draft |
-| LIONG-004 | 0.3 | Current approved-package maintenance revision |
-| LIONG-005 | 0.6 | Current approved-package maintenance revision |
-| LIONG-006 | 0.5 | Current approved-package maintenance revision |
+| LIONG-001 | 0.20 | Expanded problem and scope draft |
+| LIONG-002 | 0.4 | Expanded-scope reference draft; workforce profile unchanged |
+| LIONG-REG-001 | 0.22 | Records REQ-11 and open pilot rules |
+| LIONG-004 | 0.4 | Expanded question catalogue draft |
+| LIONG-005 | 0.7 | Public reference assessment draft |
+| LIONG-006 | 0.6 | Expanded model concepts draft |
 | LIONG-007 | 0.6 | Current approved-package maintenance revision |
-| LIONG-008 | 0.4 | Current approved-package maintenance revision |
-| LIONG-009 | 0.4 | Current approved-package maintenance revision |
-| LIONG-010 | 0.4 | Current approved-package maintenance revision |
-| LIONG-011 | 0.6 | Current approved-package maintenance revision |
-| LIONG-012 | 0.6 | Clarified analytical and graph responsibilities; maintenance draft |
+| LIONG-008 | 0.5 | Expanded fixture strategy draft |
+| LIONG-009 | 0.5 | Expanded logical source contract draft |
+| LIONG-010 | 0.5 | Expanded-scope evidence reference draft |
+| LIONG-011 | 0.7 | Expanded source-to-component mapping draft |
+| LIONG-012 | 0.7 | Expanded architecture responsibilities draft |
 | LIONG-013 | 0.3 | Current approved-package maintenance revision |
-| LIONG-014 | 0.3 | Current approved-package maintenance revision |
-| LIONG-015 | 0.3 | Current approved-package maintenance revision |
-| LIONG-016 | 0.3 | Current approved-package maintenance revision |
-| LIONG-017 | 0.2 | Current approved-package maintenance revision |
-| LIONG-003 | 0.3 | Current approved-package maintenance revision |
+| LIONG-014 | 0.4 | Expanded read-tool catalogue draft |
+| LIONG-015 | 0.4 | Expanded derived-record governance draft |
+| LIONG-016 | 0.4 | Expanded scenario catalogue draft |
+| LIONG-017 | 0.3 | Expanded delivery sequence draft |
+| LIONG-003 | 0.4 | Expanded pilot requirements draft |
+| LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match |
 
 ## 11. Change history
 
@@ -373,6 +377,8 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 Maintenance record: 0.20 consolidates the approved package status and index links on 2026-10-03.
 
-Maintenance record: 0.21 records the later source plan as context and leaves its scope choice open on 2026-10-27. README v0.2 is a maintenance draft.
+Maintenance record: 0.21 recorded the later source plan as context on 2026-10-27.
 
-Consolidation drafts: README v0.2 and LIONG-REF-001 v0.1. No new policy decisions.
+Revision 0.22 records the owner's scope expansion and replaces the former scope question with open pilot-rule and taxonomy questions. README v0.3 is an expansion draft.
+
+Consolidation drafts: README v0.3 and LIONG-REF-001 v0.2. REQ-11 changes scope; exact pilot policies remain open.

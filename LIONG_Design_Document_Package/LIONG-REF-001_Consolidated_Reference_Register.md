@@ -3,10 +3,10 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REF-001 |
-| Version | 0.1 |
-| Date | 2026-10-03 |
-| Status | Consolidation draft for review |
-| Evidence boundary | Links and assessments carried forward from approved documents; no new remote verification in this consolidation |
+| Version | 0.2 |
+| Date | 2026-10-27 |
+| Status | Expansion reference draft for review |
+| Evidence boundary | Earlier links carried forward; new official pages inspected on 2026-10-27; no artifact import or license clearance |
 
 ## 1. How to use this register
 
@@ -23,7 +23,9 @@ This register consolidates sources already cited in the design package. A URL is
 | [SEPIO](https://www.ebi.ac.uk/ols4/ontologies/sepio) | Scientific claims, evidence lines, supporting information, methods, and agents | Pilot claim-to-evidence links in one promotion dossier | Bounded pilot; cross-domain fit open |
 | [PROV-O](https://www.w3.org/TR/prov-o/) | Entities, activities, agents, and provenance relationships | Trace assessment authorship, source versions, derivation, and revisions | Existing alignment; make mappings explicit |
 | [OWL-Time](https://www.w3.org/TR/owl-time/) | Temporal instants, intervals, and their relationships | Represent assignment and review periods | Assess a small subset |
-| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Normalize role/skill references and support later career matching | Existing source assessment |
+| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Candidate role-skill mapping for the bounded skills pilot | Existing source assessment; release gate open |
+| [NICE Framework](https://niccs.cisa.gov/tools/nice-framework) | Cybersecurity work roles, tasks, knowledge, and skills | Candidate subset for relevant digital roles | New assessment; release and reuse gate open |
+| [Department of Labor taxonomy](https://www.dol.gov/agencies/odg/taxonomy) | Plain-language dataset descriptions and keywords | Example for source-data discovery, not employee skills | New assessment; exact file terms open |
 | [SKOS](https://www.w3.org/TR/skos-reference/) | Concept schemes, labels, semantic relations, and mappings | Maintain controlled terms and reviewed reference mappings | Existing alignment |
 | [CTDL](https://www.credreg.com/ctdl/handbook) | Credentials, assessment offerings, learning opportunities, and pathways | Describe later learning and career options | Later scope |
 | [ODRL](https://www.w3.org/TR/odrl-model/) | Permissions, prohibitions, duties, and constraints | Express evidence-use policies after access rules are defined | Deferred; enforcement remains in application |
@@ -93,6 +95,10 @@ The table below deduplicates exact URLs and retains every source-document associ
 | REF-055 | [S3 — SHACL](https://www.w3.org/TR/shacl/) | LIONG-006 |
 | REF-056 | [SKOS](https://www.w3.org/TR/skos-reference/) | LIONG-005, LIONG-006, LIONG-013, LIONG-014 |
 | REF-057 | [ORG](https://www.w3.org/TR/vocab-org/) | LIONG-005, LIONG-006, LIONG-013, LIONG-014 |
+| REF-058 | [NICE Workforce Framework overview](https://niccs.cisa.gov/tools/nice-framework) | LIONG-005 |
+| REF-059 | [NICE Framework Resource Center](https://www.nist.gov/nice/framework/) | LIONG-005 |
+| REF-060 | [Department of Labor data taxonomy](https://www.dol.gov/agencies/odg/taxonomy) | LIONG-005 |
+| REF-061 | [ESCO ontology](https://data.europa.eu/esco/model) | LIONG-005 |
 
 ## 4. Artifact acceptance record to complete
 

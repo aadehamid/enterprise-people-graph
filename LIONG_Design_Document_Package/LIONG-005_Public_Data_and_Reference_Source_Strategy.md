@@ -5,19 +5,19 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-005 |
-| Version | 0.6 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.7 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion assessment draft |
 | Approved dependencies | LIONG-001 through LIONG-004, each approved at version 0.1 |
-| Research checkpoint | Official source pages checked on 2026-10-03 |
+| Research checkpoint | Official source pages checked on 2026-10-03 and 2026-10-27 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and conclusion
 
-Public data is sufficient to supply a reference scaffold for the LIONG People Graph simulation. Synthetic records must supply the employee evidence and decisions required by the calibration MVPs.
+Public data can supply a reference scaffold for the LIONG People Graph simulation. Synthetic records must supply employee evidence and decisions for calibration, conversation signals, and skills inference.
 
 Public reference data cannot establish LIONG employee competence, ratings, reporting lines, or promotion outcomes. The fictional enterprise does not have observed employee facts.
 
@@ -35,6 +35,7 @@ Official pages were inspected for source characteristics and licensing statement
 | Decisions and revisions | CQ-P07, CQ-P08, CQ-P10, CQ-R02 | No employee-level contribution | Panel sessions, rationale, revisions, assignments |
 | Rating distributions and cohorts | CQ-R01, CQ-R03, CQ-R04 | No observed LIONG distribution | Eligible reviews and versioned cohort membership |
 | Temporal and access context | CQ-C01 through CQ-C07 | General reference concepts only | Availability times, classifications, user scopes |
+| Skills inference | CQ-S01 through CQ-S03 | Occupation, skill, task, and knowledge concepts | Person-skill evidence and inference status |
 
 CQ-P09 and CQ-R08 can use occupational context. They still require synthetic assignments and review history.
 
@@ -64,6 +65,8 @@ Prefer versioned downloadable packages for reproducible reference imports. No re
 | SRC-04 | Original LIONG definitions | Local roles, policies, criteria, courses | Authored within project | Project release license to be recorded | Required synthetic extension |
 | SRC-05 | Real professional profiles | None in MVP | Not assessed | Not assessed | Excluded |
 | SRC-06 | Labor-market aggregates | Optional later workforce planning context | Not assessed | Not assessed | Deferred |
+| SRC-07 | NICE Workforce Framework | Cybersecurity work roles, tasks, knowledge, and skills | Official browser and CSV download documented [S9, S10] | Exact release terms not yet checked | Conditional subset for digital roles |
+| SRC-08 | U.S. Department of Labor data taxonomy | Plain-language tags for dataset discovery | Official CSV download documented [S11] | Exact file terms not yet checked | Metadata example only; not a skills taxonomy |
 
 “Recommended baseline” identifies a design recommendation. It does not mean ingestion has occurred or user approval has been recorded.
 
@@ -98,6 +101,16 @@ The official API page identifies an EUPL 1.2 license for API software. That stat
 Before importing ESCO data, retain the selected package's applicable reuse notice and any exceptions. Do not assign a dataset license from a general Commission policy without verifying its scope.
 
 The MVP can proceed with the O*NET reference scaffold and original LIONG extensions while this gate remains open. No ESCO API deployment is selected here.
+
+For the expanded skills pilot, ESCO can supply stable occupation and skill concepts, labels, synonyms, and links between roles and essential or optional skills. Its ontology publishes these relationship types [S12]. Map only selected LIONG roles, keep the upstream concept IDs, and review each local mapping. An ESCO role-to-skill link defines a role expectation; it does not prove that a LIONG employee has the skill.
+
+### 6.1 NICE for cybersecurity roles
+
+The NICE Framework defines cybersecurity work roles, tasks, knowledge, skills, and competency areas. Its work roles are not job titles or occupations [S9]. Use a small reviewed subset for relevant digital or cybersecurity roles. Map its task and knowledge statements to LIONG role requirements without treating them as person-level evidence. The official site points to downloadable CSV data [S9, S10]. Pin a release and inspect its reuse terms before importing it.
+
+### 6.2 Department of Labor taxonomy for data discovery
+
+The Department of Labor's taxonomy describes datasets with plain-language categories and controlled keywords. Its published CSV is useful as an example for tagging source records and helping a user find data [S11]. The page does not present an occupation-to-skill classification. Do not use it as the skills inference backbone. Inspect the exact CSV terms before copying its vocabulary into a release.
 
 ## 7. OPITO strategy
 
@@ -281,7 +294,7 @@ Sequence reference (approved design): LIONG-006 — People Ontology and Canonica
 
 ## 17. Research references
 
-The following official pages were inspected on 2026-10-03. Links provide source attribution; they do not indicate that a dataset was downloaded.
+The original official pages were inspected on 2026-10-03. S9 through S12 were inspected on 2026-10-27. Links provide source attribution; they do not indicate that a dataset was downloaded.
 
 | Reference | Official source |
 | --- | --- |
@@ -293,6 +306,10 @@ The following official pages were inspected on 2026-10-03. Links provide source 
 | S6 | [OPITO oil-and-gas catalogue](https://opito.com/standards-and-qualifications/industry-standards-library/oil-and-gas) |
 | S7 | [OPITO sample competence-assessment product](https://opito.com/standards-and-qualifications/industry-standards-library/drilling-rigger-competence-assessment-standard) |
 | S8 | [OPITO website terms](https://opito.com/website-terms) |
+| S9 | [NICE Workforce Framework overview](https://niccs.cisa.gov/tools/nice-framework) |
+| S10 | [NICE Framework Resource Center](https://www.nist.gov/nice/framework/) |
+| S11 | [Department of Labor data taxonomy](https://www.dol.gov/agencies/odg/taxonomy) |
+| S12 | [ESCO ontology](https://data.europa.eu/esco/model) |
 
 ## 18. Change history
 
@@ -305,3 +322,5 @@ The following official pages were inspected on 2026-10-03. Links provide source 
 | 0.5 | Adds authorized ontology shortlist, descriptions, links, and reuse boundaries | Targeted revision |
 
 Maintenance record: 0.6 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.7 assesses three public references for the expanded skills pilot on 2026-10-27. No dataset import or license clearance is claimed.

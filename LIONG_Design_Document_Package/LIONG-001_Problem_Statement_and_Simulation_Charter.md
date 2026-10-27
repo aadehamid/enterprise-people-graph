@@ -5,16 +5,16 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-001 |
-| Version | 0.19 |
+| Version | 0.20 |
 | Date | 2026-10-27 |
-| Status | Maintenance revision; version 0.1 approved |
+| Status | Version 0.1 approved; scope expansion draft |
 | Enterprise | Lagos Integrated Oil and Gas Company (LIONG) |
-| Initial scope | Promotion calibration, rating calibration, and conversational people insights |
+| Initial scope | Promotion calibration, rating calibration, conversational people insights, conversation signals, and bounded skills inference |
 | Document role | Business problem and simulation boundaries |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -32,11 +32,13 @@ The practical problem starts earlier than the decision. Employment, role, goal, 
 
 The simulation tests whether a governed People Graph can connect those records for authorized questions. It must show the source and time of each connection, distinguish a recorded fact from an assessment or inference, and expose missing or restricted evidence. The intended result is a traceable answer or a useful prompt for a human conversation. It is not an automated judgment about an employee.
 
-The project will first support three minimum viable product (MVP) use cases:
+The expanded minimum viable product (MVP) supports five linked use cases:
 
 1. Promotion calibration.
 2. Rating calibration.
 3. Conversational people insights.
+4. A signal library for purpose-driven conversations.
+5. Bounded skills inference for career and redeployment questions.
 
 The project will use public reference data and synthetic internal records. It will not require confidential employee data to establish the first design baseline.
 
@@ -51,8 +53,8 @@ The following requirements come from the current project instructions and the va
 | ID | Confirmed requirement |
 | --- | --- |
 | CR-01 | Use LIONG as the fictional enterprise. Exclude original company identities and participant identities from project examples. |
-| CR-02 | Prioritize promotion calibration, rating calibration, and conversational people insights. |
-| CR-03 | Retain the later talent use cases in the design roadmap. |
+| CR-02 | Retain promotion calibration, rating calibration, and conversational people insights. Expand the MVP with conversation signals and bounded skills inference. |
+| CR-03 | Retain the broader talent use cases in the design roadmap beyond the bounded skills pilot. |
 | CR-04 | Use public reference data and synthetic enterprise records to simulate the design. |
 | CR-05 | Every non-exempt component must be open source. Cloudflare, Databricks, and model choices are explicit exceptions. All durable data resides in Cloudflare R2. |
 | CR-06 | Deliver project documents as downloadable Markdown files. |
@@ -61,7 +63,7 @@ The following requirements come from the current project instructions and the va
 
 The supplied notes also establish design intent: consumers use conversational interfaces; the semantic model connects distributed sources; and analytical queries and graph queries can serve different needs.
 
-The later supplied People Graph plan describes an employee profile assembled from HR, performance, feedback, skills, learning, talent review, promotion, and goal records. It also proposes conversation signals and skills inference. This charter uses that plan to clarify the business problem and the analytical versus graph boundary. The plan does not establish that any named source, data access, pilot rule, or proposed SOW change applies to the fictional simulation. The scope question is tracked in LIONG-REG-001 as OI-12.
+The later supplied People Graph plan describes an employee profile assembled from HR, performance, feedback, skills, learning, talent review, promotion, and goal records. The owner's 2026-10-27 instruction expands the existing scope with conversation signals and skills inference. It does not import the plan's named source systems, eligibility dates, or unverified data access into the fictional simulation. LIONG-REG-001 records the expansion and the rules still open.
 
 These intentions do not establish a selected stack, a measured latency target, or a verified ingestion capability for LIONG.
 
@@ -147,9 +149,9 @@ The language model must not invent an authoritative rating, policy, calculation,
 
 A manager may need to discuss career growth, year-end expectations, a recent role change, or a documented follow-up action. Each possible prompt depends on several records and a time window. For example, a prior nomination alone does not establish that a career conversation is needed. A recent check-in may already have covered it. Missing documentation can mean that an action did not occur, that a source has not delivered it, or that the user cannot see it.
 
-The first release tests governed questions about these relationships through the approved conversational use case. Proactive signal delivery, pilot eligibility thresholds, and skills inference require separate requirements and approval. LIONG-003 owns the first-release workflows; OI-12 records the unresolved scope choice.
+The expanded MVP tests governed questions and candidate signals about these relationships. A signal is a prompt to review context, not a personnel decision. LIONG-003 owns the workflows. OI-12 tracks the pilot eligibility rules and thresholds that still need approval.
 
-The supplied plan suggests four possible conversation pilots. They illustrate the questions the model may need to support; they are not first-release triggers:
+The expanded scope includes four conversation pilots. Their precise trigger rules remain open:
 
 | Possible conversation | Relationship question | Unsettled rule |
 | --- | --- | --- |
@@ -158,7 +160,7 @@ The supplied plan suggests four possible conversation pilots. They illustrate th
 | New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Eligibility dates and minimum time in role need approval. |
 | Performance follow-up | Is there a documented follow-up after a recorded concern? | The interval and qualifying actions need approval. |
 
-The plan also suggests skills inference for career opportunities and redeployment. A later design would need a defined skill taxonomy and separate labels for supplied, assessed, and inferred skills. LIONG-001 §6 keeps that capability outside the approved MVP.
+The expanded scope also includes bounded skills inference for career opportunities and redeployment questions. It needs a defined skill taxonomy and separate labels for supplied, assessed, and inferred skills. The simulation must not treat a role, rating, or course completion as proof that a person has a skill. LIONG-005 owns public reference candidates; LIONG-003 owns pilot behavior.
 
 ## 4. Intended users and responsibilities
 
@@ -175,6 +177,8 @@ The plan also suggests skills inference for career opportunities and redeploymen
 These are proposed simulation personas. Detailed permissions belong in LIONG-015.
 
 ## 5. MVP scope
+
+The five use cases share a bounded Employee 360 context. For each permitted person and period, it connects employment and reporting history, role, goals, check-ins, feedback, ratings, skills, learning, talent-review placement, and promotion records where those records exist. It shows source, date, and access status. The graph stores the links and selected attributes needed for traversal; detailed evidence remains in the governed record store. This is a case context for the MVP, not a promise of complete enterprise history or unrestricted self-service.
 
 ### 5.1 Promotion calibration
 
@@ -216,14 +220,22 @@ The answer must state the scope, use traceable evidence references, and identify
 
 If evidence is missing or access is insufficient, the system must return a bounded response. It must not infer confidential facts from restricted records.
 
+### 5.4 Conversation signals
+
+The signal library must support the four pilot purposes in §3.6. It must connect the relevant records, apply the user's access scope, and explain why a person was included or excluded. It must suppress a prompt when a recent authorized conversation already covered the topic. Missing or restricted data must remain visible as a limitation, not become an adverse employee signal. Pilot audiences, date cutoffs, and waiting periods are open in OI-12.
+
+### 5.5 Skills inference
+
+The first skills pilot must map a bounded set of fictional roles and skills to a reviewed public taxonomy. It must distinguish a source-supplied skill from a proposed inference and show which profile, work, or assessment evidence supports the inference. It may show gaps to a target role for a human to review. It must not make an automatic placement, redeployment, or promotion decision. LIONG-005 defines reference-source gates.
+
 ## 6. Later scope
 
 The model should permit the following extensions without implementing all of them in the MVP.
 
 | Later use case | Intended capability |
 | --- | --- |
-| Employee 360 | Assemble employment, experience, skills, learning, and evidence into one governed view |
-| Skills inventory | Distinguish declared, inferred, assessed, and verified skills |
+| Broader Employee 360 | Expand beyond the records needed by the five MVP use cases into a full governed profile |
+| Full skills inventory | Extend the bounded skills pilot across all roles and distinguish declared, inferred, assessed, and verified skills |
 | Career pathways | Show plausible transitions and their evidence; distinguish observed history from recommendations |
 | Opportunity matching | Match people to roles, projects, assignments, and mentors with explicit gaps |
 | Learning and performance | Explore development activities and later outcomes without assuming causation |
@@ -243,7 +255,7 @@ The first release excludes:
 - Validation of a model that predicts real employee success.
 - Claims that learning causes performance improvement.
 - Comprehensive collaboration surveillance or social influence scoring.
-- Full recruiting and internal marketplace workflows.
+- Full recruiting and internal marketplace workflows. The bounded skills pilot may answer readiness questions but does not place employees.
 - A supplier procurement or build-versus-buy assessment.
 
 These boundaries keep the initial work focused on evidence, context, and traceable calibration.
@@ -385,6 +397,8 @@ The following criteria define the required behavior. Numerical performance thres
 | SC-09 | Required selected components satisfy the open-source constraint | Complete a version-specific component and dependency register |
 | SC-10 | Generation is reproducible and source projections remain coherent | Replay a fixed seed and reconcile related records |
 | SC-11 | Conversational responses remain within the user's question and authority | Review task completion and bounded responses |
+| SC-12 | Conversation prompts cite their evidence and explain suppression or uncertainty | Test all four pilots, including recent-conversation and missing-record cases |
+| SC-13 | Skill suggestions distinguish source facts, assessments, and inferences | Compare role mappings and person-skill claims with independent fixtures |
 
 Latency, scale, retrieval accuracy, and cohort minimum size are open design choices. This draft does not claim measured results.
 
@@ -440,6 +454,8 @@ The following questions remain open:
 8. Which technology components meet the required features and licenses?
 9. Which models, if any, qualify for the conversational layer?
 10. Which acceptance thresholds fit the defined workload?
+11. Which audiences, evidence tests, suppression rules, and waiting periods govern each conversation pilot (OI-12)?
+12. Which pinned public taxonomy and mapping rules support the bounded skills pilot (OI-13)?
 
 Do not treat answers as approved until their status is recorded.
 
@@ -491,4 +507,6 @@ Related document IDs in this charter identify planned documents. They are not do
 
 Maintenance record: 0.18 consolidates the approved package status and index links on 2026-10-03.
 
-Maintenance record: 0.19 clarifies the source problem, conversation context, and analytical versus graph boundary on 2026-10-27. It does not change the approved MVP scope.
+Maintenance record: 0.19 clarified the source problem, conversation context, and analytical versus graph boundary on 2026-10-27.
+
+Revision 0.20 records the owner's scope expansion to conversation signals and bounded skills inference. Exact trigger and taxonomy choices remain open.

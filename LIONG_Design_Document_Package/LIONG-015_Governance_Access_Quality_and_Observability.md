@@ -5,15 +5,15 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-015 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-009 integration, LIONG-012 architecture, LIONG-013 analytics, LIONG-014 v0.1 interfaces, and approved ontology assessment |
 | Implementation status | Proposed simulation controls; no deployed access or retention configuration |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This draft applies the approved governance boundary to the owner's expanded scope under REQ-11. Exact pilot rules remain open. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and governing boundary
 
@@ -24,6 +24,8 @@ All employee records are fictional. The rules below are proposed LIONG simulatio
 Cloudflare R2 stores all durable data. Serving copies, indexes, caches, prompts, analytical products, and exports must respect the same classification and access rules. Cloudflare, Databricks, and model choices retain their approved exceptions. Other components require version-specific open-source checks.
 
 The first conversational path remains read-only. Human actions pass the approved workflow forms and authority checks. A role, ontology term, model instruction, or storage locator cannot grant permission.
+
+Conversation-signal membership, suppression reasons, talent-review placement, and person-skill inferences can reveal sensitive context. Apply the same person, field, purpose, time, and current-grant checks to these derived records and to every cited source. A manager must not infer a restricted source record from a signal's presence or absence. Remove or recompute derived outputs when a source is corrected, withdrawn, or no longer accessible.
 
 ## 2. Governance responsibilities
 
@@ -259,3 +261,5 @@ The charter, interface document, and register record approval and link to this d
 | 0.2 | Records approval of v0.1 and evaluation draft; governance policy unchanged | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 applies the existing access and retention boundary to expanded derived records under REQ-11.
