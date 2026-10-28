@@ -66,7 +66,7 @@ Prefer versioned downloadable packages for reproducible reference imports. No re
 | SRC-04 | Original LIONG definitions | Local roles, policies, criteria, courses | Authored within project | Project release license to be recorded | Required synthetic extension |
 | SRC-05 | Real professional profiles | None in MVP | Not assessed | Not assessed | Excluded |
 | SRC-06 | Labor-market aggregates | Optional later workforce planning context | Not assessed | Not assessed | Deferred |
-| SRC-07 | NICE Workforce Framework | Cybersecurity work roles, tasks, knowledge, and skills | Official browser and CSV download documented [S9, S10] | Exact release terms not yet checked | Conditional subset for digital roles |
+| SRC-07 | NICE Workforce Framework | Cybersecurity work roles, tasks, knowledge, and skills | Current components offered as XLSX and JSON [S10] | Exact release terms not yet checked | Conditional subset for digital roles |
 | SRC-08 | U.S. Department of Labor data taxonomy | Plain-language tags for dataset discovery | Official CSV download documented [S11] | Exact file terms not yet checked | Metadata example only; not a skills taxonomy |
 
 “Recommended baseline” identifies a design recommendation. It does not mean ingestion has occurred or user approval has been recorded.
@@ -107,7 +107,7 @@ For the expanded skills pilot, ESCO can supply stable occupation and skill conce
 
 ### 6.1 NICE for cybersecurity roles
 
-The NICE Framework defines cybersecurity work roles, tasks, knowledge, skills, and competency areas. Its work roles are not job titles or occupations [S9]. Use a small reviewed subset for relevant digital or cybersecurity roles. Map its task and knowledge statements to LIONG role requirements without treating them as person-level evidence. The official site points to downloadable CSV data [S9, S10]. Pin a release and inspect its reuse terms before importing it.
+The NICE Framework defines cybersecurity work roles, tasks, knowledge, skills, and competency areas. Its work roles are not job titles or occupations [S9]. Use a small reviewed subset for relevant digital or cybersecurity roles. Map its task and knowledge statements to LIONG role requirements without treating them as person-level evidence. The online overview mentions CSV [S9], but NIST's current-versions page lists the 2.2.0 components as XLSX and JSON [S10]. Use the files actually published for the selected release. Pin that release and inspect its reuse terms before importing it.
 
 ### 6.2 Department of Labor taxonomy for data discovery
 
@@ -308,7 +308,7 @@ The original official pages were inspected on 2026-10-03. S9 through S12 were in
 | S7 | [OPITO sample competence-assessment product](https://opito.com/standards-and-qualifications/industry-standards-library/drilling-rigger-competence-assessment-standard) |
 | S8 | [OPITO website terms](https://opito.com/website-terms) |
 | S9 | [NICE Workforce Framework overview](https://niccs.cisa.gov/tools/nice-framework) |
-| S10 | [NICE Framework Resource Center](https://www.nist.gov/nice/framework/) |
+| S10 | [NICE Framework: current versions](https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center/nice-framework-current-versions) |
 | S11 | [Department of Labor data taxonomy](https://www.dol.gov/agencies/odg/taxonomy) |
 | S12 | [ESCO ontology](https://data.europa.eu/esco/model) |
 

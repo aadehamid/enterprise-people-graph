@@ -96,7 +96,7 @@ The table below deduplicates exact URLs and retains every source-document associ
 | REF-056 | [SKOS](https://www.w3.org/TR/skos-reference/) | LIONG-005, LIONG-006, LIONG-013, LIONG-014 |
 | REF-057 | [ORG](https://www.w3.org/TR/vocab-org/) | LIONG-005, LIONG-006, LIONG-013, LIONG-014 |
 | REF-058 | [NICE Workforce Framework overview](https://niccs.cisa.gov/tools/nice-framework) | LIONG-005 |
-| REF-059 | [NICE Framework Resource Center](https://www.nist.gov/nice/framework/) | LIONG-005 |
+| REF-059 | [NICE Framework: current versions](https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center/nice-framework-current-versions) | LIONG-005 |
 | REF-060 | [Department of Labor data taxonomy](https://www.dol.gov/agencies/odg/taxonomy) | LIONG-005 |
 | REF-061 | [ESCO ontology](https://data.europa.eu/esco/model) | LIONG-005 |
 
