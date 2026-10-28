@@ -5,20 +5,20 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-006 |
-| Version | 0.5 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.6 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 through LIONG-005, each approved at version 0.1 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
-This document defines the canonical meaning of the entities and relationships used by the three MVPs. An ontology is a governed definition of concepts and their relationships.
+This document defines the canonical meaning of entities and relationships used by the approved use cases and the expanded pilots. An ontology is a governed definition of concepts and their relationships.
 
-The model supports promotion calibration, rating calibration, and conversational people insights. It does not select a graph database or replace the analytical calculation layer.
+The model supports promotion calibration, rating calibration, conversational people insights, conversation signals, and bounded skills inference. It does not select a graph database or replace the analytical calculation layer.
 
 The model distinguishes people, employment, assignments, role requirements, evidence, assessments, and decisions. These distinctions remain intact in every physical projection.
 
@@ -73,6 +73,7 @@ Organization hierarchy and location are separate. Temporary site visits do not o
 | Entity | Meaning | Required context |
 | --- | --- | --- |
 | Goal | An agreed expectation for a period | Subject, scope, dates, version |
+| GoalProgress | A dated statement about progress or a gap against one goal | Goal version, author, date, evidence reference |
 | WorkItem | A project, campaign, or work activity | Type, scope, dates |
 | Contribution | An identified person's contribution | Person, assignment context, work item, period |
 | Outcome | A recorded work result | Work item, measurement or statement, provenance |
@@ -83,8 +84,13 @@ Organization hierarchy and location are separate. Temporary site visits do not o
 | CredentialDefinition | A defined credential type | Issuer context and validity rules |
 | CredentialRecord | A synthetic person's credential record | Definition, issue date, expiry or validity status |
 | SkillAssessment | An assessor's capability judgment | Person, skill, scope, date, evidence |
+| PersonSkillClaim | A source-supplied claim that a person has a skill | Person, skill, source record, author, date, claim status |
+| SkillInference | A proposed person-skill link derived from identified evidence | Person, skill, rule version, source evidence, time, status |
+| ConversationTopic | A controlled topic linked to a check-in or feedback record | Topic definition, source record, extraction method, date |
 
 Do not infer individual contribution from a team outcome. A course can develop a skill without its completion establishing proficiency.
+
+A PersonSkillClaim records what a source supplied, including a self-declaration. It does not establish assessed or verified competence. SkillAssessment and SkillInference retain their distinct authorship and evidence rules.
 
 ### 4.3 Evaluation and decision
 
@@ -95,6 +101,7 @@ Do not infer individual contribution from a team outcome. A course can develop a
 | PolicyVersion | Applicable policy text and rules | Effective interval, authority, version |
 | CriterionVersion | A versioned evaluation requirement | Definition, expectation, applicability |
 | PerformanceReview | An employee's review case | Cycle, period, linked assignments |
+| CheckIn | A dated employee-manager conversation record | Participants, purpose, date, completion status, source version |
 | Nomination | A proposed career change | Person, current assignment, target, window |
 | CriterionAssessment | Judgment against one criterion | Case, criterion version, assessor, rationale |
 | RatingRecord | Proposed, revised, or final overall rating | Review, category, version, authority |
@@ -106,8 +113,12 @@ Do not infer individual contribution from a team outcome. A course can develop a
 | EffectiveChange | An authorized assignment change | Decision, effective date, resulting assignment |
 | CohortDefinition | Versioned comparison rules | Dimensions, parameters, exclusions |
 | CohortMembership | Inclusion in one comparison | Cohort version, subject, inclusion reason |
+| ConversationSignal | A dated suggestion to review a conversation topic | Person, purpose, rule version, supporting records, suppression reason, access scope |
+| TalentReviewPlacement | A recorded placement in a talent-review cycle | Person, category, cycle, authority, date, source version |
 
 A CriterionVersion is an evaluation requirement. A RoleRequirement describes capability needed for work. They can be linked, but are not automatically identical.
+
+ConversationTopic records the source and method of a structured topic. It does not copy a raw comment into the graph. TalentReviewPlacement is a dated assessment, not an objective employee attribute. Exact cardinalities and mappings for these expanded concepts remain open in OI-12 and OI-13.
 
 ### 4.4 Evidence, access, and execution
 
@@ -243,7 +254,7 @@ See LIONG-005 §8.2 for descriptions, ontology links, and acquisition gates (DEC
 | [SEPIO](https://www.ebi.ac.uk/ols4/ontologies/sepio) | Scientific claims, evidence lines, supporting information, methods, and agents | Pilot claim-to-evidence links in one promotion dossier | Bounded pilot; cross-domain fit open |
 | [PROV-O](https://www.w3.org/TR/prov-o/) | Entities, activities, agents, and provenance relationships | Trace assessment authorship, source versions, derivation, and revisions | Existing alignment; make mappings explicit |
 | [OWL-Time](https://www.w3.org/TR/owl-time/) | Temporal instants, intervals, and their relationships | Represent assignment and review periods | Assess a small subset |
-| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Normalize role/skill references and support later career matching | Existing source assessment |
+| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Candidate role-skill mapping for the bounded skills pilot | Existing source assessment; release gate open |
 | [SKOS](https://www.w3.org/TR/skos-reference/) | Concept schemes, labels, semantic relations, and mappings | Maintain controlled terms and reviewed reference mappings | Existing alignment |
 | [CTDL](https://www.credreg.com/ctdl/handbook) | Credentials, assessment offerings, learning opportunities, and pathways | Describe later learning and career options | Later scope |
 | [ODRL](https://www.w3.org/TR/odrl-model/) | Permissions, prohibitions, duties, and constraints | Express evidence-use policies after access rules are defined | Deferred; enforcement remains in application |
@@ -354,3 +365,5 @@ Official specifications inspected on 2026-10-03:
 | 0.4 | Adds authorized ontology shortlist, descriptions, links, and reuse boundaries | Targeted revision |
 
 Maintenance record: 0.5 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.6 adds proposed signal and skill-inference concepts for REQ-11. OI-12 and OI-13 still govern their exact rules and mappings.

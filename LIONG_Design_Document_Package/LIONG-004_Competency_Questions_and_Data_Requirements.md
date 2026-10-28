@@ -5,20 +5,20 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-004 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 v0.1; LIONG-002 v0.1; LIONG-003 v0.1 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
 A competency question is a business question that the model and implementation must be able to answer.
 
-This document maps the three MVPs to required records, relationships, query operations, and expected outputs. It provides a contract for public-source assessment, ontology design, synthetic generation, and evaluation.
+This document maps the approved calibration and conversation use cases and the expanded pilots to required records, relationships, query operations, and expected outputs. It provides a contract for public-source assessment, ontology design, synthetic generation, and evaluation.
 
 It does not define final physical schemas. Field names below are logical requirements. LIONG-006 and LIONG-007 will define canonical identifiers, cardinalities, datatypes, and implementation mappings.
 
@@ -99,6 +99,27 @@ CQ-R04 requires an approved analytical method before producing a statistical fla
 
 Claims that access is denied must follow the access contract. An ordinary user must not receive hidden record counts or a list of restricted documents merely to explain missingness.
 
+### 6.1 Conversation signal questions
+
+| ID | Question | Required records and relationships | Expected output |
+| --- | --- | --- | --- |
+| CQ-G01 | Has a recent authorized conversation already covered career growth? | Person, check-in topic, author, date, and access scope | Suppression result with cited records and limits |
+| CQ-G02 | What supports a year-end preparation prompt? | Goals, progress, feedback, assessments, and review cutoff | Evidence and gaps, without an automatic rating judgment |
+| CQ-G03 | Is a new-role alignment prompt timely? | Assignment and manager-change dates, check-in eligibility, and completion | Inclusion or exclusion reason under an approved waiting rule |
+| CQ-G04 | Is a follow-up documented after a performance concern? | Concern, later check-in or action, availability times, and scope | Documented action or a bounded unknown; no claim that nothing happened |
+
+The exact audiences, cutoffs, and waiting periods are open in OI-12. These questions define required evidence, not current trigger rules.
+
+### 6.2 Skills inference questions
+
+| ID | Question | Required records and relationships | Expected output |
+| --- | --- | --- | --- |
+| CQ-S01 | Which skills does a selected target role require? | Versioned role-to-skill mapping and source concept IDs | Required and optional skills with mapping provenance |
+| CQ-S02 | Which person-skill claims have evidence? | Source-supplied skills, assessments, work evidence, inference records | Claim type, supporting evidence, date, and uncertainty |
+| CQ-S03 | Which target-role gaps need human review? | Target requirements and supported person-skill claims | Gap list with missingness and no automatic placement |
+
+The selected taxonomy release, mappings, and validation rules remain open in OI-13.
+
 ## 7. Minimum logical record contracts
 
 | Record | Required logical fields |
@@ -111,6 +132,9 @@ Claims that access is denied must follow the access contract. An ordinary user m
 | Policy version | policy_id, version_id, effective dates, authority, source reference |
 | Criterion definition | criterion_id, version_id, applicable role or transition, expectation, applicability rule |
 | Review | review_id, cycle_id, assignment context, assessed period, cutoff, assessment_status |
+| Check-in and topic | checkin_id, participants, purpose, date, completion status, topic_id, extraction method, source record |
+| Goal progress | goal_id, progress_record_id, author, date, gap status, evidence reference |
+| Talent review placement | placement_id, person_id, category, cycle, authority, date, source record |
 | Criterion assessment | assessment_id, criterion_version_id, case_id, assessor_id, judgment, rationale, assessment_time |
 | Evidence | evidence_id, source_system, source_record_id, type, author, event_time, available_at, version, classification |
 | Evidence linkage | assessment_id or claim_id, evidence_id, linkage_type, author, created_at |
@@ -121,6 +145,9 @@ Claims that access is denied must follow the access contract. An ordinary user m
 | Decision or revision | decision_id, case_id, prior_version, outcome, reason, authorized_by, decided_at, evidence_snapshot_id |
 | Cohort | cohort_id, definition_version, parameters, member references, exclusions |
 | Query trace | trace_id, requester, scope, parameters, tool versions, source snapshot, answer reference |
+| Conversation signal | signal_id, person_id, purpose, rule_version, review_date, evidence references, status, suppression reason |
+| Skill inference | inference_id, person_id, skill_id, taxonomy release, rule version, evidence references, status, uncertainty |
+| Person-skill claim | claim_id, person_id, skill_id, source record/version, author, claim date, claim status, access classification |
 
 An end date can be absent for a current assignment. An unavailable value must have an explicit missingness status where it affects interpretation.
 
@@ -161,7 +188,7 @@ Staleness is not inferred from age alone. Credential expiry and policy-defined e
 | Roles and skills | Occupational vocabulary and mappings | LIONG role, level, and track extensions | Cannot map target criteria without definitions |
 | Policies and criteria | Illustrative public frameworks where reuse permits | Approved fictional rating and promotion policy | Cannot select applicable rules |
 | Employment history | None required at person level | Assignments, managers, transfers, exits | Cannot reconstruct case context |
-| Performance evidence | Domain examples only | Goals, contributions, assessments, feedback | Cannot explain ratings or readiness assessments |
+| Performance evidence | Domain examples only | Goals, goal progress, check-ins and topics, contributions, assessments, feedback | Cannot explain ratings, readiness assessments, or conversation prompts |
 | Calibration decisions | None required | Sessions, revisions, decisions, rationale | Cannot explain outcomes |
 | Learning and credentials | Accessible catalog metadata | Completions, validity dates, assessment results | Cannot test evidence distinctions |
 | Access and identity | General technical patterns | User scope, mappings, classification | Cannot enforce authorized answers |
@@ -196,7 +223,7 @@ Do not require a fixed wording when multiple evidence-grounded responses are val
 
 LIONG-003 approval resolves OI-01 and OI-02 at the simulation-policy level. Detailed implementation mappings remain open.
 
-LIONG-REG-001 records that approval. Earlier documents are updated only to reflect approval and resolved questions. This draft does not change the approved workforce or MVP scope.
+LIONG-REG-001 records that approval and the owner's later scope expansion. This revision adds questions for the expanded pilots. It does not change the approved workforce profile.
 
 ## 13. Completion gate and next document
 
@@ -212,3 +239,5 @@ The next document is LIONG-005 — Public Data and Reference Source Strategy. It
 | 0.2 | Records approval and source-strategy draft; requirements unchanged | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 adds evidence questions for the owner's expanded conversation and skills pilots on 2026-10-27. Exact pilot rules remain open.

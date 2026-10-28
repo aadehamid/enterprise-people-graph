@@ -5,19 +5,19 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-014 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-003/004 requirements; LIONG-012 architecture; LIONG-013 v0.1 analytics; DEC-055/056 ontology assessment |
 | Implementation status | Proposed interfaces and contracts; no deployed agent or MCP server |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and interaction boundary
 
-The conversational interface helps authorized users find evidence, compare scoped assessments, and explain recorded decisions. Calibration screens support structured review and human-authorized actions.
+The conversational interface helps authorized users find evidence, compare scoped assessments, explain recorded decisions, and review conversation or skill suggestions. Calibration screens support structured review and human-authorized actions.
 
 Use one governed service layer for both interfaces. The model interprets questions and drafts explanations. Services calculate measures, enforce scope, resolve evidence, and validate workflow actions.
 
@@ -48,6 +48,7 @@ These are personas, not complete access policies. LIONG-015 owns the final field
 | Calibration comparison | Reproducible cohort, denominators, categorical distributions, review signals | Inspect cases; record reviewer explanation |
 | Session workspace | Cases, participant scope, conflicts, frozen snapshots | Record an authorized panel outcome |
 | Conversation | Scoped answers with evidence and limitations | Ask, refine, open cited evidence |
+| Pilot review | Scoped conversation prompts and evidence-labelled skill suggestions | Inspect reasons and open permitted evidence |
 | Exception workspace | Identity, vocabulary, temporal, and reconciliation exceptions | Record a governed resolution |
 
 Use FastAPI and Jinja as the approved reference interface path. A future visualization component requires its own license and capability assessment. No new UI framework is selected by this document.
@@ -93,10 +94,12 @@ Tool names below are proposed application contracts. The same service functions 
 | search_evidence | Bounded search, case/cohort context, cutoff | Authorized passages and parent-version references | Filter before model context |
 | resolve_citation | Evidence version and permitted passage reference | Authorized content or safe unavailable response | Recheck current authorization |
 | get_source_status | Required source IDs for the question | Freshness and bounded retrieval limitations | Avoid exposing restricted record existence |
+| get_conversation_signals | Purpose, permitted manager scope, review date | Candidate prompts, evidence, suppression and unknown reasons | Apply approved pilot rule and authorize each supporting record |
+| get_skill_evidence | Person, selected role or skill, cutoff | Source-supplied, assessed, and inferred claims with target-role gaps | Pinned taxonomy mapping, evidence and field scope |
 
 Do not expose arbitrary SQL, Cypher, shell execution, object-store browsing, or evaluator functions. The model selects tool parameters within validated schemas; it cannot supply an executable query.
 
-The distribution and signal tools implement LIONG-013 exactly. They do not create alternative formulas in response to a prompt. Incomplete assessments are not low ratings. R1–R4 are not numbers to average or subtract.
+The distribution and manager-comparison tools implement LIONG-013 exactly. The new conversation and skills tools require the approved rules in OI-12 and OI-13. They do not create alternative formulas in response to a prompt. Incomplete assessments are not low ratings. R1–R4 are not numbers to average or subtract.
 
 ## 6. Tool input and result contracts
 
@@ -293,3 +296,5 @@ LIONG-015 v0.1 is approved. It defines the simulation access, disclosure, retent
 | 0.2 | Records approval of v0.1 and refers to governance draft; interfaces unchanged | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 adds proposed read tools for the expanded conversation and skills pilots. No personnel write path is added.

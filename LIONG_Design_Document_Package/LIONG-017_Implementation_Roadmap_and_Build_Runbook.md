@@ -5,21 +5,21 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-017 |
-| Version | 0.2 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.3 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 through LIONG-016 at their approved baselines; decision register |
 | Implementation status | Proposed delivery procedure; no application built or deployed |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and scope
 
 This document orders the work needed to build the fictional LIONG People Graph and operate a controlled demonstration. It defines build outputs, dependency gates, release activation, rollback, and recovery.
 
-LIONG-016 v0.1 and DEC-074 through DEC-078 are approved. Its evaluation thresholds are accepted simulation objectives, not measured results. The build must preserve the approved promotion, rating, conversational, access, retention, and evidence contracts.
+LIONG-016 v0.1 and DEC-074 through DEC-078 are approved. Its evaluation thresholds are accepted simulation objectives, not measured results. The build must preserve the approved promotion, rating, conversational, access, retention, and evidence contracts. REQ-11 expands the build with conversation and skills pilots; OI-12 and OI-13 must close before those pilots enter acceptance.
 
 All durable data, including synthetic sources, private truth, evidence, canonical releases, workflow archives, backups, and evaluation reports, resides in Cloudflare R2. PostgreSQL and Neo4j are serving copies. Temporary local work follows the approved cleanup policy.
 
@@ -59,7 +59,9 @@ One person can hold several roles in the simulation. Record that overlap. A rele
 | M5 — Serving and analytics | Compatible PostgreSQL/Neo4j projections and measures | M4 | Exact cohort/count tests and projection reconciliation pass |
 | M6 — Evidence and workflow | Authorized evidence retrieval, dossiers, human forms, outbox | M5 plus access policy | Snapshots, state transitions, conflicts, retry tests pass |
 | M7 — Conversation | Read-only tool path and cited explanations | M6 deterministic path | Trusted scope, claim support, cached-context checks pass |
-| M8 — Acceptance and rehearsal | LIONG-016 report, recovery exercise, demonstration package | M7 | All critical gates and approved quality/operating objectives pass |
+| M7a — Conversation signals | Four explained pilot prompts and suppression checks | M7, approved OI-12 rules | Exact inclusion, exclusion, access, and redundant-prompt fixtures pass |
+| M7b — Skills inference | Bounded role-skill mapping and evidence-labelled suggestions | M6, pinned taxonomy and approved OI-13 rules | Mapping, claim-type, uncertainty, and denial fixtures pass |
+| M8 — Acceptance and rehearsal | LIONG-016 report, recovery exercise, demonstration package | M7, M7a, M7b | All critical gates and approved quality/operating objectives pass |
 
 Model and platform design can proceed concurrently where independent. Source generation cannot publish until storage and isolation checks pass. An optional component is introduced only through a recorded need and its own compatibility/terms gate.
 
@@ -196,3 +198,5 @@ The user approved v0.1 and DEC-079 through DEC-083 on 2026-10-03. Open gates inc
 | 0.1 | Proposes build milestones, run procedures, activation, recovery and handover | Pending review |
 
 Maintenance record: 0.2 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.3 adds delivery gates for the owner's conversation and skills expansion. It does not claim that the open pilot rules or source imports have been completed.

@@ -5,19 +5,19 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-016 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 through LIONG-015, at their approved baselines; decision register |
 | Implementation status | Evaluation design only; no executed benchmark or deployed controls |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
-This plan defines how to test promotion calibration, rating calibration, and conversational people insights. It separates exact contract checks, evidence retrieval, answer review, and operating measurements.
+This plan defines how to test promotion calibration, rating calibration, conversational people insights, conversation signals, and bounded skills inference. It separates exact contract checks, evidence retrieval, answer review, and operating measurements.
 
 All workforce records are fictional. A test can establish correct behavior for its controlled cases. It cannot establish real workforce fairness, prediction accuracy, or business return. A historical panel outcome is a recorded decision, not an objective label of employee merit.
 
@@ -33,6 +33,8 @@ LIONG-015 v0.1 and DEC-068 through DEC-073 are approved. Access, disclosure, and
 | Analytics | Cohorts, counts, distributions, criterion coverage | Hand-checked calculations independent of serving queries |
 | Retrieval | Accessible supporting and contradictory evidence | Reviewed case-specific evidence relevance set |
 | Conversation | Material claims, citations, limitations, task completion | Evidence and rubric; no hidden merit labels |
+| Conversation signals | Eligibility, suppression, evidence, and scope | Approved pilot rules and independent case expectations |
+| Skills inference | Source mapping, claim type, evidence, and uncertainty | Pinned taxonomy and independently reviewed person-skill cases |
 | Workflow | Authority, immutable revisions, outbox, durable publication | State-transition and event fixtures |
 | Governance | Denial, disclosure, isolation, purge and recovery | Approved policy and explicit adversarial fixtures |
 
@@ -74,6 +76,13 @@ The evaluator loads private expectations after operational execution. It may sco
 | EV-18 | Source is unavailable or projections disagree | Explicit bounded limitation or safe refusal; no fabricated absence |
 | EV-19 | Snapshot digest changes or referenced evidence is missing | Publication gate fails; no silent substitution |
 | EV-20 | Backup includes a revoked grant or expired indexed document | Revocations/tombstones replayed and stale copies removed before access |
+| EV-21 | Prior nomination exists but a recent growth conversation covered the topic | Suppress a redundant career prompt; nomination alone does not trigger it |
+| EV-22 | Goal progress and feedback differ before year-end | Show the specific gap and evidence; do not assign a rating |
+| EV-23 | New role has too little time for a meaningful check-in | Apply the approved waiting rule and explain exclusion |
+| EV-24 | A performance concern has a later documented follow-up | Do not report an absent action; retain the dated evidence link |
+| EV-25 | Role requires a skill, while the person has only a course completion | Keep requirement, learning, and assessed competence distinct |
+| EV-26 | A person-skill inference is unsupported or access-restricted | Mark it unknown or exclude it; do not present it as verified competence |
+| EV-27 | A profile source supplies a self-declared skill with no assessment | Return it as a source-supplied claim; do not label it assessed or inferred |
 
 Execute positive and negative counterparts. For example, EV-13 must verify that authorized unrelated evidence remains usable after one grant is revoked. A system that refuses every request does not pass task completion.
 
@@ -106,7 +115,7 @@ Review relevance sets before scoring. Mark mandatory evidence, useful context, c
 
 Empty relevance sets are evaluated for appropriate limitation, not given perfect recall automatically. Do not mix recall of inaccessible items into the denominator. Report candidate count and any truncation; define passage grouping and duplicate handling before measurement.
 
-Propose at least 100 held-out conversational cases, with at least 20 per MVP workflow family. Include both answerable and limitation/refusal cases. Case paraphrases are reported separately, not counted as independent histories. At least 20 cases should test conflict, missing evidence, time boundaries, or refusal, and may overlap workflow families.
+Propose at least 100 held-out conversational cases, with at least 20 for each of the five MVP use cases. Distribute the signal-library cases across all four conversation pilots. Include both answerable and limitation/refusal cases. Case paraphrases are reported separately, not counted as independent histories. At least 20 cases should test conflict, missing evidence, time boundaries, or refusal, and may overlap use cases.
 
 Two reviewers independently score material correctness, contradiction handling, citation support, scope, and useful completion. Use 0 = failed, 1 = partly met, 2 = met for each rubric dimension. A passing answer has all dimensions met; any material unsupported claim or access violation fails it. Resolve disagreements with an evidence-backed adjudication record. Model-based scoring is optional triage and cannot be the only acceptance judge.
 
@@ -126,7 +135,7 @@ A release candidate fails if a critical gate fails. Noncritical failures need an
 
 Benchmark the approved workforce scale: 800 active employees at the opening checkpoint, three complete cycles, and the incomplete 2026 cycle. Report actual corpus size, history counts, concurrent sessions, infrastructure, region, network, versions, model settings, and cache state. Do not imply that 800 employees equals the total number of historical records.
 
-Propose 10 concurrent authenticated sessions and a 30-minute steady-state measured period after a declared warm-up. Use a versioned question mix across the three MVPs. Run cold-start and failure tests separately. Retain all attempted requests in completion/error denominators; report latency for successful and failed requests separately so timeouts cannot improve the result.
+Propose 10 concurrent authenticated sessions and a 30-minute steady-state measured period after a declared warm-up. Use a versioned question mix across the five MVP use cases, including every conversation pilot. Run cold-start and failure tests separately. Retain all attempted requests in completion/error denominators; report latency for successful and failed requests separately so timeouts cannot improve the result.
 
 | Target | Proposed simulation objective | Measurement boundary |
 | --- | --- | --- |
@@ -194,3 +203,5 @@ LIONG-017 v0.1 is approved. Its delivery procedures remain unimplemented. Accept
 | 0.2 | Records approval of v0.1 and roadmap draft; evaluation objectives unchanged | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 adds scenario families for REQ-11. Acceptance values for OI-12 and OI-13 require review before these pilots can pass.

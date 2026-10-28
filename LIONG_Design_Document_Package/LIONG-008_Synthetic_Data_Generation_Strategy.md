@@ -5,18 +5,18 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-008 |
-| Version | 0.4 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.5 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; expansion draft |
 | Approved dependencies | LIONG-001 through LIONG-007, each approved at version 0.1 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
-Generate one coherent fictional workforce world. Project that world into distributed source records and an evidence corpus. Use the projections to test integration, calibration, and conversational answers.
+Generate one coherent fictional workforce world. Project that world into distributed source records and an evidence corpus. Use the projections to test integration, calibration, conversational answers, conversation signals, and bounded skills inference.
 
 This strategy implements the approved profile, policies, questions, ontology, and model-as-code conventions. It does not select generator libraries or deploy source applications.
 
@@ -63,7 +63,7 @@ Checkpoint dates are proposed DEC-026. They do not change the approved workforce
 | 3. Generate people and employment | Synthetic identities, employment starts and ends | Position allocation and checkpoint requirements |
 | 4. Generate assignments | Incumbency, reporting periods, transfers, acting work | Employment intervals and valid positions |
 | 5. Generate work | Projects, campaigns, goals, contributions, outcomes | Assignment scope, role, and calendar |
-| 6. Generate learning and assessments | Completions, credentials, skill assessments | Work context and assessment rules |
+| 6. Generate learning and assessments | Completions, credentials, source-supplied person-skill claims, skill assessments | Work context and assessment rules |
 | 7. Generate reviews and nominations | Criterion assessments, proposals, dossiers | Applicable policies and available evidence |
 | 8. Generate panel history | Sessions, revisions, decisions, effective changes | Scope, authority, conflicts, case state |
 | 9. Project sources | System-specific IDs, records, timestamps, corrections | Canonical events and source contracts |
@@ -72,6 +72,8 @@ Checkpoint dates are proposed DEC-026. They do not change the approved workforce
 | 12. Validate and package | Source releases, manifests, isolated scoring package | All checks and provenance |
 
 Some availability effects must be applied before assessments and decisions are generated. A panel cannot cite evidence that only arrives later. Stage numbers define dependencies, not a license to apply all delays after finalization.
+
+For the expanded pilots, generate dated check-in topics, goal progress, documented follow-up actions, person-skill claims, and assessments in the source-visible world. Project source-supplied person-skill claims through SYS-HR as dated profile assertions. Keep expected signal membership and skill-inference labels in the isolated evaluation package. Operational logic must derive its own outputs from permitted source projections, including missing and delayed records.
 
 ## 5. Workforce allocation
 
@@ -303,3 +305,5 @@ Sequence reference (approved design): LIONG-009 — Source Systems and Integrati
 | 0.3 | Aligns generation storage and model selection with DEC-047/048 | Maintenance revision |
 
 Maintenance record: 0.4 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.5 adds source-visible fixtures for the conversation and skills pilots under REQ-11.

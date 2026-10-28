@@ -5,21 +5,21 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-002 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; scope-reference draft |
 | Governing baseline | LIONG-001 version 0.1, approved by the user |
 | Decision register | LIONG-REG-001 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft points to the owner's expanded scope under REQ-11. The approved controls in this document remain in force. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and authority
 
-This document defines the fictional enterprise used by the People Graph simulation. It supplies the organizational context for promotion calibration, rating calibration, and conversational people insights.
+This document defines the fictional enterprise used by the People Graph simulation. It supplies organizational context for the approved calibration and conversation use cases and the expanded conversation and skills pilots in LIONG-001.
 
-The enterprise name and three MVPs are confirmed requirements. The user approved this profile on 2026-10-03. Locations, workforce counts, job levels, and role definitions are approved simulation assumptions. Generated employment histories remain synthetic. They do not describe a real company.
+The enterprise name and original three use cases were confirmed requirements. The owner expanded the MVP on 2026-10-27; LIONG-001 owns that scope. The user approved this workforce profile on 2026-10-03. Locations, workforce counts, job levels, and role definitions remain approved simulation assumptions. Generated employment histories remain synthetic. They do not describe a real company.
 
 This document owns the workforce profile. LIONG-003 will own workflow requirements. LIONG-006 will own canonical concept definitions. LIONG-008 will own detailed generation rules.
 
@@ -327,3 +327,5 @@ The detailed rating policy, technical stack, synthetic generator, and permission
 | 0.2 | Records approval and updates decision status; no workforce change | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 points to the expanded scope without changing the workforce profile.

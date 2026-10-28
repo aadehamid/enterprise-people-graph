@@ -5,19 +5,19 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-003 |
-| Version | 0.3 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.4 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; scope expansion draft |
 | Approved dependencies | LIONG-001 v0.1; LIONG-002 v0.1 |
 | Decision register | LIONG-REG-001 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
-This document defines the three initial use cases: promotion calibration, rating calibration, and conversational people insights.
+This document defines the three approved use cases and the owner's 2026-10-27 expansion: four conversation pilots and bounded skills inference. LIONG-001 owns the problem and scope boundary.
 
 It specifies users, workflow states, evidence needs, controls, and acceptance criteria. It also proposes the fictional policies needed to make the simulation executable.
 
@@ -28,6 +28,10 @@ The user approved version 0.1 and DEC-008 through DEC-012 on 2026-10-03. The pol
 ## 2. Scope and governing rules
 
 The MVP supports review and explanation. Authorized people make rating and promotion decisions.
+
+The expanded MVP also supports explainable conversation prompts and a bounded skills pilot. A prompt or inferred skill is a review aid. It cannot make or change a personnel decision.
+
+All five use cases use the bounded Employee 360 context in LIONG-001 §5. A permitted view joins person identity, dated assignment, role, review, goal, check-in, feedback, skill, learning, talent-review, and promotion records where available. Missing or restricted records remain explicit. This shared context does not grant access to every source field.
 
 The system must preserve:
 
@@ -288,6 +292,23 @@ This is a response template. EMP-0042 does not yet identify a generated case.
 | CHAT-06 | Keep conversational queries separate from workflow mutations |
 | CHAT-07 | Produce reproducible tool traces suitable for authorized review |
 
+### 7.7 Purpose-driven conversation pilots
+
+The signal library tests four purposes in the synthetic workforce. Each candidate signal must name the person, purpose, review date, included evidence, missing evidence, and reason for inclusion or exclusion. An authorized manager decides whether and how to start a conversation. The application must suppress a redundant prompt when an accessible recent conversation already covered the topic.
+
+| Pilot | Candidate context | Rule still to define |
+| --- | --- | --- |
+| Career growth | High performance, role history, prior nominations, and recent growth conversations | A nomination or tenure alone cannot trigger a prompt. Define eligibility and the recent-conversation window. |
+| Year-end preparation | Goals, documented progress, feedback, and assessments before the review | Define the audience, gap criteria, and timing. |
+| New role or new hire | Role or manager changes, time in role, and missing optional check-ins | Define eligibility dates and minimum time in role. |
+| Performance follow-up | A recorded performance concern and subsequent check-in or action | Define the waiting period and qualifying follow-up records. |
+
+The source plan's suggested dates and intervals are not simulation rules. OI-12 owns their resolution. Do not infer that a missing record proves that a manager took no action.
+
+### 7.8 Bounded skills inference pilot
+
+Use a reviewed public taxonomy to map selected fictional roles and skills. Keep the taxonomy's concept IDs and release version. Label each person-skill link as source-supplied, assessed, or inferred, and show the evidence behind an inference. Role requirements and learning completions alone do not establish competence. The pilot may answer which skills appear relevant to a target role and which gaps need review. It cannot assign a role, approve a promotion, or rank employees by unverified merit. OI-13 owns the taxonomy and validation choices.
+
 ## 8. Shared information requirements
 
 | Information group | Required elements |
@@ -300,8 +321,10 @@ This is a response template. EMP-0042 does not yet identify a generated case.
 | Comparison | Cohort definition, membership, exclusion reasons, calculation version |
 | Access | User identity, scope, purpose where required, authorization result |
 | Provenance | Synthetic or derived status, source references, generation or calculation version |
+| Conversation signal | Purpose, review date, rule version, supporting records, suppression and unknown reasons |
+| Skill claim | Skill concept, taxonomy release, claim type, evidence, inference status, uncertainty |
 
-LIONG-004 will map each business question to specific fields and query requirements. LIONG-006 and LIONG-007 will define cardinalities and physical schemas.
+LIONG-004 maps each business question to specific fields and query requirements. LIONG-006 defines canonical concepts; LIONG-007 owns physical schema conventions. The expanded signal and skills contracts still need implementation-level cardinalities and validation rules.
 
 ## 9. Controlled evaluation scenarios
 
@@ -320,9 +343,9 @@ The evaluated system cannot access expected answers. Evaluation scores evidence 
 
 ## 10. Release completion gate
 
-The first release must demonstrate all three use cases on at least one connected end-to-end scenario and separate exception fixtures.
+The first release must demonstrate the three approved calibration and conversation use cases, the four conversation pilots, and the bounded skills inference pilot on connected synthetic scenarios with separate exception fixtures. The new pilots cannot pass until their open rules in OI-12 and OI-13 are resolved and tested.
 
-Required outputs include nomination dossiers, rating comparisons, decision histories, and grounded conversational answers.
+Required outputs include nomination dossiers, rating comparisons, decision histories, grounded conversational answers, explained conversation prompts, and evidence-labelled skill suggestions.
 
 No release can pass by producing a graph visualization alone. It must execute the defined questions and preserve their evidence chains.
 
@@ -330,7 +353,7 @@ Numerical accuracy and latency thresholds remain open until LIONG-016 defines th
 
 ## 11. Later use cases
 
-Employee 360, skills inventory, career pathways, learning analysis, recruiting search, and opportunity matching remain later scope.
+The full Employee 360 profile, enterprise-wide skills inventory, career pathways, learning-effect analysis, recruiting search, and opportunity placement remain later scope. The bounded pilots in §7.7 and §7.8 do not complete those workflows.
 
 The MVP stores evidence and assignments that can support those extensions. It does not implement predictive readiness, attrition scoring, or causal learning-effect claims.
 
@@ -346,7 +369,7 @@ The MVP stores evidence and assignments that can support those extensions. It do
 
 OI-01 and OI-02 are resolved at the simulation-policy level by approval of this document.
 
-The approval of LIONG-002 resolves the charter's organization, job-family, and opening-scale questions. LIONG-001 is updated by reference. No new policy proposal changes the approved charter.
+The approval of LIONG-002 resolves the charter's organization, job-family, and opening-scale questions. The owner's 2026-10-27 instruction expands scope without replacing the approved calibration use cases. OI-12 and OI-13 track the rules still open.
 
 ## 13. Change history
 
@@ -356,3 +379,5 @@ The approval of LIONG-002 resolves the charter's organization, job-family, and o
 | 0.2 | Records approval; no workflow or policy change | Maintenance revision |
 
 Maintenance record: 0.3 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.4 adds conversation signals and a bounded skills pilot under REQ-11 on 2026-10-27. Exact pilot rules remain open.

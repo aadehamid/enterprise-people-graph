@@ -5,14 +5,14 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-010 |
-| Version | 0.4 |
-| Date | 2026-10-03 |
-| Status | Version 0.1 approved; maintenance revision |
+| Version | 0.5 |
+| Date | 2026-10-27 |
+| Status | Version 0.1 approved; scope-reference draft |
 | Approved dependencies | LIONG-001 through LIONG-009, each approved at version 0.1 |
 
-## Current package status — 2026-10-03
+## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 are approved at the baselines recorded in LIONG-REG-001. This maintenance revision consolidates status references; it does not change approved policy. Earlier draft wording and future-tense sequence descriptions describe design history, not pending approval. Implementation gates and unexecuted tests remain open. See [README](README.md) for current document versions and [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft points to the owner's expanded scope under REQ-11. The approved controls in this document remain in force. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -20,7 +20,7 @@ The enterprise evidence corpus is the collection of synthetic documents and narr
 
 It complements structured HR, performance, learning, project, and calibration records. It does not replace their defined source authority.
 
-The corpus must support promotion calibration, rating calibration, and conversational people insights. It must preserve author perspective, time, access classification, and document versions.
+The corpus must support the approved calibration and conversation use cases and the expanded conversation and skills pilots. It must preserve author perspective, time, access classification, and document versions. Pilot evidence includes dated check-in topics, goal progress, follow-up records, and skill assessments; raw narratives remain governed evidence rather than graph properties.
 
 This document defines artifact types, generation contracts, retrieval preparation, and quality gates. It does not select language models, storage products, or retrieval software.
 
@@ -267,3 +267,5 @@ Sequence reference (approved design): LIONG-011 — Open Source Technology Optio
 | 0.3 | Aligns evidence storage and model exception; claim validation unchanged | Maintenance revision |
 
 Maintenance record: 0.4 consolidates the approved package status and index links on 2026-10-03.
+
+Revision 0.5 names the evidence needed for REQ-11 without changing the approved corpus controls.
