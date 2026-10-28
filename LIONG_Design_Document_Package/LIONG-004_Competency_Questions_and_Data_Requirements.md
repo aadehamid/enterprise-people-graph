@@ -12,7 +12,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -147,6 +147,7 @@ The selected taxonomy release, mappings, and validation rules remain open in OI-
 | Query trace | trace_id, requester, scope, parameters, tool versions, source snapshot, answer reference |
 | Conversation signal | signal_id, person_id, purpose, rule_version, review_date, evidence references, status, suppression reason |
 | Skill inference | inference_id, person_id, skill_id, taxonomy release, rule version, evidence references, status, uncertainty |
+| Person-skill claim | claim_id, person_id, skill_id, source record/version, author, claim date, claim status, access classification |
 
 An end date can be absent for a current assignment. An unavailable value must have an explicit missingness status where it affects interpretation.
 
@@ -187,7 +188,7 @@ Staleness is not inferred from age alone. Credential expiry and policy-defined e
 | Roles and skills | Occupational vocabulary and mappings | LIONG role, level, and track extensions | Cannot map target criteria without definitions |
 | Policies and criteria | Illustrative public frameworks where reuse permits | Approved fictional rating and promotion policy | Cannot select applicable rules |
 | Employment history | None required at person level | Assignments, managers, transfers, exits | Cannot reconstruct case context |
-| Performance evidence | Domain examples only | Goals, contributions, assessments, feedback | Cannot explain ratings or readiness assessments |
+| Performance evidence | Domain examples only | Goals, goal progress, check-ins and topics, contributions, assessments, feedback | Cannot explain ratings, readiness assessments, or conversation prompts |
 | Calibration decisions | None required | Sessions, revisions, decisions, rationale | Cannot explain outcomes |
 | Learning and credentials | Accessible catalog metadata | Completions, validity dates, assessment results | Cannot test evidence distinctions |
 | Access and identity | General technical patterns | User scope, mappings, classification | Cannot enforce authorized answers |

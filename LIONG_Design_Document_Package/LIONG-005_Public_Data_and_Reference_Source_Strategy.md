@@ -13,7 +13,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and conclusion
 
@@ -25,7 +25,7 @@ This document defines source priorities, reuse gates, mapping rules, provenance,
 
 Official pages were inspected for source characteristics and licensing statements. Package-level checks remain implementation work.
 
-## 2. Requirements from the approved question catalogue
+## 2. Requirements from the question catalogue
 
 | Required information | Relevant question group | Public data contribution | Enterprise generation |
 | --- | --- | --- | --- |
@@ -35,6 +35,7 @@ Official pages were inspected for source characteristics and licensing statement
 | Decisions and revisions | CQ-P07, CQ-P08, CQ-P10, CQ-R02 | No employee-level contribution | Panel sessions, rationale, revisions, assignments |
 | Rating distributions and cohorts | CQ-R01, CQ-R03, CQ-R04 | No observed LIONG distribution | Eligible reviews and versioned cohort membership |
 | Temporal and access context | CQ-C01 through CQ-C07 | General reference concepts only | Availability times, classifications, user scopes |
+| Conversation signals | CQ-G01 through CQ-G04 | No employee-level public data contribution | Synthetic check-ins, goal progress, feedback, follow-up, and dated assignments |
 | Skills inference | CQ-S01 through CQ-S03 | Occupation, skill, task, and knowledge concepts | Person-skill evidence and inference status |
 
 CQ-P09 and CQ-R08 can use occupational context. They still require synthetic assignments and review history.
@@ -159,7 +160,7 @@ DEC-056 authorizes selective assessment of the resources below. They complement 
 | [SEPIO](https://www.ebi.ac.uk/ols4/ontologies/sepio) | Scientific claims, evidence lines, supporting information, methods, and agents | Pilot claim-to-evidence links in one promotion dossier | Bounded pilot; cross-domain fit open |
 | [PROV-O](https://www.w3.org/TR/prov-o/) | Entities, activities, agents, and provenance relationships | Trace assessment authorship, source versions, derivation, and revisions | Existing alignment; make mappings explicit |
 | [OWL-Time](https://www.w3.org/TR/owl-time/) | Temporal instants, intervals, and their relationships | Represent assignment and review periods | Assess a small subset |
-| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Normalize role/skill references and support later career matching | Existing source assessment |
+| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Candidate role-skill mapping for the bounded skills pilot | Existing source assessment; release gate open |
 | [SKOS](https://www.w3.org/TR/skos-reference/) | Concept schemes, labels, semantic relations, and mappings | Maintain controlled terms and reviewed reference mappings | Existing alignment |
 | [CTDL](https://www.credreg.com/ctdl/handbook) | Credentials, assessment offerings, learning opportunities, and pathways | Describe later learning and career options | Later scope |
 | [ODRL](https://www.w3.org/TR/odrl-model/) | Permissions, prohibitions, duties, and constraints | Express evidence-use policies after access rules are defined | Deferred; enforcement remains in application |

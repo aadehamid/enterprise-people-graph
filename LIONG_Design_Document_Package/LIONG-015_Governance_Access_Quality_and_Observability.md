@@ -13,7 +13,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This draft applies the approved governance boundary to the owner's expanded scope under REQ-11. Exact pilot rules remain open. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This draft applies the approved governance boundary to the owner's expanded scope under REQ-11. Exact pilot rules remain open. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and governing boundary
 

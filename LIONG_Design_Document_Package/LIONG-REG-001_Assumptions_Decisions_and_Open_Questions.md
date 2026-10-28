@@ -11,7 +11,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines. REQ-11 records the owner's 2026-10-27 scope expansion. The current document revisions describe that expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded below. REQ-11 records the owner's 2026-10-27 scope expansion. The current document revisions describe that expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -281,7 +281,7 @@ OI-11: Pin shortlist artifacts, inspect licenses/imports, and complete definitio
 
 OI-12: Define the audience, evidence, suppression rules, eligibility dates, and waiting periods for each conversation pilot. Owner: project owner. Status: open. The four pilot purposes are in scope under REQ-11; exact triggers are not approved.
 
-OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007. Status: open. REQ-11 includes the pilot, not an automatic employee decision.
+OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision.
 
 ## 7. Deferred scope
 

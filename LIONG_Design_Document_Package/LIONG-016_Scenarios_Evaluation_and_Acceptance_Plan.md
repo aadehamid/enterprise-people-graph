@@ -13,7 +13,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -82,6 +82,7 @@ The evaluator loads private expectations after operational execution. It may sco
 | EV-24 | A performance concern has a later documented follow-up | Do not report an absent action; retain the dated evidence link |
 | EV-25 | Role requires a skill, while the person has only a course completion | Keep requirement, learning, and assessed competence distinct |
 | EV-26 | A person-skill inference is unsupported or access-restricted | Mark it unknown or exclude it; do not present it as verified competence |
+| EV-27 | A profile source supplies a self-declared skill with no assessment | Return it as a source-supplied claim; do not label it assessed or inferred |
 
 Execute positive and negative counterparts. For example, EV-13 must verify that authorized unrelated evidence remains usable after one grant is revoked. A system that refuses every request does not pass task completion.
 

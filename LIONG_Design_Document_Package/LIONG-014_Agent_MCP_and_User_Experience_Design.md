@@ -13,7 +13,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and interaction boundary
 
@@ -48,6 +48,7 @@ These are personas, not complete access policies. LIONG-015 owns the final field
 | Calibration comparison | Reproducible cohort, denominators, categorical distributions, review signals | Inspect cases; record reviewer explanation |
 | Session workspace | Cases, participant scope, conflicts, frozen snapshots | Record an authorized panel outcome |
 | Conversation | Scoped answers with evidence and limitations | Ask, refine, open cited evidence |
+| Pilot review | Scoped conversation prompts and evidence-labelled skill suggestions | Inspect reasons and open permitted evidence |
 | Exception workspace | Identity, vocabulary, temporal, and reconciliation exceptions | Record a governed resolution |
 
 Use FastAPI and Jinja as the approved reference interface path. A future visualization component requires its own license and capability assessment. No new UI framework is selected by this document.

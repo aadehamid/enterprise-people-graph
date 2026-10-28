@@ -12,7 +12,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -84,10 +84,13 @@ Organization hierarchy and location are separate. Temporary site visits do not o
 | CredentialDefinition | A defined credential type | Issuer context and validity rules |
 | CredentialRecord | A synthetic person's credential record | Definition, issue date, expiry or validity status |
 | SkillAssessment | An assessor's capability judgment | Person, skill, scope, date, evidence |
+| PersonSkillClaim | A source-supplied claim that a person has a skill | Person, skill, source record, author, date, claim status |
 | SkillInference | A proposed person-skill link derived from identified evidence | Person, skill, rule version, source evidence, time, status |
 | ConversationTopic | A controlled topic linked to a check-in or feedback record | Topic definition, source record, extraction method, date |
 
 Do not infer individual contribution from a team outcome. A course can develop a skill without its completion establishing proficiency.
+
+A PersonSkillClaim records what a source supplied, including a self-declaration. It does not establish assessed or verified competence. SkillAssessment and SkillInference retain their distinct authorship and evidence rules.
 
 ### 4.3 Evaluation and decision
 
@@ -251,7 +254,7 @@ See LIONG-005 §8.2 for descriptions, ontology links, and acquisition gates (DEC
 | [SEPIO](https://www.ebi.ac.uk/ols4/ontologies/sepio) | Scientific claims, evidence lines, supporting information, methods, and agents | Pilot claim-to-evidence links in one promotion dossier | Bounded pilot; cross-domain fit open |
 | [PROV-O](https://www.w3.org/TR/prov-o/) | Entities, activities, agents, and provenance relationships | Trace assessment authorship, source versions, derivation, and revisions | Existing alignment; make mappings explicit |
 | [OWL-Time](https://www.w3.org/TR/owl-time/) | Temporal instants, intervals, and their relationships | Represent assignment and review periods | Assess a small subset |
-| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Normalize role/skill references and support later career matching | Existing source assessment |
+| [ESCO](https://esco.ec.europa.eu/en/use-esco) | Linked occupations and skill concepts with relationships | Candidate role-skill mapping for the bounded skills pilot | Existing source assessment; release gate open |
 | [SKOS](https://www.w3.org/TR/skos-reference/) | Concept schemes, labels, semantic relations, and mappings | Maintain controlled terms and reviewed reference mappings | Existing alignment |
 | [CTDL](https://www.credreg.com/ctdl/handbook) | Credentials, assessment offerings, learning opportunities, and pathways | Describe later learning and career options | Later scope |
 | [ODRL](https://www.w3.org/TR/odrl-model/) | Permissions, prohibitions, duties, and constraints | Express evidence-use policies after access rules are defined | Deferred; enforcement remains in application |

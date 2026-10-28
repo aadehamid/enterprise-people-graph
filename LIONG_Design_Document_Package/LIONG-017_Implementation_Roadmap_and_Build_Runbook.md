@@ -13,7 +13,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose and scope
 
@@ -60,7 +60,7 @@ One person can hold several roles in the simulation. Record that overlap. A rele
 | M6 — Evidence and workflow | Authorized evidence retrieval, dossiers, human forms, outbox | M5 plus access policy | Snapshots, state transitions, conflicts, retry tests pass |
 | M7 — Conversation | Read-only tool path and cited explanations | M6 deterministic path | Trusted scope, claim support, cached-context checks pass |
 | M7a — Conversation signals | Four explained pilot prompts and suppression checks | M7, approved OI-12 rules | Exact inclusion, exclusion, access, and redundant-prompt fixtures pass |
-| M7b — Skills inference | Bounded role-skill mapping and evidence-labelled suggestions | M5, pinned taxonomy and approved OI-13 rules | Mapping, claim-type, uncertainty, and denial fixtures pass |
+| M7b — Skills inference | Bounded role-skill mapping and evidence-labelled suggestions | M6, pinned taxonomy and approved OI-13 rules | Mapping, claim-type, uncertainty, and denial fixtures pass |
 | M8 — Acceptance and rehearsal | LIONG-016 report, recovery exercise, demonstration package | M7, M7a, M7b | All critical gates and approved quality/operating objectives pass |
 
 Model and platform design can proceed concurrently where independent. Source generation cannot publish until storage and isolation checks pass. An optional component is introduced only through a recorded need and its own compatibility/terms gate.

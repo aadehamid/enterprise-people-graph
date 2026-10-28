@@ -12,7 +12,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at their 2026-10-03 baselines in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -63,7 +63,7 @@ Checkpoint dates are proposed DEC-026. They do not change the approved workforce
 | 3. Generate people and employment | Synthetic identities, employment starts and ends | Position allocation and checkpoint requirements |
 | 4. Generate assignments | Incumbency, reporting periods, transfers, acting work | Employment intervals and valid positions |
 | 5. Generate work | Projects, campaigns, goals, contributions, outcomes | Assignment scope, role, and calendar |
-| 6. Generate learning and assessments | Completions, credentials, skill assessments | Work context and assessment rules |
+| 6. Generate learning and assessments | Completions, credentials, source-supplied person-skill claims, skill assessments | Work context and assessment rules |
 | 7. Generate reviews and nominations | Criterion assessments, proposals, dossiers | Applicable policies and available evidence |
 | 8. Generate panel history | Sessions, revisions, decisions, effective changes | Scope, authority, conflicts, case state |
 | 9. Project sources | System-specific IDs, records, timestamps, corrections | Canonical events and source contracts |
@@ -73,7 +73,7 @@ Checkpoint dates are proposed DEC-026. They do not change the approved workforce
 
 Some availability effects must be applied before assessments and decisions are generated. A panel cannot cite evidence that only arrives later. Stage numbers define dependencies, not a license to apply all delays after finalization.
 
-For the expanded pilots, generate dated check-in topics, goal progress, documented follow-up actions, source-supplied skills, and assessments in the source-visible world. Keep expected signal membership and skill-inference labels in the isolated evaluation package. Operational logic must derive its own outputs from permitted source projections, including missing and delayed records.
+For the expanded pilots, generate dated check-in topics, goal progress, documented follow-up actions, person-skill claims, and assessments in the source-visible world. Project source-supplied person-skill claims through SYS-HR as dated profile assertions. Keep expected signal membership and skill-inference labels in the isolated evaluation package. Operational logic must derive its own outputs from permitted source projections, including missing and delayed records.
 
 ## 5. Workforce allocation
 

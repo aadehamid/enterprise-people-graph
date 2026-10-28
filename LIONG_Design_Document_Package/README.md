@@ -2,7 +2,7 @@
 
 Version: 0.3. Date: 2026-10-27. Status: scope expansion draft for review.
 
-The 17 design documents are approved at their 2026-10-03 baselines. The current draft records the owner's 2026-10-27 scope expansion. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
+The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
 
 ## 1. Approved boundaries
 
