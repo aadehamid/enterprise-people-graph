@@ -7,3 +7,6 @@
 /.entire/
 /.opencode/
 /.pi/
+
+# Local Node dependencies (Dagger runs checks in containers)
+**/node_modules/
