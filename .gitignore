@@ -1,1 +1,9 @@
 .DS_Store
+
+# Entire-generated agent configuration and local state
+/.claude/
+/.codex/
+/.cursor/
+/.entire/
+/.opencode/
+/.pi/
