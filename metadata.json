@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6Y468T5V8D7BZTKDSQ5Q1R9",
+  "strategy": "manual-commit",
+  "branch": "docs/repo-bootstrap-guide",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/agents/repo-bootstrap.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 28776,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 8519616,
+    "output_tokens": 10924,
+    "api_call_count": 30
+  },
+  "redaction": {
+    "replacements": 59,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 59,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
