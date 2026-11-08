@@ -1,0 +1,13 @@
+[modules.typescript-sdk]
+source = "github.com/dagger/typescript-sdk"
+
+[sdks.typescript]
+module = "typescript-sdk"
+
+[modules.people-graph-ci]
+main = true
+source = ".dagger/modules/people-graph-ci"
+
+[sdks.typescript.scopes.".dagger/modules/people-graph-ci"]
+is-module = true
+name = "people-graph-ci"
