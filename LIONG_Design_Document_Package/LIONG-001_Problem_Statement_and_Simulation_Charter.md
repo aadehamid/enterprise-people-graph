@@ -157,7 +157,7 @@ The expanded scope includes four conversation pilots. Their precise trigger rule
 | --- | --- | --- |
 | Career growth | Does the person's role, performance context, and prior conversation history support a useful discussion now? | A prior nomination or long tenure cannot trigger a prompt on its own. The proposed audience is managers of employees whose earlier nomination was not approved, and long-tenured high performers who have not been nominated. Refine the criteria and suppress a prompt when a recent check-in already covered career growth. |
 | Year-end preparation | Do documented goals, feedback, and assessments show a gap worth clarifying before the review? | The purpose is to clarify gaps between perceived performance, documented goal progress, supporting evidence, and expectations before the review. The audience and exact signal remain undefined. |
-| New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Use the optional-check-in eligibility cutoff and a minimum time in role, so a newly joined employee is not prompted too soon. An April 16 cutoff was discussed, not confirmed. A 60-day threshold was suggested, not agreed. |
+| New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Set an optional-check-in eligibility cutoff and a minimum time in role, so a newly joined employee is not prompted too soon. Apply the cutoff and threshold only after OI-12 approves them. An April 16 cutoff was discussed, not confirmed. A 60-day threshold was suggested, not agreed. |
 | Performance follow-up | Is there a documented follow-up after a recorded concern? | Prompt when an agreed number of days has passed after a recorded low-performance indicator without documented action. Qualifying actions include a follow-up check-in, a structured improvement plan, or a managed-exit action. The interval and action list need agreement. |
 
 The owner's 2026-11-07 supplement proposes these candidate rules. Each keeps its recorded status: discussed, suggested, or undefined. OI-12 tracks their resolution.
@@ -401,10 +401,10 @@ The following criteria define the required behavior. Numerical performance thres
 | SC-11 | Conversational responses remain within the user's question and authority | Review task completion and bounded responses |
 | SC-12 | Conversation prompts cite their evidence and explain suppression or uncertainty | Test all four pilots, including recent-conversation and missing-record cases |
 | SC-13 | Skill suggestions distinguish source facts, assessments, and inferences | Compare role mappings and person-skill claims with independent fixtures |
-| SC-14 | Two or three graph tools are registered in the MCP tool catalogue and return authorized, traceable results | Inspect the registered tool list and run authorized and unauthorized calls against fixtures (LIONG-014, LIONG-016) |
-| SC-15 | Five to ten defined promotion and rating questions are answered correctly and signed off by authorized reviewers | Execute the LIONG-016 scenario set for those questions and record the sign-off |
+| SC-14 | Proposed (not approved): two or three graph tools are registered in the MCP tool catalogue and return authorized, traceable results | Inspect the registered tool list and run authorized and unauthorized calls against fixtures (LIONG-014, LIONG-016). Apply after DEC-088 gains approval |
+| SC-15 | Proposed (not approved): five to ten defined promotion and rating questions are answered correctly and signed off by authorized reviewers | Execute the LIONG-016 scenario set for those questions and record the sign-off. Apply after DEC-088 gains approval |
 
-SC-14 and SC-15 are additions from the owner's 2026-11-07 supplement. They state counts, not measured results. LIONG-016 owns the executed measurement.
+SC-14 and SC-15 are additions proposed by the owner's 2026-11-07 supplement (DEC-088). They state counts, not measured results, and stay proposed until their owner records approval. LIONG-016 owns the executed measurement.
 
 Latency, scale, retrieval accuracy, and cohort minimum size are open design choices. This draft does not claim measured results.
 
