@@ -1,0 +1,53 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6X11QE6W96K6DND6QDWDM9F",
+  "strategy": "manual-commit",
+  "branch": "guardrails/entire-dagger-coexistence",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".dagger/modules/people-graph-ci/src/index.ts",
+    "CLAUDE.md",
+    "ci/check-decisions.test.mjs",
+    "ci/check-links.mjs",
+    "ci/check-links.test.mjs",
+    "ci/tree-guard.test.mjs",
+    "docs/REVIEW_STANDARDS.md",
+    "docs/decisions/EPG-DEC-0001-reconcile-entire-and-dagger.md",
+    "scripts/check-decisions.mjs",
+    "scripts/check.sh",
+    "scripts/gates.test.sh",
+    "scripts/hooks/pre-push",
+    "scripts/lint-md.sh",
+    "scripts/tree-guard.mjs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 98607,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 11674368,
+    "output_tokens": 61701,
+    "api_call_count": 83
+  },
+  "redaction": {
+    "replacements": 39,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 39,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
