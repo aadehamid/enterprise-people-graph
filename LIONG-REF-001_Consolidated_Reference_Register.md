@@ -3,10 +3,10 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REF-001 |
-| Version | 0.2 |
-| Date | 2026-10-27 |
+| Version | 0.3 |
+| Date | 2026-11-08 |
 | Status | Expansion reference draft for review |
-| Evidence boundary | Earlier links carried forward; new official pages inspected on 2026-10-27; no artifact import or license clearance |
+| Evidence boundary | Earlier links carried forward; rows added 2026-11-08 describe public standards, registries, and papers without artifact import or license clearance |
 
 ## 1. How to use this register
 
@@ -29,8 +29,25 @@ This register consolidates sources already cited in the design package. A URL is
 | [SKOS](https://www.w3.org/TR/skos-reference/) | Concept schemes, labels, semantic relations, and mappings | Maintain controlled terms and reviewed reference mappings | Existing alignment |
 | [CTDL](https://www.credreg.com/ctdl/handbook) | Credentials, assessment offerings, learning opportunities, and pathways | Describe later learning and career options | Later scope |
 | [ODRL](https://www.w3.org/TR/odrl-model/) | Permissions, prohibitions, duties, and constraints | Express evidence-use policies after access rules are defined | Deferred; enforcement remains in application |
+| [SSSOM](https://mapping-commons.github.io/sssom/) | Tabular standard for sharing ontology mappings with provenance | Exchange and cross-check the reviewed term and role-skill mappings | Assess for MVP; format candidate for OI-13 |
+| [ISO 25964-1/2](https://www.iso.org/standard/53657.html) | International thesaurus standards: term selection, structure, and inter-vocabulary mapping practice | Method reference for taxonomy construction and crosswalk work | Method reference; no import |
+| [ANSI/NISO Z39.19 (R2010)](https://niso.org/publications/ansiniso-z3919-2005-r2010) | Guidelines for constructing monolingual controlled vocabularies | Method reference for the skills-vocabulary construction | Method reference; no import |
+| [SKOS-Thes](https://www.dublincore.org/specifications/skos-thes/ns) | ISO 25964 thesaurus features expressed as a SKOS extension | Carry thesaurus features if the skills pilot adopts a thesaurus | Assess for MVP alongside the taxonomy choice |
+| [RDF 1.2 / RDF-star](https://www.w3.org/TR/rdf12-concepts/) | Triple terms: statements about statements | Compare with the record-version pattern for rating and decision provenance | Assess against LIONG-006/007; no adoption implied |
+| [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) | RDF serialized as JSON | API and export serialization option | Assess for MVP |
+| [DCMI Terms](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) | Dublin Core element set as an RDF vocabulary | Field and date conventions for record descriptions | Assess a small subset |
+| [Skosmos](https://skosmos.org) | Browser and publishing front end for SKOS vocabularies | Vocabulary browsing interface | LIONG-014 to assess |
+| [WebVOWL](https://service.tib.eu/webvowl) | Browser visualization of ontologies | Graph and ontology visualization candidate | LIONG-014 to assess |
+| [BARTOC](https://bartoc.org) | Registry of 5,000+ knowledge organization systems | Discover existing vocabularies before building one | Discovery aid only |
+| [Linked Open Vocabularies](https://lov.linkeddata.es) | Registry of reusable RDF vocabularies with usage statistics | Reuse check before defining new LIONG terms | Discovery aid only |
+| [Linked Open Data Cloud](https://lod-cloud.net) | Diagram and dataset registry of the linked-data cloud | Locate linked datasets and their endpoints | Discovery aid only |
+| [Allemang and Sequeda, ISWC 2024](https://arxiv.org/abs/2405.11706) | Study of ontologies increasing LLM question-answering accuracy over enterprise data | Design evidence for the ontology and MCP layer | Reading; no selection |
+| [OG-RAG, 2024](https://arxiv.org/abs/2412.15235) | Ontology-grounded retrieval-augmented generation | Reading for LIONG-014 tool design | Reading; no selection |
+| [Edge et al., Graph RAG, 2024](https://arxiv.org/abs/2404.16130) | Graph-based retrieval for query-focused summarization | Reading for LIONG-014 corpus and retrieval rationale | Reading; no selection |
 
 PSDO upstream and registry license declarations differ in the existing assessment. Resolve the selected immutable release and dependency terms before import or redistribution. SEPIO is a bounded scientific-evidence pilot; cross-domain suitability remains open. ODRL is deferred and does not enforce access. Public classifications do not define Nigerian employment policy or LIONG levels. Approved shortlist descriptions do not approve full imports or class equivalence.
+
+The rows added on 2026-11-08 describe standards, registries, interface candidates, and research papers. A discovery aid or a reading row selects nothing. Method references guide practice without import. The four tool components behind SSSOM, qSKOS, Skosify, and neosemantics are assessed in LIONG-011 §7 and remain gated there.
 
 ## 3. Existing reference links by source document
 

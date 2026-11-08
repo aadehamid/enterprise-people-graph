@@ -5,11 +5,11 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-011 |
-| Version | 0.7 |
-| Date | 2026-10-27 |
+| Version | 0.8 |
+| Date | 2026-11-08 |
 | Status | Version 0.2 approved; expansion mapping draft |
 | Approved dependencies | LIONG-001 through LIONG-010, each approved at version 0.1 |
-| Research scope | Official repositories, license files, and model cards inspected on 2026-10-03 |
+| Research scope | Official repositories, license files, and model cards inspected on 2026-10-03; the four components added in §7 inspected on 2026-11-08 |
 
 ## Scope and approval status — 2026-10-27
 
@@ -131,6 +131,10 @@ Emulators must expose source contracts and realistic record differences. They mu
 | MCP Python SDK | MIT [S21] | Tool protocol adapter | Agent interoperability requires MCP |
 | LangGraph OSS library | MIT [S22] | Stateful conversational orchestration | Tool workflow complexity warrants it |
 | llama.cpp core | MIT [S23] | Local inference alternative | Exact model conversion and CPU compatibility pass |
+| Neo4j neosemantics (n10s) | Apache-2.0 [S28] | RDF import/export, model mapping, and SHACL validation inside the property-graph server | The physical ontology-to-graph projection needs the plugin; gate includes Neo4j release compatibility and the project's active-maintenance status |
+| SSSOM specification with sssom-py | BSD-3-Clause (specification repository); MIT (Python toolkit) [S29, S30] | Tabular mapping exchange with provenance, compare, and merge support | Mapping artifacts need a standard export or cross-check format (OI-13) |
+| qSKOS | GPL-3.0 [S31] | Twenty-six computable quality issues for SKOS vocabularies | A candidate taxonomy must pass review before it can back the skills pilot (LIONG-005, OI-13) |
+| Skosify | MIT [S32] | Validates, converts, and improves SKOS vocabularies | A candidate vocabulary needs reshaping before the review |
 
 Do not deploy all optional components by default. Each service adds configuration, access boundaries, backup needs, and maintenance.
 
@@ -312,6 +316,11 @@ The original review inspected the sources below on 2026-10-03. Moving repository
 | S25 | [OLMo code](https://github.com/allenai/OLMo) |
 | S26 | [Transformers](https://github.com/huggingface/transformers) |
 | S27 | [PyTorch](https://github.com/pytorch/pytorch) |
+| S28 | [Neo4j neosemantics](https://github.com/neo4j-labs/neosemantics) |
+| S29 | [SSSOM specification](https://github.com/mapping-commons/sssom) |
+| S30 | [sssom-py](https://github.com/mapping-commons/sssom-py) |
+| S31 | [qSKOS](https://github.com/cmader/qSKOS) |
+| S32 | [Skosify](https://github.com/NatLibFi/Skosify) |
 
 ## 17. Change history
 
@@ -326,3 +335,5 @@ The original review inspected the sources below on 2026-10-03. Moving repository
 Maintenance record: 0.6 consolidates the approved package status and index links on 2026-10-03.
 
 Revision 0.7 maps the expanded source responsibilities to existing open-source candidates and custom synthetic services. It selects no new runtime component.
+
+Revision 0.8 adds four optional components examined on 2026-11-08: neosemantics for the ontology-to-graph projection (OI-09), SSSOM for mapping artifacts (OI-13), and qSKOS plus Skosify for vocabulary review (LIONG-005). Licenses are observed from the official repositories listed in §16. No row selects a component; all remain gated.
