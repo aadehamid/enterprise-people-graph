@@ -1,0 +1,5 @@
+how do we reconcile the entire + dagger set up with what I have in way of working skill to prevent clases?
+
+---
+
+let us address all of this. Please do not modify way of working dramatically. It needs to keep working where there is no entire and dagger. but must work together when they are all present . Also adress the small items take insipration from enteprise performance model repo AGENTS.md

@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6WVKC70FD55G5E4CGEZC7K5",
+  "session_id": "01a1b9b3-1ea3-709a-bf1d-fcfccbb41615",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-08T05:55:17.532413Z",
+  "branch": "guardrails/entire-dagger-coexistence",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".dagger/modules/people-graph-ci/src/index.ts",
+    ".github/workflows/check.yml",
+    "AGENTS.md",
+    "ci/check-links.mjs",
+    "ci/check-links.test.mjs",
+    "docs/REVIEW_STANDARDS.md",
+    "docs/decisions/EPG-DEC-0001-reconcile-entire-and-dagger.md",
+    "docs/decisions/INDEX.md",
+    "scripts/bootstrap.sh",
+    "scripts/check.sh",
+    "scripts/hooks/commit-msg",
+    "scripts/hooks/post-commit",
+    "scripts/hooks/post-rewrite",
+    "scripts/hooks/pre-push",
+    "scripts/hooks/prepare-commit-msg"
+  ],
+  "agent": "Pi",
+  "model": "glm-5.3-flash:cloud",
+  "turn_id": "f2c6065ce7fe",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 105488,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3020672,
+    "output_tokens": 36240,
+    "api_call_count": 44
+  },
+  "redaction": {
+    "replacements": 32,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 32,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  },
+  "session_metrics": {
+    "turn_count": 1
+  }
+}
