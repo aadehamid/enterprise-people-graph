@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6Y0C9RDM5ESHPHSFZC9B8PG",
+  "session_id": "01a1b9b3-1ea3-709a-bf1d-fcfccbb41615",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-08T16:38:02.706178Z",
+  "branch": "docs/repo-bootstrap-guide",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "AGENTS.md",
+    "docs/agents/repo-bootstrap.md"
+  ],
+  "agent": "Pi",
+  "model": "glm-5.3-flash:cloud",
+  "turn_id": "bf6e301a947a",
+  "checkpoint_transcript_start": 531,
+  "transcript_lines_at_start": 531,
+  "compact_transcript_start": 242,
+  "token_usage": {
+    "input_tokens": 8499,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3753216,
+    "output_tokens": 6599,
+    "api_call_count": 14
+  },
+  "redaction": {
+    "replacements": 59,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 59,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  },
+  "session_metrics": {
+    "turn_count": 8
+  }
+}

@@ -1,0 +1,2 @@
+can we commit all ope clean PR?
+Also can you document how we handle way of working, entire, and dagger set up. I will need it to se up in other repos once this work. You can add the docs in this repo for reference
