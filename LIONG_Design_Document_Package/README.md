@@ -1,8 +1,8 @@
 # LIONG People Graph — Document Index
 
-Version: 0.3. Date: 2026-10-27. Status: scope expansion draft for review.
+Version: 0.4. Date: 2026-11-07. Status: scope expansion draft with the 2026-11-07 plan supplement for review.
 
-The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
+The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion and the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, and success-criteria specifics, held as proposals DEC-084 through DEC-088. The SOW integration choice (OI-14) and real-project delivery items (OI-15) are open. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
 
 ## 1. Approved boundaries
 
@@ -18,9 +18,9 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 
 | Document | Current version | Purpose | Design approval |
 | --- | --- | --- | --- |
-| [LIONG-001 — Problem Statement and Simulation Charter](LIONG-001_Problem_Statement_and_Simulation_Charter.md) | 0.20 | Problem, scope and simulation boundary | Approved baseline; expansion draft |
+| [LIONG-001 — Problem Statement and Simulation Charter](LIONG-001_Problem_Statement_and_Simulation_Charter.md) | 0.21 | Problem, scope and simulation boundary | Approved baseline; expansion draft |
 | [LIONG-002 — Enterprise and Workforce Profile](LIONG-002_Enterprise_and_Workforce_Profile.md) | 0.4 | Fictional organization, roles and workforce | Approved baseline; scope-reference draft |
-| [LIONG-003 — Use Cases and MVP Requirements](LIONG-003_Use_Cases_and_MVP_Requirements.md) | 0.4 | MVP workflows and policy requirements | Approved baseline; expansion draft |
+| [LIONG-003 — Use Cases and MVP Requirements](LIONG-003_Use_Cases_and_MVP_Requirements.md) | 0.5 | MVP workflows and policy requirements | Approved baseline; expansion draft |
 | [LIONG-004 — Competency Questions and Data Requirements](LIONG-004_Competency_Questions_and_Data_Requirements.md) | 0.4 | Business questions and required data | Approved baseline; expansion draft |
 | [LIONG-005 — Public Data and Reference Source Strategy](LIONG-005_Public_Data_and_Reference_Source_Strategy.md) | 0.7 | Public sources, reuse terms and ontology shortlist | Approved baseline; expansion draft |
 | [LIONG-006 — People Ontology and Canonical Domain Model](LIONG-006_People_Ontology_and_Canonical_Domain_Model.md) | 0.6 | Canonical people, evidence and decision concepts | Approved baseline; expansion draft |
@@ -38,7 +38,7 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 
 ## 3. Supporting registers
 
-- [Assumptions, decisions and open questions](LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md): authoritative approval record through APR-018 and decisions through DEC-083.
+- [Assumptions, decisions and open questions](LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md): authoritative approval record through APR-018, decisions through DEC-088, and open questions through OI-15. It also maps the owner plan's working terms (MYCI, V2MOM, LPI, PIP, PEP, ESBP, DGC, MCP, and source-system names) to LIONG concepts and records the real-project status items.
 - [Consolidated reference register](LIONG-REF-001_Consolidated_Reference_Register.md): ontology descriptions, project uses, and source links, including the new public-reference assessment in version 0.2.
 
 The decision register controls approval status. Maintenance file numbers do not indicate a new policy approval. Earlier proposed wording is part of design history; use the recorded decisions and later approved rules when status differs.
