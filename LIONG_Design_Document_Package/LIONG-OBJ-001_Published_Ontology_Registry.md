@@ -72,7 +72,7 @@ Each entry records what the artifact is, which domain concepts it covers, its li
 | Person and employment records | FOAF, CCO patterns, ORG, schema.org | Employment-record lifecycle terms need LIONG-006 modeling |
 | Organizational structure | ORG (candidate base), CCO patterns | None beyond ORG assessment |
 | Skills and competency | ESCO, O*NET, CTDL-ASN, Core-O, SKOS | Inference labeling is modeled in LIONG-006 |
-| Performance and decisions | PSDO (displays only), SEPIO (pilot) | Promotion cases, talent-review placement, check-ins, calibration, follow-up action lifecycles, and documented goal progress have no published standard; LIONG-006 owns these concepts, including GoalProgress and follow-up references |
+| Performance and decisions | PSDO (displays only), SEPIO (pilot) | Promotion cases, talent-review placement, calibration, check-ins, goal progress, and follow-up action lifecycles have no published standard. LIONG-006 owns these concepts and already defines GoalProgress, CheckIn, and CalibrationSession; follow-up action lifecycles for the performance-follow-up pilot remain to be modeled under OI-12's open trigger rules |
 | Learning | CTDL, LRMI, schema.org | Course-catalog depth is later scope |
 | Evidence and provenance | PROV-O, ECO, SEPIO, Web Annotation | Selection among ECO/SEPIO/Web Annotation roles remains open |
 
