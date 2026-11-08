@@ -55,7 +55,7 @@ PSDO upstream and registry license declarations differ in the existing assessmen
 
 The rows added on 2026-11-08 describe standards, registries, interface candidates, and research papers. A discovery aid or a reading row selects nothing. Method references guide practice without import. The four tool components behind SSSOM, qSKOS, Skosify, and neosemantics are assessed in LIONG-011 §7 and remain gated there.
 
-The rows added on 2026-11-08 (second addition) record workforce-domain and evidence-typing candidates found through a web search pass. The running list of artifacts the project actually touches is [LIONG-OBJ-001](LIONG-OBJ-001_Published_Ontology_Registry.md).
+The rows added on 2026-11-08 (second addition) record workforce-domain and evidence-typing candidates found through a web search pass. The running list of artifacts the project actually touches is LIONG-OBJ-001 (Published Ontology Registry), linked from the package index.
 
 ## 3. Existing reference links by source document
 
