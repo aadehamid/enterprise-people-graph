@@ -1,0 +1,186 @@
+can you update the project documents or problem statemet to cover anything below that we have not covered before.
+
+People
+Here is the complete, consolidated compilation of everything from our conversation in a single block that you can easily copy and paste.
+
+----------
+1. Full Text of "PeopleGraph – Neo4j Plan"
+Current Ongoing Activities
+1. Onboarded Neo4j Dev Environment – Completed
+2. Obtain framework (Git repo, etc.) from platform team – Week of Sep 30th
+3. Confirm sources available in ES Snowflake data foundation for MVP load – In progress
+4. Initiate ES DGC / privacy review for performance, feedback and promotion data – To start
+MVP
+
+An Employee 360 profile within the People Graph, loaded from the ES Snowflake data foundation, that connects:
+
+- Employee core foundation data from Workday (organizational, role and profile attributes)
+- Check-in data from BaseCamp, including mid-year check-in comments and topics
+- Performance ratings and evaluation comments from BaseCamp
+- Employee feedback captured through existing feedback processes
+- Skills data provisioned via Career Connect
+- Talent Review data captured through the existing Workday process
+- Promotion data captured through the existing agentic workflow (approved, not approved)
+- Employee Goals (V2MOM) including progress or gaps captured via Basecamp
+- Learning data around certifications and other skill-development opportunities
+Scope: Graph vs. Snowflake
+
+Snowflake answers "how much / how many." The graph answers "how is it connected."
+What stays in Snowflake (system of record):
+
+- All metrics and aggregates (headcount, attrition, rating distributions, promotion rates)
+- Full history and point-in-time snapshots
+- Detailed attributes and raw text (full comments, feedback text)
+- Dashboards, reporting and the existing semantic layer
+- Governance, PII controls and certified data products
+
+What goes into the graph:
+
+- Entities: Employee (ID + key attributes), Manager / Org unit, Role / Job profile, Skill, Review cycle, Theme (extracted from check-ins, evaluations and feedback, not raw text), Promotion case, Talent Review placement
+- Relationships:
+    - Employee → reports to → Manager → rolls up to → Org
+    - Employee → has skill → Skill
+    - Employee → holds → Role; Role → requires → Skill
+    - Employee → rated in → Review cycle (rating on the relationship)
+    - Employee → gave / received feedback → Employee
+    - Check-in / Evaluation / Feedback → mentions → Theme
+    - Employee → nominated for → Promotion case (outcome on the relationship)
+    - Employee → placed in → Talent Review category
+
+How they connect:
+
+- Graph is loaded from Snowflake on a schedule, keyed on Employee ID
+- Graph holds only what's needed to traverse and filter; detailed records are looked up in Snowflake by ID
+What the graph gives us that Snowflake can't easily do
+- Similarity: employees with comparable skills, roles and trajectories (peer sets for calibration)
+- Multi-hop paths: how ratings and feedback patterns move through a manager chain or org
+- Skill adjacency: who is one or two skills away from a target role
+- Evidence trails: themes, feedback, skills and outcomes connected to a rating or promotion decision, in one traversal
+- Network signals: feedback connections across teams
+MVP PeopleGraph Outcomes
+1. Graph-powered ES Data Insights MCP: expose the graph as relationship-aware tools alongside the existing semantic layer. "How many" questions route to Snowflake, "how is it connected" questions route to the graph, under the same access controls and audit logging
+2. Promotion calibration insights: a connected view of each promotion candidate (ratings history, check-in themes, feedback, skills, Talent Review placement, promotion outcome) to compare candidates consistently and surface outliers (Strikethrough in original document)
+3. Ratings calibration insights: how ratings align with the evidence behind them across managers and orgs, highlighting where ratings and supporting signals don't match (Strikethrough in original document)
+4. Signal Library for Purpose Driven Conversations (need to determine which graph should power based on starting proposals)
+    - Prioritization of Pilots:
+        1. Career Growth / Promotion Readiness — Priority, Time Sensitive
+            - Primary purpose: Career growth, with promotion readiness as a potential conversation topic.
+            - Audience / signal: Managers of high-performing employees previously nominated but not approved, or long-tenured high performers who have not been nominated. Nomination history alone should not trigger a conversation; refine criteria and account for whether a recent MYCI already covered career growth.
+        2. Year-End Preparation — Priority, Scope to Define
+            - Primary purpose: Performance, Feedback & Goal Progress.
+            - Audience / signal: Managers and employees who would benefit from clarifying gaps between perceived performance, documented V2MOM progress, supporting evidence, and expectations before year-end. Specific signals and audience remain undefined.
+        3. New-to-Role / New-Hire Alignment
+            - Primary purpose: Performance, Feedback & Goal Progress. Development may be a secondary topic.
+            - Audience / signal: Employees with a role or manager change, or newer hires for whom MYCI was optional and who did not complete one. For new hires, use the confirmed optional-eligibility cutoff—April 16 was discussed—and a minimum time in role so employees who have just joined are not prompted too soon. A 60-day threshold was suggested, not agreed.
+        4. LPI Follow-Up
+            - Primary purpose: Performance, Feedback & Goal Progress.
+            - Audience / signal: Managers of employees with an LPI where an agreed number of days has passed without clear documented action, such as a follow-up check-in or PIP/PEP activity.
+5. Skills Inference - starting point is 8Fold, then need taxonomy defined, then inference based on skills AND employee profile/performance information
+    - Talent Marketplace
+    - Redeployment - skills
+Out of Scope for the Graph
+- Reporting metrics and dashboards (remain in Snowflake / Tableau)
+- Raw text storage (remains in Snowflake) TBD
+- Replacing the existing semantic layer TBD
+Success Criteria
+- Ontology covering the entities and relationships above, validated by ES Data Engineering
+- Graph loaded from the ES Snowflake data foundation, reconciling to source counts
+- 5–10 defined promotion and ratings calibration questions answered correctly, signed off by ESBPs / calibration leads
+- 2–3 graph tools registered in ES Data Insights MCP, returning correct, access-controlled results
+Open Items
+- Confirm which MVP sources are in the vendor pilot scope and data volume
+- Confirm whether MCP integration is vendor scope or ES Data Engineering post-handover
+- DGC approval and offshore data access for sensitive data
+- Platform decision from IT (Neo4j evaluation)
+----------
+2. SOW Mapping & Integration Options
+Direct Mapping Table (Notes to SOW Sections)
+| Note / Pilot Item                                                       | Recommended SOW Section                                                                      | Rationale                                                                                                                                                     |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Signal Library for Purpose Driven Conversations (Umbrella Concept)   | Stand Up Graph-Powered Employee Success Data Insights                                        | Exposes relationship-aware triggers to managers and agents via the MCP layer.                                                                                 |
+| Pilot 1: Career Growth / Promotion Readiness                            | Enable Promotion Calibration Insights                                                        | Relies on promotion nomination history, approval outcomes, tenure, high-performer ratings, and MYCI career growth themes.                                     |
+| Pilot 2: Year-End Preparation                                           | Enable Ratings Calibration Insights                                                          | Evaluates alignment and highlights gaps between perceived performance, documented V2MOM goal progress, and supporting evidence before year-end calibration.   |
+| Pilot 3: New-to-Role / New-Hire Alignment                               | Stand Up Graph-Powered Employee Success Data Insights                                        | Tracks lifecycle transitions (role/manager changes, onboarding cutoffs, missing MYCIs) to prompt timely Employee Success check-ins.                           |
+| Pilot 4: LPI Follow-Up                                                  | Enable Ratings Calibration Insights (or Employee Success Data Insights)                      | Connects low-performance indicators (LPI) with documented follow-up actions (PIP/PEP, check-ins) to ensure signals match management action.                   |
+| 2. Skills Inference (8Fold, Taxonomy, Talent Marketplace, Redeployment) | Stand Up Graph-Powered Employee Success Data Insights (with tie-in to Promotion Calibration) | Uses graph multi-hop skill adjacency and profile/performance data to power Talent Marketplace and Redeployment while informing the 360-degree promotion view. |
+
+Option A (100% Complete Version): Nesting All Notes into Your 3 Existing SOW Bullets
+
+As part of Client’s effort to extract its workforce data to inform Employee 360, Consultant will assist the Client in designing, building, and piloting a People Graph that connects workforce data into a single, navigable semantic network. Building on open standards and Client’s existing data pipelines, the engagement aims to deliver a validated, platform-portable ontology, hydrated with a bounded dataset (two years of rating, calibration, and employee success data), and exposed alongside Client’s existing semantic layer via the Model Context Protocol (MCP) and Neo4j Bloom. Client aims to achieve the following with this engagement:
+
+- Enable Promotion Calibration Insights: Deliver a connected 360-degree view of promotion candidates that links ratings history, check-in themes, feedback, skills, Talent Review placement, and promotion outcomes to compare candidates consistently and surface outliers.
+    - Pilot 1 – Career Growth / Promotion Readiness (Priority, Time Sensitive):
+        - Primary Purpose: Career growth, with promotion readiness as a potential conversation topic.
+        - Audience / Signal: Managers of high-performing employees previously nominated but not approved, or long-tenured high performers who have not been nominated. Nomination history alone should not trigger a conversation; criteria will be refined and account for whether a recent MYCI already covered career growth.
+- Enable Ratings Calibration Insights: Connect performance ratings with underlying supporting evidence across managers and organizations to evaluate alignment and highlight where ratings and supporting signals diverge.
+    - Pilot 2 – Year-End Preparation (Priority, Scope to Define):
+        - Primary Purpose: Performance, Feedback & Goal Progress.
+        - Audience / Signal: Managers and employees who would benefit from clarifying gaps between perceived performance, documented V2MOM progress, supporting evidence, and expectations before year-end (specific signals and audience remain to be defined).
+    - Pilot 4 – LPI Follow-Up:
+        - Primary Purpose: Performance, Feedback & Goal Progress.
+        - Audience / Signal: Managers of employees with an LPI where an agreed number of days has passed without clear documented action, such as a follow-up check-in or PIP/PEP activity.
+- Stand Up Graph-Powered Employee Success Data Insights: Expose the graph as relationship-aware tools alongside the existing semantic layer under the same access controls and audit logging.
+    - Signal Library for Purpose-Driven Conversations: Determine which graph should power the library based on starting proposals, supporting the prioritized pilots above as well as:
+        - Pilot 3 – New-to-Role / New-Hire Alignment:
+            - Primary Purpose: Performance, Feedback & Goal Progress (with Development as a potential secondary topic).
+            - Audience / Signal: Employees with a role or manager change, or newer hires for whom MYCI was optional and who did not complete one. For new hires, utilize the confirmed optional-eligibility cutoff (April 16 discussed) and a minimum time in role so newly joined employees are not prompted too soon (a 60-day threshold was suggested, pending final agreement).
+    - Skills Inference: Establish a pipeline starting with 8Fold, define the required skills taxonomy, and execute graph-based inference combining skills with employee profile and performance information to enable:
+        - Talent Marketplace
+        - Redeployment (skills-based)
+Option B: Updating SOW Bullets to Reflect the PDF's Strikethroughs
+1. Stand Up Graph-Powered Employee Success Data Insights (MCP): Expose the graph alongside the semantic layer under unified access controls and audit logging.
+2. Deploy Signal Library for Purpose-Driven Conversations: Power proactive management signals across four prioritized pilots (Career Growth / Promotion Readiness, Year-End Preparation, New-to-Role / New-Hire Alignment, and LPI Follow-Up).
+3. Enable Graph-Based Skills Inference: Combine 8Fold baseline data, a unified skills taxonomy, and employee performance/profile connections to support Talent Marketplace and Skills Redeployment.
+----------
+3. Narrative Prose: Snowflake vs. Graph Architectural Boundary & Relationships
+
+Architectural Boundary: Snowflake vs. People Graph
+Snowflake as the System of Record:
+Snowflake will remain the foundational system of record for all quantitative workforce metrics and aggregates, including headcount, attrition, rating distributions, and promotion rates. It will continue to store full historical records, point-in-time snapshots, detailed employee attributes, and unstructured raw text (such as full check-in comments and feedback narratives). All enterprise dashboards, standard reporting, the existing semantic layer, governance frameworks, PII controls, and certified data products will remain in Snowflake.
+People Graph Scope (Entities & Relationships):
+The Neo4j People Graph will be hydrated with a targeted subset of structured entities and relationships designed for multi-hop traversal and pattern analysis. Rather than duplicating raw text, the graph will ingest core Entities—specifically Employee (ID and key attributes), Manager / Org unit, Role / Job profile, Skill, Review cycle, Theme (structured topics extracted from check-ins, evaluations, and feedback), Promotion case, and Talent Review placement.
+These entities are connected around the central Employee node through eight primary relationship patterns:
+
+1. Organizational Hierarchy: Each Employee `reports to` a Manager, and that Manager `rolls up to` an Org (Organizational Unit), enabling multi-hop traversal across management chains and business units.
+2. Employee Skills: An Employee is linked to specific Skill nodes via a `has skill` relationship, capturing their current capabilities.
+3. Role & Skill Adjacency: An Employee `holds` a Role (Job Profile), and each Role `requires` specific Skill nodes. Combining this with the employee's existing skills allows the graph to calculate skill adjacency and identify who is one or two skills away from a target role.
+4. Performance Ratings: An Employee is connected to a Review cycle via a `rated in` relationship, where the specific performance rating is stored directly as a property on the relationship edge.
+5. Peer & Manager Feedback Network: Employee nodes are connected to other Employee nodes via `gave feedback` and `received feedback` relationships, mapping collaboration and feedback signals across teams.
+6. Qualitative Themes: Rather than storing raw text in the graph, structured Check-in, Evaluation, and Feedback records are linked via a `mentions` relationship to extracted Theme nodes, creating navigable evidence trails.
+7. Promotion History: An Employee is connected to a Promotion case via a `nominated for` relationship, with the final decision (e.g., approved or not approved) stored as a property on the relationship.
+8. Talent Review Placement: An Employee is linked to a Talent Review category via a `placed in` relationship to capture their calibration and succession standing.
+Structured Graph Schema Table
+| Source Node                      | Relationship (Edge)               | Target Node            | Edge Properties / Notes                                          |
+| -------------------------------- | --------------------------------- | ---------------------- | ---------------------------------------------------------------- |
+| Employee                         | REPORTS_TO                        | Manager                | Connects employee to direct supervisor                           |
+| Manager                          | ROLLS_UP_TO                       | Org                    | Connects manager chain to organizational unit                    |
+| Employee                         | HAS_SKILL                         | Skill                  | Captures provisioned or inferred employee skills                 |
+| Employee                         | HOLDS                             | Role                   | Captures current or historical job profile                       |
+| Role                             | REQUIRES                          | Skill                  | Defines target skills needed for a role                          |
+| Employee                         | RATED_IN                          | Review cycle           | Stores the rating as a property on the relationship              |
+| Employee                         | GAVE_FEEDBACK / RECEIVED_FEEDBACK | Employee               | Captures peer/manager feedback connections across teams          |
+| Check-in / Evaluation / Feedback | MENTIONS                          | Theme                  | Links interaction records to extracted topics (no raw text)      |
+| Employee                         | NOMINATED_FOR                     | Promotion case         | Stores the outcome (approved / not approved) on the relationship |
+| Employee                         | PLACED_IN                         | Talent Review category | Tracks Talent Review placement                                   |
+
+----------
+4. Glossary of Key Terms & Acronyms
+- V2MOM (Vision, Values, Methods, Obstacles, Measures): Salesforce's strategic alignment and goal-setting framework captured in BaseCamp.
+    - Vision: What you want to achieve.
+    - Values: Principles and priorities guiding the work.
+    - Methods: Actions and steps to get the job done.
+    - Obstacles: Challenges to overcome.
+    - Measures: Quantifiable metrics/milestones proving success.
+    - Role in Graph: Represents "Employee Goals" and documented progress/gaps, used in Pilot 2 (Year-End Preparation) to identify discrepancies between documented progress and perceived performance.
+- MYCI (Mid-Year Check-In): Formal mid-year performance and development conversation between an employee and manager captured in BaseCamp.
+    - Role in Graph: Structured themes are extracted from MYCI comments (`Check-in → mentions → Theme`). Used as a signal filter in Pilot 1 (to verify if career growth was already discussed recently) and Pilot 3 (to identify newer hires past the April 16 cutoff who did not complete an optional MYCI).
+- LPI (Low Performance Indicator): An initial performance flag or rating designation indicating an employee is not meeting performance expectations.
+    - Role in Graph: In Pilot 4 (LPI Follow-Up), the graph checks whether an employee with an LPI has a connected follow-up action within an agreed number of days, prompting the manager if no action is documented.
+- PIP (Performance Improvement Plan): A formal, structured timeline (typically 30–60 days) with measurable expectations to help an underperforming employee improve.
+- PEP (Prompt Exit Package): A voluntary exit/severance option offered in the performance management workflow as an alternative to entering a formal PIP.
+- ES / ESBP: Employee Success (HR) / Employee Success Business Partner.
+- DGC: Data Governance Council (privacy and data governance review for sensitive workforce data).
+- MCP (Model Context Protocol): The protocol used to expose relationship-aware graph tools alongside the existing Snowflake semantic layer under unified access controls and audit logging.
+
+
+![](/static/img/pixel.gif)

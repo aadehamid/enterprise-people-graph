@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6WQE1JM8R56ETMN2T82JP80",
+  "session_id": "01a1b974-ac03-7052-941a-019504480f8f",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-08T04:42:28.329297Z",
+  "branch": "docs/pilot-trigger-proposals",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "LIONG_Design_Document_Package/LIONG-001_Problem_Statement_and_Simulation_Charter.md",
+    "LIONG_Design_Document_Package/LIONG-003_Use_Cases_and_MVP_Requirements.md",
+    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md",
+    "LIONG_Design_Document_Package/README.md"
+  ],
+  "agent": "Pi",
+  "model": "glm-5.3-flash:cloud",
+  "turn_id": "d92ee55ea16f",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 67550,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 2098048,
+    "output_tokens": 25840,
+    "api_call_count": 32
+  },
+  "redaction": {
+    "replacements": 19,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 19,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
