@@ -1,0 +1,42 @@
+given what you know of this project, can you share a prompt I can use to search for published ontollogy that are relevant to the proejct and that I can potentially used
+
+---
+
+do you have access to tiny
+
+---
+
+can you use tiny to I am building a governed People Graph ontology for a workforce domain (an "Employee 360" model). Help me find published, reusable
+ │ ontologies and vocabularies I could build on instead of inventing terms.
+ │
+ │ The domain concepts I need coverage for are:
+ │ - Person / employment: person identity, employment records, appointments, transfers, manager/reporting-line relationships
+ │ - Organizational structure: org units, positions, posts, role/job profiles, reporting hierarchy
+ │ - Skills and occupations: skills, competencies, skill levels, role-requirement mappings, skill inference (e.g., ESCO, O*NET, CTDL-ASN
+ │   class solutions)
+ │ - Performance and decisions: review cycles, assessments, ratings, feedback, check-ins, goals and goal progress, promotion cases and
+ │   outcomes, talent-review/calibration placements, low-performance flags and follow-up actions
+ │ - Learning: courses, certifications, credentials
+ │ - Evidence and provenance: claims, assessments as distinct observations, evidence lines, versioned records, temporal validity (e.g.,
+ │   PROV-O, SEPIO-class solutions)
+ │
+ │ For each candidate you find, report:
+ │ 1. Name, maintainer, and stable URL
+ │ 2. Format (RDF/OWL/SKOS, other) and roughly how many concepts
+ │ 3. Which of my domain concepts it covers (map to the list above — partially is fine)
+ │ 4. License and reuse terms as stated by the publisher
+ │ 5. Whether it's maintained/used in production or a paper-only artifact
+ │ 6. An honest note on fit for a workforce/people domain, and anything awkward about mappable-to-property-graph use
+ │
+ │ Search these ground first: BARTOC, Linked Open Vocabularies (LOV), LOD Cloud, BioPortal (for assessment/evidence patterns), OBO Foundry,
+ │ O*NET / ESCO / CTDL ecosystem, schema.org, and FIBO (for patterns only — different domain). Also look for published HR / workforce /
+ │ talent ontologies and papers (search terms: "HR ontology ontology OWL", "workforce ontology", "competency ontology", "organizational
+ │ ontology OWL", "skills taxonomy linked data").
+ │
+ │ Rules: only suggest artifacts that are published and inspectable — no vendor marketing pages or paywalled slides. Prefer
+ │ standards-aligned, openly licensed, actively maintained items. If two candidates overlap, note which is the better base. If a domain gap
+ │ has no good published solution, say so explicitly — that tells me what I must model myself.
+
+---
+
+Please go ahead. I alos wants use to create a running list of all published ontology we will be using in this project.
