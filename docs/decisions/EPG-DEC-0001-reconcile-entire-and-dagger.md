@@ -6,7 +6,7 @@
 | Status | Decided |
 | Date | 2026-11-08 |
 | Decided by | Hamid Adesokan (owner) |
-| Amended | 2026-11-08 (Kimi reviewer flags; see the amendment below) |
+| Amended | 2026-11-08 (Kimi reviewer flags; see the amendment below); confirmed 2026-11-08 (hook wiring and merge; see the confirmation below) |
 
 ## Context
 
@@ -53,15 +53,11 @@ have whatever we do be reivewed by independent review as required by way of work
   repositories with neither Entire nor Dagger; every change goes through the
   independent review the owner restated; the process file takes its shape
   from the Enterprise Performance Model repository's `AGENTS.md`.
-- Proposed, pending the owner's confirmation on the pull request: the hook
-  wiring detail — tracked delegating hooks in `scripts/hooks` plus
-  `core.hooksPath` — rather than wrapping the untracked `.git/hooks/pre-push`
-  in place. The owner's message names the direction (way-of-working keeps
-  working without Entire and Dagger) but not this detail. Either option
-  above satisfies what the owner said; option 2's shape (as `scripts/hooks`)
-  was chosen because it is tracked and survives a fresh clone. When the pull
-  request merges with the owner's confirmation, remove the Proposed marker
-  from `AGENTS.md` and here.
+- Confirmed 2026-11-08 (below): the hook wiring detail — tracked delegating
+  hooks in `scripts/hooks` plus `core.hooksPath` — rather than wrapping the
+  untracked `.git/hooks/pre-push` in place. Either option satisfies what the
+  owner said; the `scripts/hooks` shape was chosen because it is tracked and
+  survives a fresh clone.
 
 ## Alternatives considered
 
@@ -85,6 +81,20 @@ have whatever we do be reivewed by independent review as required by way of work
   container checks (markdown structure, link targets, tool tests, and the
   decision-record comparison; plus the SDK staleness gate), mounted from the
   repository's Markdown include set and the scripts folder.
+
+## Confirmation 2026-11-08 — the owner chose the wiring and directed the merge
+
+The owner's words, quoted verbatim from the 2026-11-08 session message, in
+answer to the two questions put to them:
+
+"Number one, I choose option one
+Number two, you can merge"
+
+Option one is the tracked delegating hooks in `scripts/hooks` plus
+`core.hooksPath`, as implemented and reviewed. "You can merge" directs the
+merge of https://github.com/aadehamid/enterprise-people-graph/pull/12. With
+this confirmation the hook wiring is Decided; the Proposed marker in
+`AGENTS.md` is removed in the same commit as this confirmation.
 
 ## Amendment 2026-11-08 — Kimi reviewer flags
 
