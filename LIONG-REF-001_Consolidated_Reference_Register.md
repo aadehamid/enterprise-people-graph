@@ -3,7 +3,7 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REF-001 |
-| Version | 0.3 |
+| Version | 0.4 |
 | Date | 2026-11-08 |
 | Status | Expansion reference draft for review |
 | Evidence boundary | Earlier links carried forward; rows added 2026-11-08 describe public standards, registries, and papers without artifact import or license clearance |
@@ -44,10 +44,18 @@ This register consolidates sources already cited in the design package. A URL is
 | [Allemang and Sequeda, ISWC 2024](https://arxiv.org/abs/2405.11706) | Study of ontologies increasing LLM question-answering accuracy over enterprise data | Design evidence for the ontology and MCP layer | Reading; no selection |
 | [OG-RAG, 2024](https://arxiv.org/abs/2412.15235) | Ontology-grounded retrieval-augmented generation | Reading for LIONG-014 tool design | Reading; no selection |
 | [Edge et al., Graph RAG, 2024](https://arxiv.org/abs/2404.16130) | Graph-based retrieval for query-focused summarization | Reading for LIONG-014 corpus and retrieval rationale | Reading; no selection |
+| [Evidence and Conclusion Ontology (ECO)](https://obofoundry.org/ontology/eco/) | Evidence types and assertion methods that support claims; records whether a human or machine made an assertion | Type the evidence behind assessments and dossier claims, including assessor kind | Assess for MVP; cross-domain biological-curation origin; CC0 confirmed from the repository on 2026-11-08 |
+| [Common Core Ontologies (CCO)](https://commoncoreontology.github.io/cco-webpage/) | BFO-grounded mid-level OWL suite; its Agent Ontology covers persons, organizations, and roles | Pattern source for employee, organization, position, and role semantics | Assess patterns only; artifact license and repository location gate open |
+| [Core-O](http://purl.org/coreo) | Competence reference ontology with an OWL artifact (FOIS 2024) | Candidate base for the competency layer the skills pilot maps into | Assess; artifact license and maintenance-stability gates open |
+| [LRMI](https://www.dublincore.org/about/lrmi/) | Learning-resource metadata vocabulary extending schema.org | Describe courses and learning resources alongside CTDL credentials | Assess for MVP; publisher terms to verify |
+| [FOAF](https://xmlns.com/foaf/spec/) | Lightweight person and agent vocabulary | Person identity and agent relations at the graph margin | Assess for MVP |
+| [ResumeRDF](http://rdfs.org/resume-rdf/) | CV and employment-record vocabulary (DERI Galway) | Reference for employment-term modeling; not an adoption candidate | Patterns reference only; stale (2002-2006) |
 
 PSDO upstream and registry license declarations differ in the existing assessment. Resolve the selected immutable release and dependency terms before import or redistribution. SEPIO is a bounded scientific-evidence pilot; cross-domain suitability remains open. ODRL is deferred and does not enforce access. Public classifications do not define Nigerian employment policy or LIONG levels. Approved shortlist descriptions do not approve full imports or class equivalence.
 
 The rows added on 2026-11-08 describe standards, registries, interface candidates, and research papers. A discovery aid or a reading row selects nothing. Method references guide practice without import. The four tool components behind SSSOM, qSKOS, Skosify, and neosemantics are assessed in LIONG-011 §7 and remain gated there.
+
+The rows added on 2026-11-08 (second addition) record workforce-domain and evidence-typing candidates found through a web search pass. The running list of artifacts the project actually touches is [LIONG-OBJ-001](LIONG-OBJ-001_Published_Ontology_Registry.md).
 
 ## 3. Existing reference links by source document
 

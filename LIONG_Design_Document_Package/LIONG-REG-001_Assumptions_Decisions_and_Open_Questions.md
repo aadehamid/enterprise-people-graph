@@ -5,7 +5,7 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.26 |
+| Version | 0.27 |
 | Date | 2026-11-07 |
 | Status | Working register |
 
@@ -397,7 +397,8 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
 | LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
 | LIONG-REG-001 | 0.25 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status; latest revision is wording only | Owner-supplement draft |
-| LIONG-REF-001 | 0.3 | Adds standards, registries, interface candidates, and KG-LLM papers; both repository copies match | Reference-addition draft |
+| LIONG-OBJ-001 | 0.1 | New running list of published ontologies the project touches | Working list draft |
+| LIONG-REF-001 | 0.4 | Adds workforce and evidence candidates from a 2026-11-08 search pass; both repository copies match | Reference-addition draft |
 | LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
@@ -441,3 +442,5 @@ Revision 0.24 rewords the plan-outline terminology (OI-14). No requirement, deci
 Revision 0.25 replaces those document-term references with neutral wording: the OI-14 choice becomes the organization of the plan's outcome bullets. No requirement, decision, or approval status changes.
 
 Revision 0.26 adds the reference additions: OI-09 and OI-13 gain pointers to the new optional components and mapping-format candidates. No decision status changes.
+
+Revision 0.27 records the 2026-11-08 workforce-domain search pass: six new candidates in LIONG-REF-001 and the new running-list registry LIONG-OBJ-001. No decision status changes.

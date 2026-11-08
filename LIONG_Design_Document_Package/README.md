@@ -1,6 +1,6 @@
 # LIONG People Graph — Document Index
 
-Version: 0.6. Date: 2026-11-07. Status: scope expansion draft with the 2026-11-07 plan supplement for review.
+Version: 0.7. Date: 2026-11-08. Status: scope expansion draft with the 2026-11-07 plan supplement for review.
 
 The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion and the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, and success-criteria specifics, held as proposals DEC-084 through DEC-088. The outcome-bullet organization choice (OI-14) and real-project delivery items (OI-15) are open. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
 
@@ -39,7 +39,8 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 ## 3. Supporting registers
 
 - [Assumptions, decisions and open questions](LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md): authoritative approval record through APR-018, decisions through DEC-088, and open questions through OI-15. It also maps the owner plan's working terms (MYCI, V2MOM, LPI, PIP, PEP, ESBP, DGC, MCP, and source-system names) to LIONG concepts and records the real-project status items.
-- [Consolidated reference register](LIONG-REF-001_Consolidated_Reference_Register.md): ontology descriptions, project uses, and source links, including the public-reference assessment in version 0.3 and the 2026-11-08 additions of standards, registries, and research papers.
+- [Published Ontology Registry (running list)](LIONG-OBJ-001_Published_Ontology_Registry.md): every published ontology, vocabulary, and standard the project touches, with use status per artifact and the concept-area coverage map.
+- [Consolidated reference register](LIONG-REF-001_Consolidated_Reference_Register.md): ontology descriptions, project uses, and source links, including the public-reference assessment in version 0.4 with the 2026-11-08 workforce and evidence candidates.
 
 The decision register controls approval status. Maintenance file numbers do not indicate a new policy approval. Earlier proposed wording is part of design history; use the recorded decisions and later approved rules when status differs.
 
