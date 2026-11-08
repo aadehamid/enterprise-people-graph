@@ -1,0 +1,40 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6WQZG6FFR1J76BQHG34V7W8",
+  "strategy": "manual-commit",
+  "branch": "docs/pilot-trigger-proposals",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "LIONG_Design_Document_Package/LIONG-001_Problem_Statement_and_Simulation_Charter.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 2330,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 295616,
+    "output_tokens": 1180,
+    "api_call_count": 3
+  },
+  "redaction": {
+    "replacements": 19,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 19,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
