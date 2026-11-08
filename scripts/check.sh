@@ -4,10 +4,11 @@
 #
 # Plain run: the check tools, directly, with the local Node. Works in any
 # clone and needs neither Entire nor Dagger.
-# `--with-dagger`: additionally runs the same checks in the containers of
-# .dagger (module people-graph-ci) when the dagger CLI is on PATH. Like every
-# step between the two snapshot points, a Dagger-side tree change fails the
-# check.
+# `--with-dagger`: additionally runs the container checks of .dagger (module
+# people-graph-ci): Markdown structure, link targets, tool tests, and the
+# decision-record check. The gate harness and the tree guard are local-only
+# by nature; they never claim container coverage. Like every step between the
+# two snapshot points, a Dagger-side tree change fails the check.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -46,29 +47,20 @@ fi
 # 2. Markdown structure over the tracked Markdown. The population is every
 # tracked *.md, and each file must live inside one of the Dagger mount's
 # roots (asserted here), so the local and container checks cannot silently
-# diverge (mount roots: .dagger/modules/people-graph-ci/src/index.ts).
+# diverge (population roots: scripts/md-set.sh; container mount: .dagger/modules/people-graph-ci/src/index.ts).
 git ls-files -z -- '*.md' > "$list_state"
-if [ ! -s "$list_state" ]; then
-  echo "check: no tracked Markdown files; refusing to run an empty check" >&2
+# Population roots live in scripts/md-set.sh; the container mount and the
+# local set stay one population by agreement (EPG-DEC-0001).
+bash scripts/md-set.sh < "$list_state" > "$md_list"
+lint_log=$(mktemp "${TMPDIR:-/tmp}/check-lint.XXXXXX")
+trap 'rm -f "$guard_state" "$list_state" "$md_list" "$lint_log"' EXIT
+bash scripts/lint-md.sh < "$md_list" > "$lint_log"
+grep -q "^lint-md: linted [1-9][0-9]* file" "$lint_log" || {
+  echo "check: the lint step reported no files; failing closed" >&2
+  cat "$lint_log" >&2
   exit 1
-fi
-status=0
-while IFS= read -r -d '' file; do
-  if [ ! -f "$file" ]; then
-    echo "check: tracked Markdown missing on disk: $file" >&2
-    exit 1
-  fi
-  case "$file" in
-    */*) case "$file" in
-           .github/*|docs/*|guideline_to_map_ontology_to_LPG/*|LIONG_Design_Document_Package/*) ;;
-           *) echo "check: tracked Markdown outside the checked population: $file — add its root to .dagger/modules/people-graph-ci/src/index.ts and this case" >&2
-              status=1 ;;
-         esac ;;
-  esac
-  printf '%s\0' "$file" >> "$md_list"
-done < "$list_state"
-[ "$status" -eq 0 ]
-bash scripts/lint-md.sh < "$md_list"
+}
+cat "$lint_log"
 
 # 3. Local link and image targets. The checker follows symlinks, skips
 # node_modules and tool dot-directories (except .github), and scans the

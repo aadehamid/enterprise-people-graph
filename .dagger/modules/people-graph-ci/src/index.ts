@@ -34,6 +34,9 @@ export class PeopleGraphCi {
   private dependencies(): Container {
     return dag.container()
       .from("node:24.13.1-alpine@sha256:4f696fbf39f383c1e486030ba6b289a5d9af541642fc78ab197e584a113b9c03")
+      // git, so the tool tests' git-dependent suites run in the container too
+      // (nothing must be skipped silently in a gate).
+      .withExec(["apk", "add", "--no-cache", "git"])
       .withWorkdir("/checks")
       .withDirectory("/checks", this.tools, {
         include: ["package.json", "package-lock.json"],
@@ -71,6 +74,18 @@ export class PeopleGraphCi {
       .withDirectory("/scripts", this.scripts)
       .withDirectory("/checks", this.tools, { include: ["*.mjs"] })
       .withExec(["npm", "test"])
+      .sync()
+  }
+
+  /** Decision records and the index agree, by the same fail-closed code as the local gate. */
+  @check()
+  @func()
+  async decisions(): Promise<void> {
+    await this.dependencies()
+      .withDirectory("/scripts", this.scripts)
+      .withDirectory("/docs", this.docs)
+      .withWorkdir("/docs")
+      .withExec(["node", "/scripts/check-decisions.mjs", "docs/decisions"])
       .sync()
   }
 }

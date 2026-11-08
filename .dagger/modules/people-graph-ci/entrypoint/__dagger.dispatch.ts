@@ -80,6 +80,12 @@ async function invoke(
           return __result
         }
 
+        case "decisions": {
+          const __parent = rebuildPeopleGraphCi(parentJson)
+          const __result = await __parent.decisions()
+          return __result
+        }
+
         case "links": {
           const __parent = rebuildPeopleGraphCi(parentJson)
           const __result = await __parent.links()

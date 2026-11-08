@@ -81,9 +81,10 @@ have whatever we do be reivewed by independent review as required by way of work
   the user's push; checkpoints sync on commit; trails span repositories.
 - `entire doctor` on 2026-11-08 reported hooks OK and finalized 2 exited
   sessions; it re-ran clean after the wiring.
-- The Dagger module `.dagger/modules/people-graph-ci` ran three checks
-  (markdown structure, link targets, checker tests) in containers, mounted
-  from the repository's Markdown include set.
+- On 2026-11-08 (after the round-2 review) the Dagger module ran five
+  container checks (markdown structure, link targets, tool tests, and the
+  decision-record comparison; plus the SDK staleness gate), mounted from the
+  repository's Markdown include set and the scripts folder.
 
 ## Amendment 2026-11-08 — Kimi reviewer flags
 

@@ -39,17 +39,16 @@ export async function checkDecisions(decisionsDir, indexFile) {
   const seenRecords = new Set();
   for (const file of recordFiles.sort()) {
     const id = /^([A-Za-z0-9]+(?:-[A-Za-z0-9]+){2})[-.]/.exec(file)?.[1] ?? file;
+    if (seenRecords.has(id)) {
+      errors.push(`${decisionsDir}: duplicate record ID ${id} (another record file carries it too)`);
+      continue;
+    }
     seenRecords.add(id);
     const recordPath = path.join(decisionsDir, file);
     const row = rows.get(id);
     if (!row) { errors.push(`${file}: no index row for ${id}`); continue; }
     if (row.file !== file) {
-      // The row's link must name this record file.
-      try {
-        await stat(path.join(decisionsDir, row.file));
-      } catch {
-        errors.push(`${path.basename(indexFile)}: row ${id} links to missing file ${row.file}`);
-      }
+      errors.push(`${path.basename(indexFile)}: row ${id} links to ${row.file} but the record file is ${file}`);
     }
     let text = "";
     try {
@@ -57,6 +56,11 @@ export async function checkDecisions(decisionsDir, indexFile) {
     } catch (error) {
       errors.push(`cannot read record ${file}: ${error.message}`);
       continue;
+    }
+    // The record's own Record ID field must agree with the file and the row.
+    const idField = /^\|\s*Record ID\s*\|\s*([^|]+?)\s*\|/m.exec(text);
+    if (idField && idField[1] !== id) {
+      errors.push(`${file}: Record ID field '${idField[1]}' disagrees with the file's ID ${id}`);
     }
     const statusRow = /^\|\s*Status\s*\|\s*([^|]+?)\s*\|/m.exec(text);
     if (!statusRow) { errors.push(`${file}: no Status field`); continue; }

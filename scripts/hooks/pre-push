@@ -31,6 +31,23 @@ if [ "$send_commits" != "0" ] && [ "$send_commits" != "1" ]; then
   exit 1
 fi
 
+# Every nonempty record must have four fields and hexadecimal object names
+# (40 or 64 digits) for its local and remote object names; "0 0"-shaped
+# garbage must not pass for a deletion.
+malformed=$(awk '
+  NF == 0 { next }
+  NF != 4 { print; exit }
+  $2 !~ /^[0-9a-fA-F]+$/ { print; exit }
+  $2 !~ /^[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]+$/ { print; exit }
+  $4 !~ /^[0-9a-fA-F]+$/ { print; exit }
+  $4 !~ /^[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]+$/ { print; exit }
+  { next }
+' "$input_file") || exit 1
+if [ -n "$malformed" ]; then
+  echo "pre-push: malformed ref list line: $malformed" >&2
+  exit 1
+fi
+
 if [ "$send_commits" -eq 1 ]; then
   "$(git rev-parse --show-toplevel)/scripts/check.sh" || exit 1
 fi

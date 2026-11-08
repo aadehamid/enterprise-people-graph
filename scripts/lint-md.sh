@@ -8,15 +8,13 @@ bin=${MD_LINT_BIN:-ci/node_modules/.bin/markdownlint-cli2}
 config=${MD_LINT_CONFIG:-ci/markdownlint-cli2.jsonc}
 
 list=$(mktemp "${TMPDIR:-/tmp}/lint-md.XXXXXX")
-trap 'rm -f "$list"' EXIT
+existing=$(mktemp "${TMPDIR:-/tmp}/lint-md-existing.XXXXXX")
+trap 'rm -f "$list" "$existing"' EXIT
 cat > "$list"
 if [ ! -s "$list" ]; then
   echo "lint-md: empty file list; refusing to run an empty check" >&2
   exit 1
 fi
-
-existing=$(mktemp "${TMPDIR:-/tmp}/lint-md-existing.XXXXXX")
-trap 'rm -f "$existing"' EXIT
 status=0
 n=0
 while IFS= read -r -d '' file; do
@@ -35,5 +33,7 @@ if [ "$status" -ne 0 ]; then
 fi
 
 # Runs the linter once with the surviving files; xargs exits nonzero when the
-# linter rejects any of them.
+# linter rejects any of them. The run must be observable: the caller asserts
+# the count line, so a dropped or silent lint step cannot pass a check.
 xargs -0 "$bin" --config "$config" < "$existing"
+printf 'lint-md: linted %s file(s) with %s\n' "$(tr '\0' '\n' < "$existing" | grep -c .)" "$bin"

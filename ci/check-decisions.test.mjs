@@ -67,13 +67,64 @@ test("a record with no index row fails", async () => {
   }
 });
 
-test("an index row with no record file fails", async () => {
+test("a row link that names a different record file fails even when it exists", async () => {
   const fx = await fixture(oneRow.replace("(EPG-DEC-0001-topic.md)", "(EPG-DEC-0009-gone.md)"), {
     "EPG-DEC-0001-topic.md": oneRecord,
   });
   try {
     const errors = await checkDecisions(fx.decisions, fx.indexFile);
-    assert.match(errors.join("\n"), /links to missing file EPG-DEC-0009-gone\.md/);
+    assert.match(errors.join("\n"), /row EPG-DEC-0001 links to EPG-DEC-0009-gone\.md but the record file is EPG-DEC-0001-topic\.md/);
+  } finally {
+    await fx.cleanup();
+  }
+});
+
+test("a wrong but existing link target fails the binding", async () => {
+  const fx = await fixture(oneRow.replace("(EPG-DEC-0001-topic.md)", "(EPG-DEC-0009-decoy.md)"), {
+    "EPG-DEC-0001-topic.md": oneRecord,
+    "EPG-DEC-0009-decoy.md": oneRecord.replace(/0001/g, "0009"),
+  });
+  try {
+    const errors = await checkDecisions(fx.decisions, fx.indexFile);
+    const all = errors.join("\n");
+    assert.match(all, /row EPG-DEC-0001 links to EPG-DEC-0009-decoy\.md but the record file is EPG-DEC-0001-topic\.md/);
+    assert.match(all, /no index row for EPG-DEC-0009/);
+  } finally {
+    await fx.cleanup();
+  }
+});
+
+test("a truly orphaned index row fails with the missing-record error", async () => {
+  const fx = await fixture(oneRow, {});
+  try {
+    const errors = await checkDecisions(fx.decisions, fx.indexFile);
+    assert.match(errors.join("\n"), /no record files/);
+    void errors;
+  } finally {
+    await fx.cleanup();
+  }
+});
+
+test("a mismatched Record ID field fails", async () => {
+  const fx = await fixture(oneRow, {
+    "EPG-DEC-0001-topic.md": oneRecord.replace("| Record ID | EPG-DEC-0001 |", "| Record ID | EPG-DEC-9999 |"),
+  });
+  try {
+    const errors = await checkDecisions(fx.decisions, fx.indexFile);
+    assert.match(errors.join("\n"), /Record ID field 'EPG-DEC-9999' disagrees with the file's ID EPG-DEC-0001/);
+  } finally {
+    await fx.cleanup();
+  }
+});
+
+test("duplicate record IDs across files fail", async () => {
+  const fx = await fixture(oneRow, {
+    "EPG-DEC-0001-topic.md": oneRecord,
+    "EPG-DEC-0001-second.md": oneRecord,
+  });
+  try {
+    const errors = await checkDecisions(fx.decisions, fx.indexFile);
+    assert.match(errors.join("\n"), /duplicate record ID EPG-DEC-0001/);
   } finally {
     await fx.cleanup();
   }
