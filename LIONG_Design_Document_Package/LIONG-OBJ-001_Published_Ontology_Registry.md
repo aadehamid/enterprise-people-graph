@@ -47,7 +47,12 @@ Each entry records what the artifact is, which domain concepts it covers, its li
 | NICE Framework | CISA/NIST | Work-role, task, knowledge, and skill reference | Cybersecurity work roles for relevant digital-role templates | US Government publication; release gate open | Assess | LIONG-005 |
 | DOL skills taxonomy | US Department of Labor | Plain-language dataset taxonomy | Source-discovery example; not employee skills content | US Government publication | Assess | LIONG-005 |
 | ODRL | W3C | Rights-expression vocabulary | Evidence-use policy expression | Open standard (W3C) | Later scope (DEC-056) | Deferred |
-| RDF 1.2 / RDFS, Turtle, JSON-LD 1.1 | W3C | Data model, schema layer, serializations | The representation layer the graph and exports use | Open standards (W3C) | In scope as standards; RDF-star assessment open | LIONG-006/007 |
+| RDF 1.1 RDF, RDFS, Turtle | W3C | Data model, schema layer, serialization | The representation layer the graph and exports use | Open standards (W3C) | In scope as base standards | LIONG-006/007 |
+| RDF 1.2 / RDF-star | W3C | Triple terms: statements about statements | Alternative to the record-version pattern for rating and decision provenance | Candidate Recommendation draft | Assess; no adoption implied | Assessment only (LIONG-006/007) |
+| JSON-LD 1.1 | W3C | RDF serialized as JSON | API and export serialization option | Open standard (W3C) | Assess for MVP | Serialization candidate (LIONG-007/011) |
+| SKOS-Thes | DCMI | ISO 25964 thesaurus features as a SKOS extension | Thesaurus features if the skills pilot adopts a thesaurus | Spec per DCMI | Assess | LIONG-REF-001 §2 |
+| DCMI Terms | DCMI | Dublin Core element set as RDF | Field and date conventions for record descriptions | Open standard (DCMI) | Assess (small subset) | LIONG-007 conventions |
+| schema.org | Google, Microsoft, Yahoo, Yandex consortium | Web structured-data vocabulary; ~800 types, ~1,500 properties | Person, EmployeeRole, and org links at the web margin | Publisher terms to verify | Assess | Margin use; LRMI builds on it |
 | ECO | Evidence Ontology community (OBO) | OWL; evidence types + assertion methods | Typical evidence for assessment claims; human-versus-machine assessor | CC0-1.0 confirmed 2026-11-08 | Assess | Candidate; not yet in LIONG-006 |
 | CCO (Agent Ontology) | Common Core Ontologies community | BFO-grounded OWL suite | Person, organization, and role modeling patterns | License and repository location to verify | Pattern source | Pattern reading only |
 | Core-O | FOIS 2024 authors (Calhau et al.) | OntoUML reference model + OWL artifact | Competency structure for the skills layer | License to verify; stability open | Assess | Candidate base for the competency layer |
@@ -67,8 +72,8 @@ Each entry records what the artifact is, which domain concepts it covers, its li
 | Person and employment records | FOAF, CCO patterns, ORG, schema.org | Employment-record lifecycle terms need LIONG-006 modeling |
 | Organizational structure | ORG (candidate base), CCO patterns | None beyond ORG assessment |
 | Skills and competency | ESCO, O*NET, CTDL-ASN, Core-O, SKOS | Inference labeling is modeled in LIONG-006 |
-| Performance and decisions | PSDO (displays only), SEPIO (pilot) | Promotion cases, talent-review placement, check-ins, calibration: no published standard exists; LIONG-006 owns these concepts |
-| Learning | CTDL, LRMI | Course-catalog depth is later scope |
+| Performance and decisions | PSDO (displays only), SEPIO (pilot) | Promotion cases, talent-review placement, check-ins, calibration, follow-up action lifecycles, and documented goal progress have no published standard; LIONG-006 owns these concepts, including GoalProgress and follow-up references |
+| Learning | CTDL, LRMI, schema.org | Course-catalog depth is later scope |
 | Evidence and provenance | PROV-O, ECO, SEPIO, Web Annotation | Selection among ECO/SEPIO/Web Annotation roles remains open |
 
 ## 5. Maintenance

@@ -6,7 +6,7 @@
 | --- | --- |
 | Document ID | LIONG-REG-001 |
 | Version | 0.27 |
-| Date | 2026-11-07 |
+| Date | 2026-11-08 |
 | Status | Working register |
 
 ## Scope and approval status — 2026-10-27
