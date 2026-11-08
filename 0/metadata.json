@@ -1,0 +1,49 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6XZG73YBC0XFHBSPCTS39YP",
+  "session_id": "01a1b9b3-1ea3-709a-bf1d-fcfccbb41615",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-08T16:22:42.305986Z",
+  "branch": "guardrails/entire-dagger-coexistence",
+  "checkpoints_count": 4,
+  "save_step_count": 5,
+  "files_touched": [
+    ".dagger/modules/people-graph-ci/src/index.ts",
+    "ci/check-decisions.test.mjs",
+    "ci/tree-guard.test.mjs",
+    "scripts/check-decisions.mjs",
+    "scripts/check.sh",
+    "scripts/hooks/pre-push",
+    "scripts/lint-md.sh",
+    "scripts/md-set.sh",
+    "scripts/tree-guard.mjs"
+  ],
+  "agent": "Pi",
+  "model": "glm-5.3-flash:cloud",
+  "turn_id": "c01cc09c78d4",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 314661,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 18666560,
+    "output_tokens": 43654,
+    "api_call_count": 92
+  },
+  "redaction": {
+    "replacements": 59,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 59,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  },
+  "session_metrics": {
+    "turn_count": 5
+  }
+}
