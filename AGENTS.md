@@ -7,6 +7,8 @@ orientation, at
 [LIONG-REG-001](LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md)
 for requirement authority and open questions, and at
 [the decision record index](docs/decisions/INDEX.md) for process decisions.
+To set this standard up in another repository, start at
+[Repo bootstrap](docs/agents/repo-bootstrap.md).
 
 ## Skills every agent loads
 
