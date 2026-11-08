@@ -3,26 +3,28 @@
   "checkpoint_id": "01M6WSGXSRW67YXZBCTB5AR1X7",
   "session_id": "01a1b974-ac03-7052-941a-019504480f8f",
   "strategy": "manual-commit",
-  "created_at": "2026-11-08T05:19:00.1021Z",
+  "created_at": "2026-11-08T05:19:05.034233Z",
   "branch": "docs/reference-stack-additions",
   "checkpoints_count": 6,
-  "save_step_count": 1,
   "files_touched": [
-    ".firecrawl/catalog-direct.md",
-    ".firecrawl/ontology-pipeline-catalog.md"
+    ".gitignore",
+    "LIONG_Design_Document_Package/LIONG-011_Open_Source_Technology_Options_and_Reference_Stack.md",
+    "LIONG_Design_Document_Package/LIONG-REF-001_Consolidated_Reference_Register.md",
+    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md",
+    "LIONG_Design_Document_Package/README.md"
   ],
   "agent": "Pi",
   "model": "glm-5.3-flash:cloud",
   "turn_id": "6ec36e212003",
-  "checkpoint_transcript_start": 160,
-  "transcript_lines_at_start": 160,
-  "compact_transcript_start": 80,
+  "checkpoint_transcript_start": 213,
+  "transcript_lines_at_start": 213,
+  "compact_transcript_start": 112,
   "token_usage": {
-    "input_tokens": 46018,
+    "input_tokens": 404,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 4249792,
-    "output_tokens": 16974,
-    "api_call_count": 30
+    "cache_read_tokens": 163584,
+    "output_tokens": 181,
+    "api_call_count": 1
   },
   "redaction": {
     "replacements": 68,

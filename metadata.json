@@ -5,8 +5,11 @@
   "branch": "docs/reference-stack-additions",
   "checkpoints_count": 6,
   "files_touched": [
-    ".firecrawl/catalog-direct.md",
-    ".firecrawl/ontology-pipeline-catalog.md"
+    ".gitignore",
+    "LIONG_Design_Document_Package/LIONG-011_Open_Source_Technology_Options_and_Reference_Stack.md",
+    "LIONG_Design_Document_Package/LIONG-REF-001_Consolidated_Reference_Register.md",
+    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md",
+    "LIONG_Design_Document_Package/README.md"
   ],
   "sessions": [
     {
@@ -14,15 +17,15 @@
       "transcript": "/0/full.jsonl",
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
-      "prompt": "/0/prompt.txt"
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 46018,
+    "input_tokens": 404,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 4249792,
-    "output_tokens": 16974,
-    "api_call_count": 30
+    "cache_read_tokens": 163584,
+    "output_tokens": 181,
+    "api_call_count": 1
   },
   "redaction": {
     "replacements": 68,
