@@ -1,0 +1,1143 @@
+okay
+
+---
+
+are able to read this substack https://substack.com/inbox/post/221057153
+
+---
+
+what in tha substack can we use in this repo?
+
+---
+
+here is the full text
+
+Intentional Arrangement
+Ontology Pipeline Resource Catalog
+Resources from Ontology Pipeline, A framework for building knowledge infrastructures
+Jessica Talisman, MLS
+Oct 18, 2026
+This list collects the standards, vocabularies, tools and readings behind The Ontology Pipeline, the book’s resource list merged with everything the Intentional Arrangement essays have cited. It is ordered according to the sequence presented by the Ontology Pipeline, standards first (of course), then the guidelines for constructing vocabularies, the metadata schemas those vocabularies populate, published vocabularies you can reuse, the registries and standards bodies that govern them, tools, and sources.
+
+Each entry includes what it is, then where to find it.
+
+W3C standards
+RDF is the data model; RDFS, SKOS and OWL are vocabularies built upon it in increasing order of expressivity.
+
+The data model
+RDF 1.2 Concepts and Abstract Data Model — the current specification of triples, graphs, IRIs, literals and datasets; Candidate Recommendation, 2026. w3.org/TR/rdf12-concepts
+
+RDF 1.2 Primer — the readable introduction to the model. w3.org/TR/rdf12-primer
+
+RDF 1.2 Semantics — the formal semantics behind entailment. w3.org/TR/rdf12-semantics
+
+RDF 1.1 Concepts, Primer and Semantics — the 2014 Recommendations that most tools still implement. w3.org/TR/rdf11-concepts, w3.org/TR/rdf11-primer, w3.org/TR/rdf11-mt
+
+RDF Model and Syntax Specification (1999) — the original Recommendation, Lassila and Swick. w3.org/TR/1999/REC-rdf-syntax-19990222
+
+RDF-star — triple terms, statements about statements; a Community Group report now folded into RDF 1.2. w3.org/TR/rdf12-concepts
+
+RDF Dataset Canonicalization (RDFC-1.0) — a deterministic form for signing and comparing graphs, 2024. w3.org/TR/rdf-canon
+
+Vocabularies built on RDF
+RDF Schema 1.2 and 1.1 — classes, subclasses, properties, domain and range. w3.org/TR/rdf12-schema, w3.org/TR/rdf-schema
+
+SKOS, Simple Knowledge Organization System Reference — concepts, labels, broader, narrower, related, mapping relations; the vocabulary for controlled vocabularies, taxonomies and thesauri. w3.org/TR/skos-reference
+
+SKOS-XL — labels as resources, so a label can carry its own properties and history. w3.org/TR/skos-reference/skos-xl.html
+
+OWL 2 Web Ontology Language — the Primer, the Document Overview and the Profiles (EL, QL, RL). w3.org/TR/owl2-primer, w3.org/TR/owl2-overview, w3.org/TR/owl2-profiles
+
+PROV-O, the Provenance Ontology — entities, activities and agents; wasGeneratedBy, wasAttributedTo, wasDerivedFrom. w3.org/TR/prov-o
+
+OWL-Time — temporal entities, instants, intervals and durations. w3.org/2006/time
+
+DCAT, Data Catalog Vocabulary — describing datasets, distributions and catalogs. w3.org/ns/dcat
+
+DCMI Metadata Terms — Dublin Core as an RDF vocabulary, the dcterms namespace. dublincore.org/specifications/dublin-core/dcmi-terms
+
+RDF Data Cube Vocabulary — multidimensional statistical data, compatible with SDMX. w3.org/TR/vocab-data-cube
+
+P-Plan — plans, steps and variables, an extension of PROV. purl.org/net/p-plan
+
+Serializations
+Turtle — the human-readable syntax, RDF 1.2 and 1.1. w3.org/TR/rdf12-turtle, w3.org/TR/turtle
+
+N-Triples — one triple per line, for streaming, diffing and bulk loading. w3.org/TR/rdf12-n-triples, w3.org/TR/n-triples
+
+N-Quads — N-Triples with a fourth column for the graph name, for datasets. w3.org/TR/rdf12-n-quads, w3.org/TR/n-quads
+
+TriG — Turtle extended to named graphs. w3.org/TR/rdf12-trig, w3.org/TR/trig
+
+RDF/XML — the original XML syntax from 1999. w3.org/TR/rdf12-xml, w3.org/TR/rdf-syntax-grammar
+
+JSON-LD 1.1 — RDF as JSON; the syntax Schema.org markup and most web APIs use. w3.org/TR/json-ld11
+
+RDFa Core 1.1 — RDF carried in the attributes of HTML and XML documents. w3.org/TR/rdfa-core
+
+Notation3 (N3) — the rules-capable superset of Turtle; W3C Team Submission, maintained by the N3 Community Group. w3.org/TeamSubmission/n3
+
+RDF/JSON — the RDF 1.1 JSON Alternate Serialization, a plain JSON mapping; W3C Working Group Note. w3.org/TR/rdf-json
+
+TriX — triples in XML with named graphs; W3C member submission, still read by Jena and RDF4J. w3.org/2004/03/trix
+
+Microdata to RDF — how HTML5 microdata maps onto RDF; W3C Note. w3.org/TR/microdata-rdf
+
+CSV on the Web (CSVW) — the W3C model for describing tabular data so it converts to RDF. w3.org/TR/tabular-data-model
+
+RDF-star syntaxes — Turtle-star, TriG-star, N-Triples-star and SPARQL-star from the 2021 Community Group report, now folded into the RDF 1.2 editions as triple terms. w3c.github.io/rdf-star
+
+HDT, Header-Dictionary-Triples — compressed, queryable binary RDF; W3C member submission. rdfhdt.org
+
+Jelly — binary serialization and streaming protocol for RDF, built for high-throughput pipelines. w3id.org/jelly
+
+RDF Binary (Thrift and Protobuf) — Apache Jena’s binary encodings for fast exchange between Jena systems. jena.apache.org/documentation/io/rdf-binary.html
+
+OWL Functional Syntax and OWL Manchester Syntax — the two non-RDF syntaxes for OWL 2 ontologies, used by Protégé and the OWL API. w3.org/TR/owl2-syntax, w3.org/TR/owl2-manchester-syntax
+
+Query and validation
+SPARQL 1.2 Query and Update — the current specifications. w3.org/TR/sparql12-query, w3.org/TR/sparql12-update
+
+SPARQL 1.1 Query Language — the 2013 Recommendation. w3.org/TR/sparql11-query
+
+SHACL, Shapes Constraint Language — closed-world validation of RDF against shapes. w3.org/TR/shacl
+
+W3C RDF Validator — syntax checking as a service. w3.org/RDF/Validator
+
+SKOS extensions and mapping standards
+Where SKOS stops, these pick up: statistical classifications, ISO thesaurus features, lexical detail and mappings between vocabularies.
+
+XKOS, Extended Knowledge Organization System — the DDI Alliance’s SKOS extension for statistical classifications, with correspondence tables between versions. rdf-vocabulary.ddialliance.org/xkos, best practices at linked-statistics.github.io/xkos
+
+SKOS-Thes (ISO-THES) — the vocabulary that maps ISO 25964 thesaurus features onto SKOS. dublincore.org/specifications/skos-thes/ns
+
+UNESKOS — the UNESCO Thesaurus extension, adding the inverse of skos:inScheme. skos.um.es/TR/uneskos
+
+OntoLex-Lemon, Lexicon Model for Ontologies — lexical entries, forms and senses attached to ontology terms; W3C Community Group report, 2016. w3.org/2016/05/ontolex
+
+SSSOM, Simple Standard for Sharing Ontological Mappings — a tabular standard for exchanging mappings with provenance. mapping-commons.github.io/sssom
+
+ADMS, Asset Description Metadata Schema — the Interoperable Europe profile for publishing controlled vocabularies in SKOS. interoperable-europe.ec.europa.eu
+
+DCAT-AP — the European application profile of DCAT. semiceu.github.io/DCAT-AP
+
+Linked Open Vocabularies entries for SKOS and SKOS-XL — usage statistics and dependencies across the LOD cloud. lov.linkeddata.es/dataset/lov/vocabs/skos, lov.linkeddata.es/dataset/lov/vocabs/skosxl
+
+Linked open data sources
+Datasets published as RDF with dereferenceable URIs and, in most cases, a public SPARQL endpoint. These are the reconciliation targets: the identifiers your own vocabulary maps to with skos:exactMatch and skos:closeMatch.
+
+Wikidata — 100 million items, multilingual labels, the Wikidata Query Service. wikidata.org, endpoint query.wikidata.org
+
+DBpedia — the knowledge graph extracted from Wikipedia; ontology of 685 classes, 50 million interlinks across the LOD cloud. dbpedia.org, endpoint dbpedia.org/sparql
+
+YAGO — Wikidata cleaned against Schema.org, with logical constraints. yago-knowledge.org
+
+BabelNet — multilingual lexical-semantic network linking WordNet and Wikipedia. babelnet.org
+
+Getty Vocabularies as Linked Open Data — AAT, TGN, ULAN and CONA with a SPARQL endpoint. vocab.getty.edu
+
+Library of Congress Linked Data Service — LCSH, LC Name Authority File, LC Classification, genre/form terms and the ISO vocabularies, all dereferenceable. id.loc.gov
+
+VIAF, Virtual International Authority File — name authorities from national libraries clustered into one file. viaf.org
+
+ISNI, International Standard Name Identifier — persistent public identifiers for people and organizations. isni.org
+
+OCLC FAST — faceted subject terms derived from LCSH, as linked data. fast.oclc.org
+
+WorldCat Entities — OCLC’s linked-data identifiers for works, persons and places. id.oclc.org/worldcat/entity
+
+GND, Gemeinsame Normdatei — the German National Library’s integrated authority file, in RDF. d-nb.info/standards/elementset/gnd
+
+data.bnf.fr — the Bibliothèque nationale de France’s authorities and RAMEAU as linked data. data.bnf.fr
+
+Europeana — cultural heritage aggregated under the Europeana Data Model, with a SPARQL endpoint. pro.europeana.eu/page/linked-open-data
+
+GeoNames — eleven million place names with RDF descriptions. geonames.org/ontology
+
+Pleiades — gazetteer of ancient places, linked data. pleiades.stoa.org
+
+EU Vocabularies — EuroVoc and the authority tables of the Publications Office, with the CELLAR SPARQL endpoint. op.europa.eu/en/web/eu-vocabularies, endpoint publications.europa.eu/webapi/rdf/sparql
+
+AGROVOC — FAO’s thesaurus as linked data, SKOS-XL, with SPARQL. agrovoc.fao.org/sparql
+
+UNESCO Thesaurus — published as SKOS with a Skosmos browser and endpoint. vocabularies.unesco.org
+
+MeSH RDF — the Medical Subject Headings as linked data, with SPARQL. id.nlm.nih.gov/mesh
+
+BioPortal — the biomedical ontology repository, SPARQL over 1,000-plus ontologies. bioportal.bioontology.org, endpoint sparql.bioontology.org
+
+OBO Foundry — the coordinated biological and biomedical ontologies, each with PURLs. obofoundry.org
+
+UniProt — protein sequence and function data with one of the largest public SPARQL endpoints. sparql.uniprot.org
+
+Bio2RDF — life-science databases converted to linked data. bio2rdf.org
+
+FIBO, Financial Industry Business Ontology — the EDM Council’s OWL ontology, published with dereferenceable IRIs. spec.edmcouncil.org/fibo
+
+ORCID and ROR — persistent identifiers for researchers and research organizations. orcid.org, ror.org
+
+OpenCitations — open citation data as RDF, with SPARQL. opencitations.net
+
+Data Commons (Google) — public statistical data unified under a Schema.org-based graph. datacommons.org
+
+Linked Open Vocabularies (LOV) — the registry of the RDF vocabularies these datasets use. lov.linkeddata.es
+
+Linked Open Data Cloud — the diagram and dataset registry of the whole. lod-cloud.net
+
+Construction guidelines and standards
+Two documents govern every controlled vocabulary and thesaurus; the rest define the element sets and bibliographic models the metadata layer inherits.
+
+Vocabulary and thesaurus construction
+ANSI/NISO Z39.19-2005 (R2010), Guidelines for the Construction, Format, and Management of Monolingual Controlled Vocabularies — term selection, warrant, scope notes, reciprocity, displays. niso.org/publications/ansiniso-z3919-2005-r2010
+
+ISO 25964-1, Thesauri for information retrieval — the international thesaurus standard, successor to ISO 2788 and 5964; a revision in draft names AI among the uses a thesaurus serves. iso.org/standard/53657.html
+
+ISO 25964-2, Interoperability with other vocabularies — mapping practice between thesauri, classification schemes and taxonomies. iso.org/obp/ui/en/#iso:std:iso:25964:-2
+
+NISO, ISO 25964 pages — schemas and committee material. niso.org/schemas/iso25964
+
+Dublin Core as a standard
+IETF RFC 2413, Dublin Core Metadata for Resource Discovery (1998) — the first specification of the fifteen elements. rfc-editor.org/rfc/rfc2413.txt
+
+ANSI/NISO Z39.85-2012 and ISO 15836 — the Dublin Core element set as US and international standards. niso.org/publications/ansiniso-z3985-2012-dublin-core-metadata-element-set, iso.org/standard/71341.html
+
+DCMI Application Profile Guidelines and Guidelines for Dublin Core Application Profiles — how to build a metadata application profile. dublincore.org/specifications/dublin-core/application-profile-guidelines, dublincore.org/specifications/dublin-core/profile-guidelines
+
+DCMI Qualifiers and Usage Guide — element refinements and encoding schemes. dublincore.org/specifications/dublin-core/dcmes-qualifiers
+
+NISO, Understanding Metadata (Riley, 2017) — the primer. niso.org/publications/understanding-metadata
+
+W3CDTF, Date and Time Formats — the W3C profile of ISO 8601 that fixes how dates and times are written, from a bare year to a full timestamp with time zone; the encoding scheme Dublin Core and most metadata application profiles designate for date elements. w3.org/TR/NOTE-datetime
+
+Cataloguing rules and bibliographic models
+Anglo-American Cataloguing Rules (AACR2) — descriptive cataloguing, succeeded by RDA. en.wikipedia.org/wiki/Anglo-American_Cataloguing_Rules
+
+Resource Description and Access (RDA) — the current cataloguing standard. rdatoolkit.org
+
+FRBR, Functional Requirements for Bibliographic Records — IFLA’s 1998 Work, Expression, Manifestation, Item model. repository.ifla.org
+
+IFLA Library Reference Model (LRM) — FRBR’s 2017 successor. ifla.org
+
+BIBFRAME — the Library of Congress linked-data successor to MARC. loc.gov/bibframe
+
+Authority control, golden records and schema crosswalks — the three practices that keep identity, master data and mappings consistent. en.wikipedia.org/wiki/Authority_control, en.wikipedia.org/wiki/Golden_record_(informatics), en.wikipedia.org/wiki/Schema_crosswalk
+
+FAIR Guiding Principles — findable, accessible, interoperable, reusable. en.wikipedia.org/wiki/FAIR_data
+
+W3C Library Linked Data Incubator Group, Vocabularies and Datasets report (2011) — the distinction between value vocabularies, element sets and datasets. w3.org/2005/Incubator/lld/XGR-lld-vocabdataset-20111025
+
+Metadata schemas and element sets
+The element sets that controlled vocabularies populate, from the general-purpose set to the domain profiles built on it.
+
+Dublin Core Metadata Initiative — the general-purpose element set and its history. dublincore.org, dublincore.org/about/history
+
+Schema.org — the structured-data vocabulary for the web, 827 types and 1,528 properties. schema.org
+
+MARC 21 and MARCXML — library bibliographic records. loc.gov/marc, loc.gov/standards/marcxml
+
+MODS, MADS, METS, PREMIS and MIX — the Library of Congress XML schemas for description, authorities, packaging, preservation and still images. loc.gov/standards/mods, loc.gov/standards/mads, loc.gov/standards/mets, loc.gov/standards/premis, loc.gov/standards/mix
+
+VRA Core 4.0 — visual resources and cultural works. vraweb.org/vra-core-data-standard, loc.gov/standards/vracore
+
+LIDO, Lightweight Information Describing Objects — museum object metadata for harvesting. lido-schema.org
+
+Europeana Data Model — cultural heritage aggregation across Europe. pro.europeana.eu/page/metadata
+
+DPLA Metadata Application Profile — the Digital Public Library of America’s profile, a worked example of a MAP. pro.dp.la/hubs/metadata-application-profile
+
+Darwin Core — biodiversity data. dwc.tdwg.org
+
+Ecological Metadata Language — ecological datasets. eml.ecoinformatics.org
+
+Data Documentation Initiative (DDI) — social, behavioural and economic survey data. ddialliance.org
+
+SDMX — statistical data and metadata exchange. sdmx.org
+
+IPTC news and image schemas and the IPTC Information Interchange Model — news and embedded image metadata. iptc.org, en.wikipedia.org/wiki/IPTC_Information_Interchange_Model
+
+Adobe XMP, Extensible Metadata Platform — metadata embedded in files. adobe.com/products/xmp.html
+
+PBCore — public broadcasting media. pbcore.org
+
+GS1 — product and supply-chain identification. gs1us.org
+
+CDISC, Clinical Data Interchange Standards Consortium — clinical research data, including CDASH. cdisc.org
+
+HL7 FHIR and OMOP Common Data Model — clinical interoperability and observational research. fhir.org, ohdsi.github.io/CommonDataModel
+
+Learning Resource Metadata Initiative (LRMI) — educational resources. dublincore.org/about/lrmi
+
+Croissant — metadata for machine-learning datasets. mlcommons.org/working-groups/data/croissant
+
+CatChums metadata application profile — a complete MAP, element tables, vocabularies and crosswalk, written as a teaching example. jessicatalisman.substack.com/p/metadata-application-profile-example
+
+Published vocabularies, thesauri and ontologies
+Reusable knowledge organization systems, grouped by domain. Each is named with its place on the Pipeline: controlled vocabulary, taxonomy, thesaurus, ontology or knowledge graph.
+
+Libraries, archives and cultural heritage
+Library of Congress Subject Headings — the subject thesaurus; free PDFs and the linked-data service. loc.gov/aba/cataloging/subject, loc.gov/aba/publications/FreeLCSH, id.loc.gov
+
+Library of Congress Classification — the 21-class shelving scheme. loc.gov/catdir/cpso/lcco
+
+WorldCat — OCLC’s union catalog, the largest aggregation of library bibliographic records, with linked-data identifiers for works. worldcat.org, oclc.org/en/worldcat/inside-worldcat.html
+
+VIAF, Virtual International Authority File — name authorities from national libraries clustered into one file, linked data. viaf.org
+
+FAST, Faceted Application of Subject Terms — OCLC’s faceted vocabulary derived from LCSH. fast.oclc.org
+
+Getty Vocabularies — the Art & Architecture Thesaurus (AAT), Thesaurus of Geographic Names (TGN), Union List of Artist Names (ULAN) and Cultural Objects Name Authority (CONA), all as linked open data. getty.edu/research/tools/vocabularies
+
+UNESCO Thesaurus — education, science, culture and communication in six languages; the first major thesaurus published in SKOS. vocabularies.unesco.org
+
+UNBIS Thesaurus — United Nations documentation, six official languages. metadata.un.org/thesaurus
+
+RAMEAU (BnF), Libris subject headings (Sweden) and GND (German National Library) — national subject and authority systems published in SKOS. data.bnf.fr, libris.kb.se, d-nb.info/standards/elementset/gnd
+
+IPTC NewsCodes and IPTC Media Topics — the news industry’s controlled vocabularies and its 1,200-term subject taxonomy, SKOS. iptc.org/standards/newscodes, iptc.org/standards/media-topics
+
+IAB Content Taxonomy — digital advertising content classification. iabtechlab.com/standards/content-taxonomy
+
+WorldCat — OCLC’s union catalog, the largest aggregation of library bibliographic records, with linked-data identifiers for works. worldcat.org, oclc.org/en/worldcat/inside-worldcat.html
+
+Life sciences and health
+MeSH, Medical Subject Headings — the biomedical thesaurus behind PubMed, with the RDF service. meshb.nlm.nih.gov, id.nlm.nih.gov/mesh
+
+SNOMED CT — clinical terminology, 350,000 concepts, used in more than eighty countries. snomed.org, nlm.nih.gov/healthit/snomedct
+
+UMLS Metathesaurus — 200-plus source vocabularies clustered into concepts. nlm.nih.gov/research/umls
+
+RxNorm — normalized drug names. nlm.nih.gov/research/umls/rxnorm
+
+OBO Foundry — the coordinated family of biological and biomedical ontologies. obofoundry.org
+
+Gene Ontology — molecular function, biological process and cellular component. geneontology.org
+
+NCBI Taxonomy — organisms with sequence data. ncbi.nlm.nih.gov/Taxonomy
+
+Catalogue of Life and GBIF Backbone Taxonomy — accepted species and the backbone that resolves occurrence records. catalogueoflife.org, gbif.org
+
+PLOS Thesaurus and NLM Value Sets — SKOS vocabularies on BioPortal. bioportal.bioontology.org/ontologies/PLOSTHES, bioportal.bioontology.org/ontologies/NLMVS
+
+Biolink Model — the schema behind biomedical knowledge graphs. bioportal.bioontology.org/ontologies/BIOLINK
+
+Agriculture and environment
+AGROVOC (FAO) — 42,000 concepts in 42 languages, SKOS-XL, aligned with sixteen other vocabularies. fao.org/agrovoc
+
+GEMET, General Multilingual Environmental Thesaurus — the European environmental thesaurus. eionet.europa.eu/gemet
+
+NALT, National Agricultural Library Thesaurus — USDA’s agricultural vocabulary, aligned with AGROVOC. agclass.nal.usda.gov
+
+USDA Soil Taxonomy — six-level soil classification. nrcs.usda.gov
+
+NIST Material Data Vocabulary — materials science in SKOS. data.nist.gov
+
+Finance and business
+FIBO, Financial Industry Business Ontology — the EDM Council’s OWL ontology of financial concepts. spec.edmcouncil.org/fibo
+
+Financial Regulation Ontology (FinRegOnt) — FIBO aligned with LKIF, populated with US regulatory text. finregont.com
+
+LKIF Core — the legal knowledge interchange ontology. github.com/RinkeHoekstra/lkif-core
+
+IFRS Accounting Taxonomy — XBRL tagging of financial statements. ifrs.org/issued-standards/ifrs-taxonomy
+
+EU Taxonomy for Sustainable Activities — what counts as environmentally sustainable for investment. finance.ec.europa.eu
+
+OpenFunds — normalized fund reference data fields. openfunds.org
+
+Industry classifications — ISIC (UN), NACE (EU), NAICS (North America), SIC, ANZSIC, GICS and the national schemes built on them. unstats.un.org/unsd/classifications/Econ/ISIC, data.europa.eu/ux2/nace2.1/nace2.1, census.gov/naics
+
+COFOG, Classification of the Functions of Government — government spending by purpose. ec.europa.eu/eurostat
+
+Government, law and public sector
+EuroVoc — the EU’s multilingual thesaurus, 24 languages, SKOS. op.europa.eu/en/web/eu-vocabularies, eur-lex.europa.eu/browse/eurovoc.html
+
+UK Government taxonomies and registers — GOV.UK Topic Taxonomy, HMRC-accepted XBRL taxonomies, the National Risk Register. gov.uk
+
+Code of Federal Regulations SKOS vocabulary — Casellas, Legal Information Institute at Cornell. semantic-web-journal.net
+
+GeoNames — the geographical gazetteer. geonames.org
+
+Skills and occupations
+ESCO, European Skills, Competences, Qualifications and Occupations — 3,039 occupations and 13,939 skills in 28 languages, with the ESCO ontology. esco.ec.europa.eu/en/classification, data.europa.eu/esco/model
+
+NICE Workforce Framework for Cybersecurity (NIST) — tasks, knowledge and skills for cybersecurity work. niccs.cisa.gov/tools/nice-framework
+
+US Department of Labor Skills Taxonomy — plain-language categories for describing labor data. dol.gov/agencies/odg/taxonomy
+
+Computing, engineering and research fields
+ACM Computing Classification System — the computer science classification, in SKOS. dl.acm.org/ccs
+
+arXiv Category Taxonomy — preprint subject classes. arxiv.org/category_taxonomy
+
+Computer Science Ontology (CSO) — 14,000 research topics generated from 16 million papers. cso.kmi.open.ac.uk
+
+IEEE Thesaurus — 12,000 engineering terms built to Z39.19. ieee.org/publications/services/thesaurus-access-page
+
+CWE, Common Weakness Enumeration (MITRE) — software and hardware security weaknesses. cwe.mitre.org
+
+ITIL Service Taxonomy and TOGAF content metamodel — IT service and enterprise architecture classifications. wiki.en.it-processmaps.com, visual-paradigm.com/guide/togaf
+
+STW Thesaurus for Economics (ZBW) and TheSoz (GESIS) — economics and social science thesauri in SKOS and SKOS-XL. zbw.eu/stw, gesis.org/en/services/research/thesauri-und-klassifikationen/social-science-thesaurus
+
+PKO, Procedural Knowledge Ontology — procedures and process knowledge, from Cefriel. w3id.org/pko
+
+Commerce and products
+Google Product Taxonomy — 6,000 categories, seven levels deep. google.com/basepages/producttype/taxonomy.en-US.txt
+
+Shopify Product Taxonomy — open source, 10,000 categories with attributes. shopify.github.io/product-taxonomy
+
+Meta Product Taxonomy — Facebook and Instagram commerce categories. developers.facebook.com
+
+Amazon Browse Node hierarchy — the category tree behind Amazon search. webservices.amazon.com
+
+UNSPSC — the UN products and services code for procurement. ungm.org/public/unspsc
+
+GS1 Global Product Classification — the retail supply-chain standard. gs1.org/standards/gpc
+
+Cross-domain knowledge bases and web vocabularies
+Wikidata — 100 million items, multilingual, SPARQL endpoint; the Wikibase RDF model documents how it carries SKOS. wikidata.org, mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format
+
+DBpedia — the knowledge graph extracted from Wikipedia, with its ontology of 685 classes. dbpedia.org
+
+BabelNet — multilingual lexical-semantic network. babelnet.org
+
+FOAF — people, activities and relationships. xmlns.com/foaf/spec
+
+Open taxonomies about artificial intelligence
+Seven taxonomies of the AI field, each from a different institutional lens; together they seed the worked SKOS example in Knowledge Graph Lite, Part III. The lens is the first thing to note before merging their terms.
+
+AIDA AI Educational Taxonomy — education and curriculum. i-aida.org/aida-taxonomy
+
+Congressional Research Service, Artificial Intelligence Taxonomy — US legislative policy. congress.gov/crs-product/IG10077
+
+MIT AI Risk Repository — 1,725 risks from 74 frameworks, with causal and domain taxonomies. airisk.mit.edu
+
+Open Data Institute, A Data for AI Taxonomy — the data involved across the AI lifecycle. theodi.cdn.ngo
+
+UC Berkeley CLTC, A Taxonomy of AI Trustworthiness — trust and governance. cltc.berkeley.edu
+
+University of Southampton, AI Taxonomy brief — public policy. southampton.ac.uk
+
+EU-US Terminology and Taxonomy for Artificial Intelligence, second edition — transatlantic regulatory terminology. digital-strategy.ec.europa.eu
+
+Registries and directories
+Where to look before building a vocabulary from scratch.
+
+Taxonomy and Thesaurus Catalog (Intentional Arrangement) — a curated, sectioned directory of open taxonomies and thesauri with a description of each. jessicatalisman.substack.com/p/open-and-free-taxonomies-and-thesauri
+
+Open Knowledge Graphs — a daily-refreshed catalog of 3,200 vocabulary and standard records and 318 semantic software tools, built from Wikidata, with Turtle and JSON downloads, a search API and an MCP server. openknowledgegraphs.com
+
+BARTOC, Basel Register of Thesauri, Ontologies and Classifications — 5,000-plus knowledge organization systems searchable by subject, type, language and format. bartoc.org
+
+Linked Open Vocabularies (LOV) — the curated catalog of reusable RDF vocabularies with usage statistics. lov.linkeddata.es
+
+BioPortal — the biomedical ontology repository with a SPARQL endpoint. bioportal.bioontology.org
+
+Research Data Alliance Metadata Standards Directory — metadata schemas by discipline. rd-alliance.github.io/metadata-directory
+
+DBpedia Archivo — an augmented archive of ontologies on the Databus. archivo.dbpedia.org
+
+W3C SKOS Datasets wiki — SKOS vocabularies registered with the W3C. w3.org/2001/sw/wiki/SKOS/Datasets
+
+Linked Open Data Cloud — the diagram and dataset list of the LOD cloud. lod-cloud.net
+
+Library Workflow Exchange — library workflows shared by practitioners. libraryworkflowexchange.org
+
+Tools
+Grouped by the job each does. The open source authoring, validation and storage stack is complete without a vendor; the commercial platforms add governance, collaboration and scale.
+
+Authoring vocabularies and ontologies
+VocBench — collaborative, multilingual platform for SKOS, SKOS-XL, OWL and OntoLex; used for the UNESCO Thesaurus and EU vocabularies. vocbench.uniroma2.it
+
+Protégé and WebProtégé — the standard OWL ontology editor, desktop and collaborative web. protege.stanford.edu, webprotege.stanford.edu
+
+TemaTres — thesaurus and taxonomy server. vocabularyserver.com
+
+OpenSKOS, SousLeSens and VocPrez — publishing and managing SKOS vocabularies. github.com/openskos/openskos, github.com/souslesens/souslesensVocables, github.com/RDFLib/VocPrez
+
+Intentional Arrangement SKOS Editor — create, validate, visualise, query and export SKOS in the browser. jesstalisman-ia.github.io/intentional-arrangement-skos
+
+ROBOT and the Ontology Development Kit — the OBO community’s command-line and toolbox for ontology releases. robot.obolibrary.org, incatools.github.io/ontology-development-kit
+
+LinkML — a modeling framework that compiles to OWL, SHACL, JSON Schema and more. linkml.io
+
+Widoco — generates ontology documentation. dgarijo.github.io/Widoco
+
+TopBraid EDG (TopQuadrant) — enterprise vocabulary, ontology and governance platform with SHACL at its core. topquadrant.com/topbraid-edg
+
+Graphwise — taxonomy, thesaurus and knowledge graph management.
+
+https://graphwise.ai/
+
+Synaptica — enterprise taxonomy management. synaptica.com
+
+Data Harmony (Access Innovations) — taxonomy management, used for the IEEE Thesaurus. accessinn.com
+
+metaphactory (metaphacts) — knowledge graph platform. metaphacts.com
+
+Validating and assessing quality
+qSKOS — the quality framework that defines 26 computable SKOS quality issues. github.com/cmader/qSKOS
+
+Skosify — converts RDFS and OWL vocabularies to SKOS and cleans up SKOS. github.com/NatLibFi/Skosify
+
+SKOS Play! — renders, visualises and tests SKOS vocabularies. skos-play.sparna.fr, testing tool at skos-play.sparna.fr/skos-testing-tool
+
+SHACL Play! and SHACL Playground — online SHACL validation, documentation and generation. shacl-play.sparna.fr, shacl-playground.zazuko.com
+
+pySHACL — the Python SHACL validator. pypi.org/project/pyshacl
+
+OOPS!, OntOlogy Pitfall Scanner — online ontology evaluation against a pitfall catalogue. oops.linkeddata.es
+
+FOOPS! and O’FAIRe — FAIRness assessment for ontologies and vocabularies. foops.linkeddata.es, services.stageportal.lirmm.fr/fairness
+
+SKOS-Utils — checking and developing SKOS knowledge graphs. ceur-ws.org/Vol-3630/LWDA2023-paper25.pdf
+
+LogMap and the Ontology Alignment Evaluation Initiative — alignment and its benchmark. cs.ox.ac.uk/isg/tools/LogMap, oaei.ontologymatching.org
+
+Query languages and libraries
+SPARQL — the RDF query language (see W3C standards above).
+
+Cypher — the property-graph query language, openCypher. opencypher.org
+
+GraphQL — the API query language. graphql.org
+
+RDFLib (Python), Apache Jena and RDF4J (Java), dotNetRDF (.NET), N3.js and rdf-ext (JavaScript), Sophia (Rust) — the RDF libraries by language. rdflib.dev, jena.apache.org, rdf4j.org, dotnetrdf.org, github.com/rdfjs/N3.js, pchampin.github.io/sophia_rs
+
+Owlready2 and OWLAPI — ontology programming in Python and Java. bitbucket.org/jibalamy/owlready2, github.com/owlcs/owlapi
+
+Yasgui, Sparnatural and Comunica — SPARQL editor, visual query builder and modular query framework. yasgui.triply.cc, sparnatural.eu, comunica.dev
+
+grlc — REST APIs generated from SPARQL queries kept in Git. grlc.io
+
+Triplestores and graph platforms
+Ontotext GraphDB (Graphwise) — RDF database with reasoning, the backend behind the UNESCO Thesaurus. graphdb.ontotext.com, graphwise.ai
+
+Apache Jena Fuseki — the open-source SPARQL server with TDB2 storage. jena.apache.org/documentation/fuseki2
+
+Oxigraph — embeddable SPARQL database in Rust. oxigraph.org
+
+QLever — a fast SPARQL engine for very large graphs. qlever.dev
+
+Blazegraph — the store behind the Wikidata Query Service. blazegraph.com
+
+Virtuoso — multi-model server, home of the DBpedia endpoint. virtuoso.openlinksw.com
+
+RDFox, Stardog and AllegroGraph — commercial RDF databases with reasoning. oxfordsemantic.tech, stardog.com, allegrograph.com
+
+Amazon Neptune — managed graph database, RDF and property graph. aws.amazon.com/neptune
+
+Neo4j with neosemantics — the property-graph database and its RDF, SHACL and inference plugin. neo4j.com, neo4j.com/labs/neosemantics
+
+Wikibase — the software behind Wikidata, for running your own. wikiba.se
+
+Skosmos — the SKOS browser and publishing front end. skosmos.org
+
+Graph Research Labs Semantic AI Platform — fifteen governed tools on one ontology with PROV-O provenance, annual licence. graphresearchlabs.com
+
+Mapping and ETL into RDF
+RML and R2RML engines — RMLMapper, Morph-KGC, SDM-RDFizer, CARML. rml.io, morph-kgc.readthedocs.io
+
+Ontop — relational databases as virtual knowledge graphs. ontop-vkg.org
+
+SPARQL Anything — query any file format as if it were RDF. sparql-anything.cc
+
+OpenRefine RDF Transform and Excel 2 RDF (Sparna) — tabular data to RDF. openrefine.org/extensions, xls2rdf.sparna.fr
+
+LinkedPipes ETL and Chimera (Cefriel) — RDF pipeline tooling. etl.linkedpipes.com, cefriel.github.io/chimera
+
+Karma — visual semantic modeling and RDF generation. usc-isi-i2.github.io/karma
+
+OntoGPT — structured knowledge and ontology terms extracted from text with language models. monarch-initiative.github.io/ontogpt
+
+Reasoners
+HermiT — OWL 2 DL reasoner, hypertableau-based; Oxford. hermit-reasoner.com
+
+Pellet — OWL 2 DL reasoner in Java, open source (AGPL) with a commercial licence; the original Clark & Parsia reasoner. github.com/stardog-union/pellet
+
+Openllet — the maintained open-source fork of Pellet. github.com/Galigator/openllet
+
+FaCT++ — OWL 2 DL tableau reasoner in C++; Manchester. owl.cs.manchester.ac.uk/tools/fact
+
+Konclude — parallel OWL 2 DL reasoner; derivo. derivo.de/produkte/konclude
+
+Sequoia — consequence-based OWL 2 DL reasoner; Oxford. cs.ox.ac.uk/isg/tools/Sequoia
+
+ELK — OWL EL reasoner for large biomedical ontologies. elk.semanticweb.org
+
+Whelk — OWL EL and OWL RL reasoner for ontology-intensive applications. github.com/INCATools/whelk
+
+OWL-RL — OWL 2 RL and RDFS forward-chaining in Python. owl-rl.readthedocs.io
+
+Reasonable — OWL 2 RL reasoner in Rust with Python bindings. reasonable.gtf.fyi
+
+EYE, Euler Yet another proof Engine — Notation3 reasoning engine. eulersharp.sourceforge.net
+
+CEL and jcel — lightweight EL reasoners. julianmendez.github.io/cel, julianmendez.github.io/jcel
+
+FuXi — Python semantic web reasoning system. pypi.org/project/fuxi
+
+Flora-2 — rule-based knowledge representation and reasoning. flora.sourceforge.net
+
+Visualization
+WebVOWL — ontology visualisation in the browser. service.tib.eu/webvowl
+
+rdf-sketch (Zazuko) — sketch RDF and see it drawn. sketch.zazuko.com
+
+SemSpect — visual exploration of RDF and knowledge graphs. semspect.de
+
+Sampo-UI — a framework for semantic portals. seco.cs.aalto.fi/tools/sampo-ui
+
+Reactodia — JavaScript graph diagram library. reactodia.github.io
+
+Agent memory and grounding
+Cognee — ontology-grounded knowledge graphs as agent memory. cognee.ai
+
+Graphiti and Zep — temporal knowledge graphs for agent memory. help.getzep.com/graphiti, getzep.com
+
+TrustGraph — explainable context for agents. trustgraph.ai
+
+Mem0 — persistent memory for AI applications. mem0.ai
+
+Ontofelia — an RDF/OWL-based gateway for LLM agents. github.com/semantification-org/Ontofelia
+
+Tutorials
+Three ways into TF-IDF, the term-weighting step that surfaces candidate concepts from a corpus, plus two SKOS primers.
+
+Analyzing Documents with TF-IDF — Programming Historian, Python. programminghistorian.org/en/lessons/analyzing-documents-with-tfidf
+
+Text Mining with R: TF-IDF — Silge and Robinson, tidytext. tidytextmining.com/tfidf.html
+
+TF-IDF with Scikit-Learn — Melanie Walsh, Introduction to Cultural Analytics. melaniewalsh.github.io
+
+Controlled Vocabularies and SKOS — DARIAH-Campus. campus.dariah.eu/resources/hosted/controlled-vocabularies-and-skos
+
+SKOS Taxonomies — Heather Hedden, Hedden Information Management. hedden-information.com/skos-taxonomies
+
+Books
+Robert J. Glushko (ed.), The Discipline of Organizing, 4th Professional Edition (Pressbooks, 2022) — the cross-domain vocabulary for organizing systems; CC BY-NC. ischools.org/discipline-of-organizing
+
+Elaine Svenonius, The Intellectual Foundation of Information Organization (MIT Press, 2000) — subject and descriptive cataloging in one conceptual framework. MIT Press
+
+Gail M. Hodge, Systems of Knowledge Organization for Digital Libraries: Beyond Traditional Authority Files (CLIR, 2000) — the survey that orders KOS types by structure. clir.org/pubs/reports/pub91
+
+Nicola Guarino (ed.), Formal Ontology in Information Systems (IOS Press, 1998) — the FOIS proceedings that set the field’s foundations.
+
+Carol Jean Godby, Shenghui Wang and Jeffrey K. Mixter, Library Linked Data in the Cloud (Morgan & Claypool, 2015) — OCLC’s experiments with new models of resource description.
+
+Pascal Hitzler et al. (eds.), Handbook on Neurosymbolic AI and Knowledge Graphs and Neuro-Symbolic Artificial Intelligence: The State of the Art (IOS Press) — the reference volumes on the neural-symbolic field.
+
+Daniel Kahneman, Thinking, Fast and Slow (2011); Michael Polanyi, The Tacit Dimension (1966); Harry Collins, Tacit and Explicit Knowledge (2010) — the cognition and tacit-knowledge canon the essays draw on.
+
+Jessica Talisman, The Ontology Pipeline (Technics Publications, 2026) — the book this list accompanies. technicspub.com/ontology-pipeline
+
+Articles and papers
+Peer-reviewed work first within each theme. Includes preprints, press, and vendor pieces.
+
+Semantic web foundations
+Berners-Lee, Hendler and Lassila, The Semantic Web, Scientific American (2001). lassila.org/publications/2001/SciAm.html
+
+Eric Miller, An Introduction to the Resource Description Framework, D-Lib Magazine (1998). dlib.org/dlib/may98/miller/05miller.html
+
+Baker, Bechhofer, Isaac, Miles, Schreiber and Summers, Key Choices in the Design of SKOS, Web Semantics 20 (2013). arxiv.org/abs/1302.1224
+
+Hogan et al., Knowledge Graphs (2021). arxiv.org/abs/2003.02320
+
+Vrandečić and Krötzsch, Wikidata: A Free Collaborative Knowledgebase, CACM 57(10) (2014).
+
+Karen Coyle, Works, Expressions, Manifestations, Items: An Ontology, Code4Lib Journal 53 (2022). journal.code4lib.org
+
+SKOS, ISKO Encyclopedia of Knowledge Organization. isko.org/cyclo/skos
+
+SKOS quality, alignment and practice
+Mader, Haslhofer and Isaac, Finding Quality Issues in SKOS Vocabularies, TPDL 2012. arxiv.org/abs/1206.1339
+
+Poveda-Villalón, Gómez-Pérez and Suárez-Figueroa, OOPS! OntOlogy Pitfall Scanner, IJSWIS 10(2) (2014).
+
+Kraus, Blumenröhr, Tonne and Streit, Pretranslating SKOS Thesauri for Better Matching Performance, OM 2025 at ISWC, CEUR Vol-4144.
+
+Transforming the Medical Subject Headings into Linked Data and Desiderata for an Authoritative Representation of MeSH in RDF. pmc.ncbi.nlm.nih.gov/articles/PMC4749162
+
+Caracciolo et al., AGROVOC: The linked data concept hub for food and agriculture, Computers and Electronics in Agriculture (2020).
+
+Sparna, UNESCO Thesaurus published with Semantic Web standards and open-source software (2017). blog.sparna.fr
+
+Bob DuCharme, What SKOS-XL adds to SKOS. bobdc.com/blog/what-skos-xl-adds-to-skos
+
+Michael DeBellis, Using SKOS to Define Mappings between OWL Entities. michaeldebellis.com/post/skosintro
+
+Context, relevance and categorization
+How Context Changes the Neural Basis of Perception and Language, iScience. sciencedirect.com
+
+Widmer, Recognition and Exploitation of Contextual Clues via Incremental Meta-Learning, OFAI (1996). ofai.at/papers/oefai-tr-96-01.pdf
+
+Saracevic, Relevance (JASIS 1975); Wilson, Situational relevance (1973); Schamber, Eisenberg and Nilan, A re-examination of relevance (1990); Hjørland and Albrechtsen, Domain-analysis (JASIS 1995).
+
+Dourish, What we talk about when we talk about context, Personal and Ubiquitous Computing 8(1) (2004).
+
+Hjørland, What Is Knowledge Organization?, Knowledge Organization 35 (2008), and Concept Theory, JASIST 60(8) (2009).
+
+Rosch, Principles of Categorization, in Cognition and Categorization (1978).
+
+Furnas, Landauer, Gomez and Dumais, The Vocabulary Problem in Human-System Communication, CACM 30(11) (1987).
+
+Knowledge graphs, ontologies and language models
+Marcus, The Next Decade in AI: Four Steps Towards Robust Artificial Intelligence (2020). arxiv.org/abs/2002.06177
+
+Kautz, The Third AI Summer, AI Magazine 43(1) (2022). DOI 10.1002/aaai.12036
+
+d’Avila Garcez and Lamb, Neurosymbolic AI: The 3rd Wave, Artificial Intelligence Review 56 (2023). DOI 10.1007/s10462-023-10448-w
+
+Hitzler et al., Neural-Symbolic Integration and the Semantic Web, Semantic Web 11(1) (2020), and Neuro-symbolic AI and the Semantic Web (2024).
+
+Pan et al., Unifying Large Language Models and Knowledge Graphs: A Roadmap, IEEE TKDE 36(7) (2024). arxiv.org/abs/2306.08302
+
+Dehal, Sharma and Rajabi, Knowledge Graphs and Their Reciprocal Relationship with Large Language Models, MAKE 7(2) (2025). DOI 10.3390/make7020038
+
+Sequeda, Allemang and Jacob, A Benchmark to Understand the Role of Knowledge Graphs on LLM Accuracy for Question Answering on Enterprise SQL Databases (2024). arxiv.org/abs/2311.07509
+
+Allemang and Sequeda, Increasing the Accuracy of LLM Question-Answering Systems with Ontologies, ISWC 2024. arxiv.org/abs/2405.11706
+
+Sharma, Kumar and Li, OG-RAG: Ontology-Grounded Retrieval-Augmented Generation, EMNLP 2025. arxiv.org/abs/2412.15235
+
+Retrieval Augmented Generation Evaluation in the Era of Large Language Models: A Comprehensive Survey. arxiv.org/abs/2504.14891
+
+Edge et al., From Local to Global: A Graph RAG Approach to Query-Focused Summarization (2024). arxiv.org/abs/2404.16130
+
+Sui, He, Ding and Hooi, Can Knowledge Graphs Make Large Language Models More Trustworthy?, ACL 2025. arxiv.org/abs/2410.08085
+
+Agrawal, Kumarage, Alghamdi and Liu, Can Knowledge Graphs Reduce Hallucinations in LLMs? A Survey, NAACL 2024.
+
+Uceda-Sosa et al., Reasoning about Concepts with LLMs: Inconsistencies Abound (IBM Research, 2024). arxiv.org/abs/2405.20163
+
+Markowitz et al., KG-LLM-Bench (2025); OL-KGC (2025); Martin et al., Performance Evaluation of LLMs in Automated RDF Knowledge Graph Generation (2026). arxiv.org/abs/2504.07087
+
+Baek, Aji and Saffari, KAPING: Knowledge-Augmented Language Model Prompting (ACL 2023). arxiv.org/abs/2306.04136
+
+Lewis et al., Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks, NeurIPS 2020. arxiv.org/abs/2005.11401
+
+Bender and Koller, Climbing towards NLU, ACL 2020.
+
+Jennifer D’Souza, Taming the Generative AI Wild West: Integrating Knowledge Graphs in Digital Library Systems, Code4Lib Journal 60 (2025). journal.code4lib.org/articles/18277
+
+Taxonomies and language models
+Park, Choe, Jiang and Veitch, The Geometry of Categorical and Hierarchical Concepts in Large Language Models, ICML 2024. arxiv.org/abs/2406.01506
+
+Bauer, Schön et al., To Classify is to Interpret, Mensch und Computer 2023.
+
+Moskvoretskii, Nikishina et al., TaxoLLaMA, ACL 2024; Ghamlouch and Alam, Taxoria; Mishra, Sudev and Chakraborty, FLAME; Wullschleger et al., FoodTaxo. arxiv.org/abs/2403.09207
+
+Aggarwal, Salatino, Osborne and Motta, Large Language Models for Scholarly Ontology Generation, Information Processing & Management (2025). arxiv.org/abs/2412.08258
+
+Salatino et al., A survey of knowledge organization systems of research fields, Quantitative Science Studies 6 (2025).
+
+Slattery et al., The AI Risk Repository, Patterns (2026). arxiv.org/abs/2408.12622
+
+Cui et al., Risk Taxonomy, Mitigation, and Assessment Benchmarks of Large Language Model Systems (2024). arxiv.org/abs/2401.05778
+
+Reshi, Lone, Ayub and Gul, Applicability of LLMs to library classification, Journal of Librarianship and Information Science (2026). doi.org/10.1177/09610006261442170
+
+Haffenden, Fano, Malmsten and Börjeson, Making and Using AI in the Library, College & Research Libraries 84(1) (2023). doi.org/10.5860/crl.84.1.30
+
+Feng, AI-powered knowledge organization using DeepSeek-R1, Scientific Reports 15 (2025). doi.org/10.1038/s41598-025-22272-z
+
+Provenance, truth and the information ecosystem
+Coeckelbergh, LLMs, truth, and democracy: An overview of risks, Science and Engineering Ethics 31(1) (2025). doi.org/10.1007/s11948-025-00529-0
+
+Resnik, Large language models are biased because they are large language models, Computational Linguistics 51(3) (2025). doi.org/10.1162/coli_a_00558
+
+Wachter, Mittelstadt and Russell, Do large language models have a legal duty to tell the truth?, Royal Society Open Science 11(8) (2024). doi.org/10.1098/rsos.240197
+
+Vosoughi, Roy and Aral, The spread of true and false news online, Science 359 (2018). doi.org/10.1126/science.aap9559
+
+Lewandowsky, Ecker and Cook, Beyond misinformation: Understanding and coping with the post-truth era, JARMAC 6(4) (2017).
+
+Hurley, McKemmish and Reed, The power of provenance in the records continuum, Archival Science 24 (2024). doi.org/10.1007/s10502-024-09463-9
+
+A survey of provenance, assertion and evidence ontologies, WWW proceedings. pmc.ncbi.nlm.nih.gov/articles/PMC12376154
+
+PaperTrail: A claim-evidence interface for grounding provenance in LLM-based scholarly Q&A. arxiv.org/abs/2602.21045
+
+Stahl, On the difference or equality of information, misinformation, and disinformation, Informing Science Journal 9 (2006). inform.nu
+
+Flath et al., Copy, transform, combine: exploring the remix as a form of innovation, Journal of Information Technology 32(4) (2017); Waysdorf, Remix in the age of ubiquitous remix, Convergence 27(4) (2021).
+
+Wren, Truth, probability, and frameworks, PLoS Medicine 2(11) (2005). pmc.ncbi.nlm.nih.gov/articles/PMC1297534
+
+Myers, Psychological science meets a gullible post-truth world (2018). sydneysymposium.unsw.edu.au
+
+Ferentinos et al., How to manage misinformation in large language models, TechPolicy.Press (2026); Hagin, AI and fact-checking: When probability replaces evidence, Fathom (2025). techpolicy.press, fathomjournal.org
+
+Knowledge management and organizing
+Koivisto and Taipalus, Pitfalls in Effective Knowledge Management, International Journal of Knowledge Management Studies 16(1) (2025). DOI 10.1504/IJKMS.2025.146083
+
+Pfeffer and Sutton, The Knowing-Doing Gap.
+
+Henry Farrell, Process knowledge is crucial to economic development, Programmable Mutter (2025). programmablemutter.com
+
+Vannevar Bush, As We May Think, The Atlantic (1945); Richard Sutton, The Bitter Lesson (2019); Kaplan et al., Scaling Laws for Neural Language Models (2020). incompleteideas.net, arxiv.org/abs/2001.08361
+
+Data quality and metadata management
+IBM, What is Data Quality? ibm.com/think/topics/data-quality
+
+Forrester, Millions Lost in 2023 Due to Poor Data Quality. forrester.com
+
+Gartner, Magic Quadrant for Master Data Management Solutions (2021) and the 2024 prediction that 80 percent of governance initiatives will fail by 2027. gartner.com/en/documents/4009116
+
+EY, How AI-ready data can help drive AI strategy success. ey.com
+
+DATAVERSITY, Common Master Data Management Pitfalls; Oracle, Is master data management dead? dataversity.net, blogs.oracle.com
+
+OCLC, Entity Management Infrastructure (Chapman, PCC 2020). loc.gov/aba/pcc
+
+Press and vendor reporting
+MIT Technology Review, Google’s new tool lets large language models fact-check their responses (RIG, 2024). technologyreview.com
+
+MIT News, Method Teaches Generative AI Models to Locate Personalized Objects (2025). news.mit.edu
+
+Nature, AI Can Hunt for Hidden Clues to New Drugs in Published Papers. nature.com
+
+Kent Stoker, The Squishy World of Context Graphs, BigDATAwire (2026). hpcwire.com/bigdatawire
+
+Google Research, Grounding AI in reality with a little help from Data Commons (2024); Snowflake Engineering, Ontology-grounded Reasoning with Cortex Agents (2026); Microsoft Fabric, Labeled Property Graph documentation. learn.microsoft.com/en-us/fabric/graph/graph-data-models
+
+Senzing Graph Power Hour Ep. 9, The Mighty Thesaurus: Leveraging Library Science for Building AI Systems, with Paco Nathan (2025). senzing.com/library-science-ai-systems-thesaurus
+
+From Intentional Arrangement
+Essays from the Intentional Arrangement Substack newsletter, sorted into the same categories as the list above, so each section of the catalog has its companion reading.
+
+Standards and the data model
+RDF and Symbolic AI — RDF as the symbolic half of neurosymbolic AI, with its history and the benchmark evidence. jessicatalisman.substack.com/p/rdf-and-symbolic-ai
+
+The Semantics of Semantics — what the word means before vendors borrowed it. jessicatalisman.substack.com/p/the-semantics-of-semantics
+
+Semantics Evolved — how the discipline changed from the Semantic Web to the LLM era. jessicatalisman.substack.com/p/semantics-evolved
+
+Ontology Glossary — RDF, RDFS, OWL, SKOS, SPARQL and SHACL terms, with the TBox, ABox and CBox layers, on one page. jessicatalisman.substack.com/p/ontology-glossary
+
+Controlled vocabularies and guidelines
+Controlled Vocabularies, Part I — the first stage of the Pipeline: authorized terms with definitions. jessicatalisman.substack.com/p/controlled-vocabulary-part-i
+
+Controlled Vocabularies, Part II — gathering and curating candidate terms. jessicatalisman.substack.com/p/controlled-vocabularies-part-ii
+
+Controlled Vocabularies, Part III — governance and maintenance of the vocabulary. jessicatalisman.substack.com/p/controlled-vocabularies
+
+How to Reconcile Terms — the method for collapsing synonyms, acronyms and near-duplicates into defined concepts. jessicatalisman.substack.com/p/how-to-reconcile-terms
+
+Language for Language Models — vocabulary as the language LLMs need, and SKOS as its expression. jessicatalisman.substack.com/p/language-for-language-models
+
+Language is Political — every preferred term is a choice about whose words count. jessicatalisman.substack.com/p/language-is-political
+
+Language is the Bridge — shared vocabulary as the interoperability layer between people, teams and machines. jessicatalisman.substack.com/p/language-is-the-bridge
+
+Metadata schemas
+Metadata as a Data Model, Part I — metadata as the first data model. jessicatalisman.substack.com/p/metadata-as-a-data-model
+
+Metadata as a Data Model, Part II — Dublin Core, application profiles and the history of library metadata. jessicatalisman.substack.com/p/metadata-as-a-data-model-b68
+
+Metadata as a Data Model, Part III — master data, golden records and metadata management in the enterprise. jessicatalisman.substack.com/p/metadata-as-a-data-model-ec0
+
+Metadata Application Profile Example — the CatChums MAP, complete with element tables, vocabularies and crosswalk. jessicatalisman.substack.com/p/metadata-application-profile-example
+
+From Metadata to Meaning: The Knowledge Connection — precise metadata as the shortest route to meaning. jessicatalisman.substack.com/p/from-metadata-to-meaning-the-knowledge
+
+Taxonomies
+A Practitioner’s Guide to Taxonomies — the overview of building a hierarchy from a controlled vocabulary. jessicatalisman.substack.com/p/a-practitioners-guide-to-taxonomies
+
+A Practitioner’s Guide to Taxonomies, Part I — scoping and sourcing the terms. jessicatalisman.substack.com/p/a-practitioners-guide-to-taxonomies-fcb
+
+A Practitioner’s Guide to Taxonomies, Part II — structuring the levels. jessicatalisman.substack.com/p/a-practitioners-guide-to-taxonomies-e4f
+
+A Practitioner’s Guide to Taxonomies, Part III — validating and maintaining the taxonomy. jessicatalisman.substack.com/p/a-practitioners-guide-to-taxonomies-9ab
+
+Taxonomies, All the Way Down — the taxonomy as the universal interoperability surface, from Dewey to world models. jessicatalisman.substack.com/p/taxonomies-all-the-way-down
+
+Thesauri
+The Mighty Thesaurus, Part I (Knowledge Graph Lite) — why a SKOS thesaurus is a form of symbolic AI. jessicatalisman.substack.com/p/knowledge-graph-lite
+
+The Mighty Thesaurus, Part II — candidate concepts, shared vocabulary and SKOS as ontology training wheels. jessicatalisman.substack.com/p/knowledge-graph-lite-part-ii
+
+The Mighty Thesaurus, Part III — a complete worked SKOS model of the AI domain, controlled vocabulary to thesaurus. jessicatalisman.substack.com/p/knowledge-graph-lite-part-iii
+
+Thesaurus — the stage in one essay: hierarchy plus associative and equivalence relations. jessicatalisman.substack.com/p/thesaurus
+
+Ontologies
+Ontology, Part I — what an ontology is and is not. jessicatalisman.substack.com/p/ontology
+
+Ontology, Part II — classes, properties and axioms. jessicatalisman.substack.com/p/ontology-part-ii
+
+Ontology, Part III — modeling decisions and expressivity. jessicatalisman.substack.com/p/ontology-part-iii
+
+Ontology, Part IV — reasoning, inference and operating the ontology. jessicatalisman.substack.com/p/ontology-part-iv
+
+Concept Models and Ontologies — where a concept model ends and an ontology begins. jessicatalisman.substack.com/p/concept-models-and-ontologies
+
+Ontologies and Other Myths — the claims made about ontologies that do not hold. jessicatalisman.substack.com/p/ontologies-and-other-myths
+
+Ontologies, Misunderstood — forms versus instances: abstract logic as what separates an ontology from a schema. jessicatalisman.substack.com/p/ontologies-misunderstood
+
+Ontologies — Some Perspectives — views on ontology from several disciplines. jessicatalisman.substack.com/p/ontologiessome-perspectives
+
+Not an Ontology — five vendor “ontology” products reviewed against the definition and the EU AI Act. jessicatalisman.substack.com/p/not-an-ontology
+
+The Question Is the Contract — competency questions as the contract an ontology must satisfy. jessicatalisman.substack.com/p/the-question-is-the-contract
+
+Ontologies — Some Perspectives (with Bill Inmon) — the data-warehouse view and the library view, side by side. williaminmon.substack.com/cp/187891927
+
+The Anatomy of an Ontology (with Bill Inmon) — the parts of an ontology, laid out for data practitioners. williaminmon.substack.com/cp/188391546
+
+Ontologies, Context Graphs, and Semantic Layers: What AI Actually Needs in 2026 (Context and Chaos) — sorting the three terms the market now uses interchangeably. contextandchaos.substack.com/cp/185458632
+
+Knowledge graphs
+Knowledge Graphs, Part I — the knowledge graph as an architecture of arranged components. jessicatalisman.substack.com/p/knowledge-graphs-part-i
+
+Knowledge Graphs, Part II — three RDF patterns: enterprise, domain and linked-data graphs. jessicatalisman.substack.com/p/knowledge-graphs-part-ii
+
+Knowledge Graphs, Part III — the organizational practice that makes or breaks a graph program. jessicatalisman.substack.com/p/knowledge-graphs-part-iii
+
+Choosing the Right Graph — RDF versus property graph, matched to the use case. jessicatalisman.substack.com/p/choosing-the-right-graph
+
+Context Graphs and Process Knowledge — what a context graph needs from procedural knowledge. jessicatalisman.substack.com/p/context-graphs-and-process-knowledge
+
+Semantic and Knowledge Graph Roles — who does the work: the roles on a semantic team. jessicatalisman.substack.com/p/semantic-and-knowledge-graph-roles
+
+Published vocabularies and registries
+Taxonomy and Thesaurus Catalog: Open and Free — the sectioned directory of public taxonomies and thesauri. jessicatalisman.substack.com/p/open-and-free-taxonomies-and-thesauri
+
+NTWF Workflow Ontology — a published ontology for workflows. jessicatalisman.substack.com/p/ntwf-workflow-ontology
+
+Tools and builds
+Intentional Arrangement SKOS Thesaurus Editor — the browser-based SKOS editor: create, validate, visualise, query and export. jessicatalisman.substack.com/p/intentional-arrangement-skos-thesaurus
+
+Ontology Pipeline Studio — the single-file SKOS, OWL, SHACL and SPARQL authoring studio. jessicatalisman.substack.com/p/ontology-pipeline-studio
+
+RDF Wiki and the Semantic Lair — a wiki backed by RDF and its librarian agent. jessicatalisman.substack.com/p/rdf-wiki-and-the-semantic-lair
+
+Kitchen Semantics — building a semantic system at home scale. jessicatalisman.substack.com/p/kitchen-semantics
+
+Kitchen Semantics, Part II — the build continued. jessicatalisman.substack.com/p/kitchen-semantics-part-ii
+
+Steal This Deck — slides on the Pipeline, free to reuse. jessicatalisman.substack.com/p/steal-this-deck
+
+AI Semantic Readiness Assessment Framework — a six-dimension maturity assessment, scored 1 to 5. jessicatalisman.substack.com/p/ai-semantic-readiness-assessment
+
+Context and knowledge management
+The Context Problem — why AI systems lack the context they need. jessicatalisman.substack.com/p/the-context-problem
+
+The Context Gap — the distance between what organizations have and what their models need. jessicatalisman.substack.com/p/the-context-gap
+
+The Context Game — how the industry competes on the word. jessicatalisman.substack.com/p/the-context-game
+
+The Context Spectrum — context from a prompt window to a knowledge graph. jessicatalisman.substack.com/p/the-context-spectrum
+
+Context Layers From First Principles — the layers that build context, one on the next. jessicatalisman.substack.com/p/context-layers-from-first-principles
+
+Context Is a Property, Not an Object — context as RDF properties, from Z39.19 scope notes to PROV-O. jessicatalisman.substack.com/p/context-is-a-property-not-an-object
+
+Process Knowledge Management, Part I — process knowledge and why it is the hardest to capture. jessicatalisman.substack.com/p/process-knowledge-management
+
+Process Knowledge Management, Part II — modeling procedures with the Procedural Knowledge Ontology. jessicatalisman.substack.com/p/process-knowledge-management-part
+
+Process Knowledge Management, Part III — knowledge process outsourcing, the engineering state and the knowing-doing gap. jessicatalisman.substack.com/p/process-knowledge-management-part-c45
+
+Process Knowledge Management, Part IV — operationalizing process knowledge. jessicatalisman.substack.com/p/process-knowledge-management-part-63a
+
+Before the Structure — Glushko’s and Svenonius’s principles of organizing as first principles for AI. jessicatalisman.substack.com/p/before-the-structure
+
+Systems for Organizing — organizing systems as the discipline beneath every knowledge system. jessicatalisman.substack.com/p/systems-for-organizing
+
+Relationships and Knowledge Systems — relations as the substance of knowledge, beyond lists of things. jessicatalisman.substack.com/p/relationships-and-knowledge-systems
+
+Knowledge is not Data — the distinction the data industry keeps collapsing. jessicatalisman.substack.com/p/knowledge-is-not-data
+
+Knowledge Management is the Vibe — knowledge management rediscovered under new names. jessicatalisman.substack.com/p/knowledge-management-is-the-vibe
+
+Where Provenance Ends, Knowledge Decays — provenance as the condition for knowledge to remain usable. jessicatalisman.substack.com/p/where-provenance-ends-knowledge-decays
+
+A Two-Week Sprint for Knowledge — a bounded plan for standing up a knowledge foundation. jessicatalisman.substack.com/p/a-two-week-sprint-for-knowledge
+
+The Semantic Infrastructure Opportunity — semantic infrastructure as the operational framework AI needs. jessicatalisman.substack.com/p/the-semantic-infrastructure-opportunity
+
+The Semantic Infrastructure Opportunity: Building Meaningful Operational Frameworks (Modern Data 101) — the same essay, cross-posted. moderndata101.substack.com/cp/193222342
+
+Artificial intelligence
+Automation, Augmentation and the Neurosymbolic Loop — the HCI lineage from Bush to Licklider, and the two halves of the loop. jessicatalisman.substack.com/p/augmentation-before-automation
+
+Why AI Isn’t Autonomous (Yet) — the series overview. jessicatalisman.substack.com/p/why-ai-isnt-autonomous-yet-181
+
+Why AI Isn’t Autonomous (Yet), Part I — the missing foundations. jessicatalisman.substack.com/p/why-ai-isnt-autonomous-yet
+
+Why AI Isn’t Autonomous (Yet), Part II — the knowledge the agents do not have. jessicatalisman.substack.com/p/why-ai-isnt-autonomous-yet-665
+
+Why AI Isn’t Autonomous (Yet), Part III — what would have to be true first. jessicatalisman.substack.com/p/why-ai-isnt-autonomous-yet-ea2
+
+Smarter Than a Fifth Grader — notes from the Vanguard fireside chat on context and accuracy plateaus. jessicatalisman.substack.com/p/smarter-than-a-fifth-grader
+
+The Unbearable Lightness of Meaning — meaning stripped out of systems built to produce fluent text. jessicatalisman.substack.com/p/the-unbearable-lightness-of-meaning
+
+Shrimp Jesus and The Lobster Who Molted — AI slop, and what grows back. jessicatalisman.substack.com/p/shrimp-jesus-and-the-lobster-who
+
+Wiki Without the Pedia — Wikipedia’s structure without its encyclopedia. jessicatalisman.substack.com/p/wiki-without-the-pedia
+
+How to Plagiarize — intellectual appropriation in the AI and data industry. jessicatalisman.substack.com/p/how-to-plagiarize
+
+Discipline is Taste — judgement as a practiced discipline, in craft and in AI. jessicatalisman.substack.com/p/discipline-is-taste
+
+Provenance, truth and society
+The Internet of Probability — LLMs, stripped provenance and the post-truth information ecosystem. jessicatalisman.substack.com/p/the-internet-of-probability
+
+When the Commons Disappears — what is lost when the shared knowledge commons is consumed. jessicatalisman.substack.com/p/when-the-commons-disappears
+
+We’re Losing the Ability to Read — reading as a skill in decline, and what it does to knowledge. jessicatalisman.substack.com/p/were-losing-the-ability-to-read
+
+The EU AI Act and Descriptive Access — what the Act’s documentation and transparency duties ask of description. jessicatalisman.substack.com/p/the-eu-ai-act-and-descriptive-access
+
+The Trillion-Dollar Rebranding — old disciplines sold back under new names. jessicatalisman.substack.com/p/the-trillion-dollar-rebranding
+
+The Convenience Trap — convenience traded for understanding. jessicatalisman.substack.com/p/the-convenience-trap
+
+The Death of Dialogue — conversation replaced by generated answers. jessicatalisman.substack.com/p/the-death-of-dialogue
+
+Owning Solutions, Not Problems — organizations that buy solutions before defining problems. jessicatalisman.substack.com/p/owning-solutions-not-problems
+
+You Can’t Afford to NOT Hire an Expert — what expertise saves, and what its absence spends. jessicatalisman.substack.com/p/you-cant-afford-to-not-hire-an-expert
+
+The framework
+The Ontology Pipeline — the framework in one essay. jessicatalisman.substack.com/p/the-ontology-pipeline
+
+The Ontology Pipeline, Refresh — the revised framework. jessicatalisman.substack.com/p/the-ontology-pipeline-refreshed
+
+The Ontology Pipeline, Refresh (Modern Data 101) — the refresh, cross-posted. moderndata101.substack.com/cp/197027909
+
+Intentional Arrangement — the newsletter’s founding essay and its name. jessicatalisman.substack.com/p/intentional-arrangement
+
+A Hoard and a Collection — the difference between accumulating and organizing. jessicatalisman.substack.com/p/a-hoard-and-a-collection
+
+My upcoming book — the announcement of The Ontology Pipeline. jessicatalisman.substack.com/p/my-upcoming-book
+
+The Release of my Book, Ontology Pipeline
+My book, Ontology Pipeline, A framework for building knowledge infrastructures, is now available on Amazon and on Technic’s Publications website.
+
+Print, kindle, and PDF, the book is available in French, Portuguese, Italian, Spanish, German, and English.
+
+Order from Amazon
+
+Ontology Pipeline Website
+
+Order from Technics Publications
+
+
+
+
+From the back of the book:
+Build semantic knowledge systems with trusted and AI-ready taxonomies, ontologies, and knowledge graphs.
+
+Ontology Pipeline gives data leaders, semantic engineers, ontologists, taxonomists, knowledge managers, librarians, AI architects, and enterprise data teams a practical framework for turning messy organizational language into structured, machine-readable knowledge. Instead of treating ontology development or knowledge graph construction as a black box, this book provides a clear sequence: controlled vocabularies, metadata schemas, taxonomies, thesauri, ontologies, and knowledge graphs.
+
+Analyze how language, definitions, labels, synonyms, metadata, and relationships shape the performance of artificial intelligence systems. The book explains why large language models, retrieval-augmented generation, semantic search, entity resolution, and information retrieval all depend on clean, governed, semantically enriched data. It also shows how library and information science methods can help organizations build scalable semantic knowledge management systems that support both human understanding and machine reasoning.
+
+Design each stage of the Ontology Pipeline with practical guidance, examples, standards, and implementation patterns. Readers will explore controlled vocabulary development, SKOS taxonomies, thesaurus relationships, RDF, OWL, SHACL, SPARQL, competency questions, ontology governance, semantic validation, and knowledge graph architecture. The book connects these concepts to real enterprise needs, including data quality, semantic layers, AI governance, domain modeling, knowledge management, and production AI infrastructure.
+
+Evaluate what it really takes to build and maintain a knowledge graph as architecture, not just as a product or database. Learn why we build, govern, and maintain a knowledge graph with attention to semantic debt, staffing, operational funding, ontology change management, validation workflows, and long-term trust. For teams investing in AI, data governance, data catalogs, metadata management, enterprise architecture, or semantic technology, this book provides the missing roadmap.
+
+Apply the Ontology Pipeline to create a formal, explicit, shared model of what your organization knows. Whether you are building a semantic layer, improving RAG accuracy, designing a domain ontology, creating an enterprise knowledge graph, or trying to make AI outputs more reliable, Ontology Pipeline provides the vocabulary, structure, and processes to move from disconnected data to governed organizational knowledge.
+
+One of the biggest shifts happening in our industry is that enterprise data management is expanding into enterprise knowledge management. AI is accelerating that transition because it depends on more than well-managed data. It depends upon context, shared meaning, trusted relationships, and the ability to organize the vast stores of unstructured knowledge that exist across every large enterprise. As AI becomes the primary interface to enterprise information, knowledge management will become the foundation that unlocks trustworthy AI at scale.
+
+NEW! Ontology Pipeline Studio
+The companion tool for the book, Ontology Pipeline
+The Ontology Pipeline Studio tool is the perfect companion learning tool, designed to guide readers throughout their learning journey.
+
+Ontology Pipeline Studio
+
+
+
+
+What’s inside the Studio?
+The studio has two complete pipeline builds:
+
+The Special Solutions workflows example from the Ontology Pipeline book
+
+A music example, derived from The Knowledge Graph Academy
+
+Two use cases, each markedly different, but both structured end-to-end using the Ontology Pipeline framework. From controlled vocabularies, to metadata schemas, the process follows onwards with taxonomy, thesaurus, ontology and finally, a fully realized, queryable knowledge graph.
+
+The tool is interactive, and your participation is encouraged. Readers can add concepts, classes, properties and relations. The idea is to solidify your own understanding and skills, solidifying and reinforcing your own understanding of each stage of building a semantic knowledge infrastructure.
+
+Worried About Breaking the Model?
+Go ahead a break the system!
+
+Test the boundaries and receive feedback from the tool, when an added element does not validate or conform to the standards encoded within the Studio. Own your learning journey and don’t be afraid to make mistakes. It is from mistakes that the greatest learning happens.
+
+Give the Ontology Pipeline Studio a try 🧱
+
+Ontology Pipeline Studio
+
+A SKOS Taxonomy and Thesaurus Editor, Built from Standards
+Intentional Arrangement is a SKOS taxonomy editor that opens as a single static page in your web browser. There is no account, server, or upload. You write concepts, labels, definitions, and relationships; the editor validates them as you type and exports the result to Turtle, RDF/XML, JSON-LD, RDF/JSON, CSV, Excel, and Markdown.
+
+The Intentional Arrangement SKOS Editor is live at https://jesstalisman-ia.github.io/intentional-arrangement-skos/ and the source is public at https://github.com/jesstalisman-ia/intentional-arrangement-skos.
+
+
+
+
+The Origin of the Editor
+
+I built this inside a larger toolset I use for client vocabulary work, then pulled the SKOS portion out so folks could use it on its own. The working model follows W3C SKOS and SKOS-XL, Dublin Core for scheme metadata, and ISO 25964, the international standard for thesauri and interoperability with other vocabularies.
+
+
+
+
+Every concept gets a URI, one preferred label per language, alternate and hidden labels, the full set of SKOS notes, and as many broader concepts as the vocabulary requires. Collections and ordered collections sit beside the hierarchy without being mistaken for it. Language tags follow BCP 47.
+
+Validation inside the edit loop
+Vocabulary problems get expensive once the vocabulary ships. The editor applies the qSKOS quality criteria (Mader, Haslhofer and Isaac, 2012) while you are still editing: orphan concepts, missing labels, cyclic hierarchies, and the rest of the checklist surface in the workspace, and most come with a one-click fix.
+
+Work stays in your browser
+Projects autosave to local browser storage. From there you can export, download a workspace backup, or generate a read-only share link that packs the whole taxonomy inside the URL for business reviewers. Teams whose vocabularies outgrow a URL can connect an optional Apache Jena Fuseki server and publish each project to its own named graph. Clearing browser data erases local work, so export regularly.
+
+
+
+
+Keep the editorial judgment
+The editor is for people anyone wanting to build a standards-based RDF controlled vocabulary, taxonomy, and thesaurus. Plain language queries use offline rules, and nothing in the browser editor calls a language model. An optional REST API handles validation and conversion for teams with their own pipelines, and an MCP server exposes the same functions to assistant tools.
+
+The license with a size threshold
+Organizations with fewer than 75 employees may use, modify, and redistribute the editor free under Apache 2.0 as modified by the size-based licensing notice. Organizations with 75 or more employees need a written enterprise license before use; inquiries go to Hello@ontologypipeline.com. The taxonomies you build are yours.
+
+Several recent releases came directly from GitHub issues so feedback, feature requests, and use cases are greatly appreciated!
+
+Open the editor, read the documentation, and happy building! 🧱
+
+IA SKOS Editor Github
+
+IA SKOS Editor Browser App
+
+about me. I’m a Semantic Engineer, Information Architect, and knowledge infrastructure strategist dedicated to building information systems. With more than 25 years of experience in enterprise architecture, e-commerce content systems, digital libraries, and knowledge management, I specialize in transforming fragmented information into coherent, machine-readable knowledge systems.
+
+I am the founder of the Ontology Pipeline, a structured framework for building semantic knowledge infrastructures from first principles. The Ontology Pipeline™ emphasizes progressive context-building: moving from controlled vocabularies to taxonomies, thesauri, ontologies, and ultimately fully realized knowledge graphs.
+
+Professionally, I have led semantic architecture initiatives at organizations including Adobe, where I architected an RDF-based knowledge graph to support Adobe’s Digital Experience ecosystem, and Amazon, where I worked in information architecture and taxonomy. I am also the founder of Contextually LLC, providing consulting and coaching services in ontology modelling, NLP integration, knowledge graphs and knowledge infrastructure design.
+
+
+
+
+I am also a curriculum designer, teacher and founder of The Knowledge Graph Academy, a cohort-based educational program designed to train and up skill future semantic engineers and ontologists. The Academy is the the perfect balance of ontology and knowledge graph theory and practice, preparing graduates to confidently work as ontologist and semantic engineers.
+
+An educator and thought leader, I publish regularly on my Substack newsletter, Intentional Arrangement, where my writing frequently explores the relationship between semantic systems and AI. My book, Ontology Pipeline, A framework for building knowledge infrastructures (Technics Publications, 2026), is available at most online booksellers.
+
+Connect with me on LinkedIn-!
+
+Intentional Arrangement
+Recommend Intentional Arrangement to your readers
+I am an Information Architect and Semantic Engineer. I have been organizing and building digital knowledge ecosystems since 1997. My book, Ontology Pipeline, A Framework for Building Knowledge Infrastructures, will be available Fall, 2026!
+48 Likes
+∙
+2 Restacks
+
+---
+
+should we add this to the tech/tool section . thoughts?
+
+---
+
+go ahead and add them where they should go . That is the relevant place
