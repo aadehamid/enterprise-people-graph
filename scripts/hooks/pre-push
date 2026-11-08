@@ -1,0 +1,21 @@
+#!/bin/sh
+# Entire CLI hooks
+# Pre-push hook: push session logs alongside user's push
+# $1 is the remote name (e.g., "origin")
+#
+# Tracked copy of Entire's pre-push hook with the repository's check script
+# chained ahead of the Entire delegation (scripts/bootstrap.sh points
+# core.hooksPath here; the check script is scripts/check.sh). A push whose
+# every ref is a deletion sends no commits and skips the checks. Re-diff
+# against `.git/hooks/pre-push` when updating the Entire CLI.
+input=$(cat)
+send_commits=$(printf '%s\n' "$input" | awk '$2 !~ /^0+$/ {found=1} END {print found+0}')
+if [ "$send_commits" -eq 1 ]; then
+  "$(git rev-parse --show-toplevel)/scripts/check.sh" || exit 1
+fi
+
+if command -v entire >/dev/null 2>&1; then
+  printf '%s' "$input" | entire hooks git pre-push "$1"
+else
+  :
+fi

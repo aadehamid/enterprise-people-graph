@@ -11,6 +11,8 @@ export class PeopleGraphCi {
         "*.md",
         "LIONG_Design_Document_Package/**",
         "guideline_to_map_ontology_to_LPG/**",
+        "docs/**",
+        ".github/**",
       ],
       exclude: [
         ".git", ".dagger", ".entire", ".claude", ".codex", ".cursor",

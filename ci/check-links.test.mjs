@@ -39,6 +39,23 @@ test("validates local Markdown links and ignores network URLs and code", async (
   }
 });
 
+test("skips node_modules and dot-directories, but still scans their siblings", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "people-graph-links-"));
+  try {
+    await writeFile(path.join(root, "index.md"), "[ok](found.md)\n");
+    await writeFile(path.join(root, "found.md"), "# Found\n");
+    await mkdir(path.join(root, "node_modules", "dep"), { recursive: true });
+    await writeFile(path.join(root, "node_modules", "dep", "readme.md"), "[broken](missing.md)\n");
+    await mkdir(path.join(root, ".tool-state"));
+    await writeFile(path.join(root, ".tool-state", "broken.md"), "[broken](missing.md)\n");
+    const result = spawnSync(process.execPath, [checker, root], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /2 Markdown files/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("reports broken links and images with a failing exit status", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "people-graph-links-"));
   try {

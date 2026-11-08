@@ -1,0 +1,7 @@
+#!/bin/sh
+# Entire CLI hooks
+# Post-commit hook: condense session data if commit has Entire-Checkpoint trailer
+#
+# Tracked copy of Entire's hook (scripts/bootstrap.sh points core.hooksPath
+# here). Re-diff against `.git/hooks/post-commit` when updating the Entire CLI.
+if command -v entire >/dev/null 2>&1; then entire hooks git post-commit 2>/dev/null || true; else :; fi

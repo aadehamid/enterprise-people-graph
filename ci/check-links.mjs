@@ -3,6 +3,10 @@ import path from "node:path";
 import MarkdownIt from "markdown-it";
 
 const root = path.resolve(process.argv[2] ?? ".");
+// Directories the scan skips: local dependency folders and tool state are not
+// part of the checked set. The Dagger module's directory mount defines the
+// same set for its container runs.
+const skipped = (name) => name === "node_modules" || name.startsWith(".");
 const parser = new MarkdownIt();
 let files = 0;
 let targets = 0;
@@ -13,6 +17,7 @@ async function inspect(directory) {
   for (const entry of entries) {
     const file = path.join(directory, entry.name);
     if (entry.isDirectory()) {
+      if (skipped(entry.name)) continue;
       await inspect(file);
     } else if (entry.isFile() && entry.name.endsWith(".md")) {
       files++;
