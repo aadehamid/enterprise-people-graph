@@ -67,9 +67,10 @@ cat "$lint_log"
 # repository root, so a local scan matches the Dagger mount.
 node ci/check-links.mjs .
 
-# 4. Each decision record's Status agrees with docs/decisions/INDEX.md,
-# checked fail-closed (scripts/check-decisions.mjs).
-node scripts/check-decisions.mjs docs/decisions
+# 4. Each decision record's Status agrees with its index, checked fail-closed
+# (scripts/check-decisions.mjs). A target repository sets DECISIONS_DIR and
+# DECISION_PREFIX in its environment or here; this repo keeps the defaults.
+node scripts/check-decisions.mjs "${DECISIONS_DIR:-docs/decisions}" "${DECISION_PREFIX:-EPG-DEC}"
 
 # 5. The behavioral harness for the gate itself.
 bash scripts/gates.test.sh

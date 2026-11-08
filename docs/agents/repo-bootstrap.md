@@ -6,13 +6,17 @@ The owner runs every setup or destructive tool command (`entire enable`,
 `entire disable`, `entire clean`, `entire login`); the agent runs everything
 else. This guide's decisions trace to
 [EPG-DEC-0001](../decisions/EPG-DEC-0001-reconcile-entire-and-dagger.md) in
-this repository, which the owner confirmed on 2026-11-08.
+this repository (source: `gh/aadehamid/enterprise-people-graph`), which the
+owner confirmed on 2026-11-08.
 
 ## The three layers
 
 1. **The `way-of-working` skill** — the owner's personal standard. It lives
-   outside any repository and mentions neither Entire nor Dagger. It is never
-   modified by a repository; a repo adapts to it, not the other way.
+   outside any repository and mentions neither Entire nor Dagger. Never
+   modify it to accommodate Entire or Dagger: where review finds a genuine
+   skill change, make it in `personal-agent-skills` through that
+   repository's own pull request and record the changed files in the target
+   repo's decision record. A repo adapts to the skill, not the other way.
 2. **The repository's `AGENTS.md`** — project rules, including how the tools
    slot in. Where the project rule exists, it wins over the skill.
 3. **The tools** — Entire (session check-pointing, trails) and Dagger
@@ -28,50 +32,82 @@ this repository, which the owner confirmed on 2026-11-08.
 
 ## Setup steps
 
-Work in this order. Copy the reference files from this repository
-(`docs/agents` sits beside them) unless the target repo has its own.
+Work in this order. Copy from this repository — each name below exists in the
+branch that carries this file.
 
 1. **`AGENTS.md` and the bridge.** Write the target repo's `AGENTS.md` on the
    model of [this repo's](../../AGENTS.md): skills to load, the
-   check-and-push rules with this repo's file names, the tool section, and
+   check-and-push rules with the target's file names, the tool section, and
    pointers instead of restated rules. Point every rule at its one owner
    file. Add `CLAUDE.md` as a one-line bridge to `AGENTS.md`.
-2. **The gate.** Copy `scripts/check.sh`, `scripts/md-set.sh`,
+2. **The `.gitignore` rules first.** Add `**/node_modules/` (any other tool
+   state folders the tools write into `.gitignore` too), and, when Dagger is
+   present, keep `dagger.lock` tracked and copied from this repo's.
+3. **The gate and its tools.** Copy `scripts/check.sh`, `scripts/md-set.sh`,
    `scripts/lint-md.sh`, `scripts/check-decisions.mjs`,
-   `scripts/tree-guard.mjs`, and `scripts/gates.test.sh`. In `md-set.sh` set
-   the population roots to the target repo's Markdown layout — these are the
-   same roots the Dagger module mounts (step 6), one population by agreement.
-3. **The hooks.** Copy `scripts/hooks/*` and `scripts/bootstrap.sh`. When
-   Entire is enabled, diff each hook against the copy Entire installs in
-   `.git/hooks`; every tracked hook stays a verbatim copy of Entire's, until
-   the check chain in `pre-push`. Re-diff on Entire CLI updates. A git
+   `scripts/tree-guard.mjs`, and `scripts/gates.test.sh` — plus the whole
+   tracked `ci/` directory the gate depends on: `ci/package.json`,
+   `ci/package-lock.json`, `ci/markdownlint-cli2.jsonc`, `ci/check-links.mjs`,
+   `ci/check-links.test.mjs`, `ci/check-decisions.test.mjs`,
+   `ci/tree-guard.test.mjs` (never `ci/node_modules`). In `scripts/md-set.sh`
+   set the population roots to the target repo's Markdown layout — these are
+   the same roots the Dagger module mounts (step 7), one population by
+   agreement.
+4. **Decision records.** Create the target's decision folder (default
+   `docs/decisions/`) with an `INDEX.md` (Record | Title | Status) and a
+   first record quoting the owner's words for this setup, then set the
+   target's decision folder and record prefix in three places so local and
+   container checks see one population: the environment or `DECISIONS_DIR` /
+   `DECISION_PREFIX` lines in `scripts/check.sh`, the
+   `check-decisions.mjs` arguments in the Dagger module (`src/index.ts`),
+   and the folder in the module's mount. The defaults in this repo are
+   `docs/decisions` and the record prefix `EPG-DEC`.
+5. **The review standards file.** `docs/REVIEW_STANDARDS.md`, holding only
+   the pointer to the instruction file it judges — the target's own
+   `AGENTS.md` requirements — and empty of rules until a reviewer actually
+   makes a finding; each rule names the incident that taught it.
+6. **The hooks.** Copy `scripts/hooks/*` and `scripts/bootstrap.sh`. A git
    hook install is permitted only in the simple case of the skill's
-   `guardrails.md` (no other tool owns hooks); otherwise report and ask.
-4. **Decision records.** Create `docs/decisions/` with an `INDEX.md` (Record |
-   Title | Status) and a first record quoting the owner's words for this
-   setup, then wire the target repo's decision folder into
-   `check-decisions.mjs` invocations of `check.sh` (path argument).
-5. **The review standards file.** `docs/REVIEW_STANDARDS.md`, empty of rules
-   except the pointer; rules land only from real findings, each with the
-   incident that taught it.
-6. **Dagger, if the repo has it.** Keep `dagger.toml` and the module; widen
-   the module's mount to the population roots (all files under them, since
-   link targets live there too), mount `scripts/` beside the tests, install
-   git (Alpine: `apk add --no-cache git`) so no tool test silently skips, add
-   the decisions check, and run `dagger generate` after any `src/index.ts`
-   edit — the stale-source-map check fails first otherwise.
-7. **CI.** Copy `.github/workflows/check.yml`; it calls `scripts/check.sh`.
+   `guardrails.md` (default `hooksPath`, no other tool owns hooks, one
+   worktree); otherwise report and ask. When Entire is enabled (step 8),
+   diff each hook against the copy Entire installs in `.git/hooks`; every
+   tracked hook stays a verbatim copy of Entire's, until the check chain in
+   `pre-push`. Re-diff on Entire CLI updates.
+7. **Dagger, if the repo has it.** Keep `dagger.toml` and the module, and
+   copy `dagger.lock`. Set the decision folder in the `decisions` check
+   (step 4) and include the target's decision folder in the mount. Widen the
+   module's mount to the population roots (all files under them, since link
+   targets live there too), keep the `scripts/` and `.github/**` mounts that
+   the tool tests and link targets need, install git (`apk add --no-cache
+   git` on Alpine) so no tool test silently skips, and run `dagger generate`
+   after any `src/index.ts` edit — the stale-source-map check fails first
+   otherwise. Run `dagger check` and expect one passing check per check
+   defined; then break one input and expect the container check to fail
+   before restoring it. `scripts/check.sh --with-dagger` runs the same
+   container checks locally, inside the tree guard's snapshot.
+8. **CI.** Copy `.github/workflows/check.yml`; it calls `scripts/check.sh`.
    Pin action tags to refs that exist.
-8. **Entire, if the repo has it.** The owner runs `entire enable` (an agent
-   never runs enable, disable, clean, or auth). Verify with
-   `entire agent-help`, then `entire doctor` — it must report `Git hooks: OK`
-   with the tracked hooks wired.
-9. **Verify, in this order** — a check that has never failed is not trusted:
-   `scripts/bootstrap.sh` (sets `core.hooksPath`), `scripts/check.sh`
-   (all green), break one Markdown file and expect `git hook run pre-push`
-   (or a direct `sh scripts/hooks/pre-push <remote> < input`) to exit 1,
-   restore, expect 0. Then commit: the `Entire-Checkpoint` trailer proves the
-   commit hooks work.
+9. **Entire, if the repo has it.** The owner runs `entire enable` (an agent
+   never runs enable, disable, clean, or auth). Then, in order: diff the
+   hooks per step 6, run `scripts/bootstrap.sh`, confirm `git config
+   core.hooksPath` prints `scripts/hooks`, and run `entire doctor` — it must
+   report `Git hooks: OK` with the tracked hooks wired.
+10. **Verify, in this order** — a check that has never failed is not trusted.
+    The target's Markdown must be staged (`git add -- <named setup files>`)
+    and `HEAD` must exist before the full gate: run `scripts/bootstrap.sh`
+    (if not already), make the initial commit of the setup files, and only
+    then run `scripts/check.sh` (all green). For the failure path, break one
+    tracked Markdown file, pipe a valid four-field, nondeletion ref record
+    (`refs/heads/main <HEAD sha> refs/heads/test 0000…0`, the local sha of
+    the current commit) into `sh scripts/hooks/pre-push origin`, and require
+    exit 1 with the injected diagnostic (an **empty stdin does not run the
+    checks** — that is the hook's own contract, tested in
+    `scripts/gates.test.sh`); restore the file with `git restore --worktree
+    -- <file>` and repeat the same input, expecting exit 0. For the final
+    commit: with Entire present and verified, the commit carries the
+    `Entire-Checkpoint` trailer; with Entire absent, require a successful
+    commit and the `commit-msg` fallback note instead — the trailer cannot
+    exist there.
 
 ## The rules that bit us here (do not relearn them)
 

@@ -10,9 +10,14 @@ import path from "node:path";
 const rowPattern =
   /^\|\s*\[([A-Za-z0-9-]+)\]\(([^)\s]+)\)\s*\|\s*(.+?)\s*\|\s*(.*?)\s*\|$/;
 
-export async function checkDecisions(decisionsDir, indexFile) {
+// decisionsDir and indexFile default to docs/decisions; prefix defaults to
+// EPG-DEC. A target repository sets its own folder and record prefix in
+// scripts/check.sh and in its Dagger module, the same way (EPG-DEC-0001).
+export async function checkDecisions(decisionsDir = "docs/decisions", indexFile, prefix = "EPG-DEC") {
   const errors = [];
   const rows = new Map();
+  const recordPattern = new RegExp(`^${prefix}-\\d{4}[-.]`);
+  const idPattern = new RegExp(`^(${prefix}-\\d{4})[-.]`);
   let indexText = "";
   try {
     indexText = await readFile(indexFile, "utf8");
@@ -22,7 +27,18 @@ export async function checkDecisions(decisionsDir, indexFile) {
   for (const line of indexText.split("\n").map((l) => l.trim())) {
     const match = rowPattern.exec(line);
     if (!match) continue;
-    const [, id, file, title, status] = match;
+    const [, bracketId, file, title, status] = match;
+    // The row's identity is the record file it links to; the bracket text is
+    // display, so a row for DEC-0001-setup links DEC-0001-setup.md and the
+    // record's own ID stays DEC-0001.
+    const id = idPattern.exec(file)?.[1];
+    if (!id) {
+      errors.push(`${path.basename(indexFile)}: row links to ${file}, which is outside the ${prefix} pattern`);
+      continue;
+    }
+    if (bracketId !== id) {
+      errors.push(`${path.basename(indexFile)}: row for ${id} shows [${bracketId}]`);
+    }
     if (rows.has(id)) errors.push(`${path.basename(indexFile)}: duplicate row for ${id}`);
     rows.set(id, { file, title, status });
   }
@@ -30,7 +46,7 @@ export async function checkDecisions(decisionsDir, indexFile) {
 
   let recordFiles = [];
   try {
-    recordFiles = (await readdir(decisionsDir)).filter((f) => /^EPG-DEC-\d{4}[-.]/.test(f));
+    recordFiles = (await readdir(decisionsDir)).filter((f) => recordPattern.test(f));
   } catch (error) {
     errors.push(`cannot read record folder ${decisionsDir}: ${error.message}`);
   }
@@ -38,7 +54,7 @@ export async function checkDecisions(decisionsDir, indexFile) {
 
   const seenRecords = new Set();
   for (const file of recordFiles.sort()) {
-    const id = /^([A-Za-z0-9]+(?:-[A-Za-z0-9]+){2})[-.]/.exec(file)?.[1] ?? file;
+    const id = idPattern.exec(file)?.[1] ?? file;
     if (seenRecords.has(id)) {
       errors.push(`${decisionsDir}: duplicate record ID ${id} (another record file carries it too)`);
       continue;
@@ -90,8 +106,9 @@ export async function checkDecisions(decisionsDir, indexFile) {
 
 const calledDirectly = process.argv[1] && path.basename(process.argv[1]) === "check-decisions.mjs";
 if (calledDirectly) {
-  const dir = process.argv[2] ?? "docs/decisions";
-  const errors = await checkDecisions(dir, path.join(dir, "INDEX.md"));
+  const dir = process.argv[2] || process.env.DECISIONS_DIR || "docs/decisions";
+  const prefix = process.argv[3] || process.env.DECISION_PREFIX || "EPG-DEC";
+  const errors = await checkDecisions(dir, path.join(dir, "INDEX.md"), prefix);
   for (const error of errors) console.error(`check-decisions: ${error}`);
   if (!errors.length) console.log("check-decisions: records and index agree.");
   process.exitCode = errors.length ? 1 : 0;
