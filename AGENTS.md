@@ -7,6 +7,8 @@ orientation, at
 [LIONG-REG-001](LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md)
 for requirement authority and open questions, and at
 [the decision record index](docs/decisions/INDEX.md) for process decisions.
+To set this standard up in another repository, start at
+[Repo bootstrap](docs/agents/repo-bootstrap.md).
 
 ## Skills every agent loads
 
@@ -79,7 +81,11 @@ for requirement authority and open questions, and at
 - **Everything degrades.** Without Entire, `commit-msg` prints a fallback
   note and the other four hooks run their non-Entire parts silently. Without
   Dagger, `check.sh` runs the same check steps through the local Node; with
-  no CI, the pre-push hook is still the gate.
+  no CI, the pre-push hook is still the gate. Independent reviewers run in
+  Kimi's Never Ask mode (`--auto`): approvals answer themselves, and what
+  the reviewer would have asked lands as an `Open questions` section of the
+  report, never a stall (decided in the `personal-agent-skills` repository,
+  2026-11-08).
 
 ## Agent skills
 

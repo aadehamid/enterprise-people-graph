@@ -73,7 +73,8 @@ test("a row link that names a different record file fails even when it exists", 
   });
   try {
     const errors = await checkDecisions(fx.decisions, fx.indexFile);
-    assert.match(errors.join("\n"), /row EPG-DEC-0001 links to EPG-DEC-0009-gone\.md but the record file is EPG-DEC-0001-topic\.md/);
+    assert.match(errors.join("\n"), /row for EPG-DEC-0009 shows \[EPG-DEC-0001\]/);
+    assert.match(errors.join("\n"), /no index row for EPG-DEC-0001/);
   } finally {
     await fx.cleanup();
   }
@@ -87,8 +88,7 @@ test("a wrong but existing link target fails the binding", async () => {
   try {
     const errors = await checkDecisions(fx.decisions, fx.indexFile);
     const all = errors.join("\n");
-    assert.match(all, /row EPG-DEC-0001 links to EPG-DEC-0009-decoy\.md but the record file is EPG-DEC-0001-topic\.md/);
-    assert.match(all, /no index row for EPG-DEC-0009/);
+    assert.match(all, /row for EPG-DEC-0009 shows \[EPG-DEC-0001\]/);
   } finally {
     await fx.cleanup();
   }
@@ -168,5 +168,26 @@ test("no record files at all fails closed", async () => {
     assert.match(errors.join("\n"), /no record files/);
   } finally {
     await fx.cleanup();
+  }
+});
+
+test("a target repository's own decision prefix passes and a wrong prefix fails closed", async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), "decisions-"));
+  const decisions = path.join(dir, "dec");
+  await mkdir(decisions);
+  try {
+    const index =
+      "| Record | Title | Status |\n| --- | --- | --- |\n" +
+      "| [DEC-0001](DEC-0001-setup.md) | Setup | Decided |\n";
+    await writeFile(path.join(dir, "INDEX.md"), index);
+    await writeFile(path.join(decisions, "DEC-0001-setup.md"),
+      "# DEC-0001 — Setup\n\n| Field | Value |\n| --- | --- |\n" +
+      "| Record ID | DEC-0001 |\n| Status | Decided |\n");
+    const own = await checkDecisions(decisions, path.join(dir, "INDEX.md"), "DEC");
+    assert.deepEqual(own, []);
+    const wrong = await checkDecisions(decisions, path.join(dir, "INDEX.md"), "EPG-DEC");
+    assert.match(wrong.join("\n"), /no record files found/);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
   }
 });

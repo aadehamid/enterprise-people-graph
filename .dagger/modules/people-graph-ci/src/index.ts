@@ -85,7 +85,12 @@ export class PeopleGraphCi {
       .withDirectory("/scripts", this.scripts)
       .withDirectory("/docs", this.docs)
       .withWorkdir("/docs")
-      .withExec(["node", "/scripts/check-decisions.mjs", "docs/decisions"])
+      // A target repository sets its decision folder and record prefix in
+      // the checker's own defaults (scripts/check-decisions.mjs), in
+      // scripts/check.sh, here, and in the mount below.
+      .withExec(["node", "/scripts/check-decisions.mjs",
+                 process.env.DECISIONS_DIR ?? "docs/decisions",
+                 process.env.DECISION_PREFIX ?? "EPG-DEC"])
       .sync()
   }
 }

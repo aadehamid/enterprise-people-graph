@@ -38,9 +38,9 @@ malformed=$(awk '
   NF == 0 { next }
   NF != 4 { print; exit }
   $2 !~ /^[0-9a-fA-F]+$/ { print; exit }
-  $2 !~ /^[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]+$/ { print; exit }
+  length($2) != 40 && length($2) != 64 { print; exit }
   $4 !~ /^[0-9a-fA-F]+$/ { print; exit }
-  $4 !~ /^[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]+$/ { print; exit }
+  length($4) != 40 && length($4) != 64 { print; exit }
   { next }
 ' "$input_file") || exit 1
 if [ -n "$malformed" ]; then
