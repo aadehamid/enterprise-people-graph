@@ -5,8 +5,7 @@
   "branch": "docs/neutral-plan-outline",
   "checkpoints_count": 1,
   "files_touched": [
-    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md",
-    "LIONG_Design_Document_Package/README.md"
+    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md"
   ],
   "sessions": [
     {
@@ -14,15 +13,15 @@
       "transcript": "/0/full.jsonl",
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
-      "prompt": "/0/prompt.txt"
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 7988,
+    "input_tokens": 913,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 1152256,
-    "output_tokens": 4518,
-    "api_call_count": 10
+    "cache_read_tokens": 239424,
+    "output_tokens": 435,
+    "api_call_count": 2
   },
   "redaction": {
     "replacements": 25,

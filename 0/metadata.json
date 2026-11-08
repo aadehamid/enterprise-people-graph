@@ -3,25 +3,24 @@
   "checkpoint_id": "01M6WRYDNNJ45HD536ZDHDHZYQ",
   "session_id": "01a1b974-ac03-7052-941a-019504480f8f",
   "strategy": "manual-commit",
-  "created_at": "2026-11-08T05:08:53.623896Z",
+  "created_at": "2026-11-08T05:09:00.273415Z",
   "branch": "docs/neutral-plan-outline",
   "checkpoints_count": 1,
   "files_touched": [
-    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md",
-    "LIONG_Design_Document_Package/README.md"
+    "LIONG_Design_Document_Package/LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md"
   ],
   "agent": "Pi",
   "model": "glm-5.3-flash:cloud",
   "turn_id": "9f23dbe55d1a",
-  "checkpoint_transcript_start": 137,
-  "transcript_lines_at_start": 137,
-  "compact_transcript_start": 68,
+  "checkpoint_transcript_start": 148,
+  "transcript_lines_at_start": 148,
+  "compact_transcript_start": 74,
   "token_usage": {
-    "input_tokens": 7988,
+    "input_tokens": 913,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 1152256,
-    "output_tokens": 4518,
-    "api_call_count": 10
+    "cache_read_tokens": 239424,
+    "output_tokens": 435,
+    "api_call_count": 2
   },
   "redaction": {
     "replacements": 25,
