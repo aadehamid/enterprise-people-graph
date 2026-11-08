@@ -397,7 +397,7 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
 | LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
 | LIONG-REG-001 | 0.25 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status; latest revision is wording only | Owner-supplement draft |
-| LIONG-REF-001 | 0.3 | Adds standards, registries, interface candidates, and KG-LLM papers | Reference-addition draft |
+| LIONG-REF-001 | 0.3 | Adds standards, registries, interface candidates, and KG-LLM papers; both repository copies match | Reference-addition draft |
 | LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
