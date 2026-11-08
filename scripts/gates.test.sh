@@ -153,6 +153,18 @@ printf 'refs/heads/main %s refs/heads/tests/other %s\n' "$head" "not-hex" > "$wo
 status=$(run_hook "$work/malformed2" "$work/badsha-input" "$stub_path")
 assert_eq "bad sha exit" "$status" "1"
 assert_missing "bad sha: entire not run" "$STUB_LOG" "entire"
+# A hexadecimal object name of the wrong length is malformed too — not just
+# nonhex text.
+fixture malformed2b
+printf 'refs/heads/main %s refs/heads/tests/other %s\n' "$head" "$(printf 'a%.0s' $(seq 8))" > "$work/shorthex-input"
+status=$(run_hook "$work/malformed2b" "$work/shorthex-input" "$stub_path")
+assert_eq "short hex exit" "$status" "1"
+assert_missing "short hex: entire not run" "$STUB_LOG" "entire"
+fixture malformed2c
+printf 'refs/heads/main %s refs/heads/tests/other %s\n' "$head" "$(printf 'a%.0s' $(seq 47))" > "$work/longhex-input"
+status=$(run_hook "$work/malformed2c" "$work/longhex-input" "$stub_path")
+assert_eq "overlong hex exit" "$status" "1"
+assert_missing "overlong hex: entire not run" "$STUB_LOG" "entire"
 
 # 7c. A deletion-shaped two-field record is malformed, not a valid all-delete.
 fixture malformed3

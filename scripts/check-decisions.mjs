@@ -12,12 +12,22 @@ const rowPattern =
 
 // decisionsDir and indexFile default to docs/decisions; prefix defaults to
 // EPG-DEC. A target repository sets its own folder and record prefix in
-// scripts/check.sh and in its Dagger module, the same way (EPG-DEC-0001).
+// THESE defaults, in scripts/check.sh's DECISIONS_DIR/DECISION_PREFIX, and
+// in its Dagger module's decisions-check arguments and mount (EPG-DEC-0001);
+// a target that leaves these defaults keeps EPG-DEC in direct calls.
 export async function checkDecisions(decisionsDir = "docs/decisions", indexFile, prefix = "EPG-DEC") {
   const errors = [];
   const rows = new Map();
-  const recordPattern = new RegExp(`^${prefix}-\\d{4}[-.]`);
-  const idPattern = new RegExp(`^(${prefix}-\\d{4})[-.]`);
+  // One prefix grammar: letters, digits and hyphens. A prefix with any other
+  // character is a configuration error, not a looser match: a metacharacter
+  // prefix once admitted foreign records instead of failing closed.
+  if (!/^[A-Za-z0-9-]+$/.test(prefix)) {
+    errors.push(`unsupported record prefix ${JSON.stringify(prefix)}: use letters, digits and hyphens`);
+    return errors;
+  }
+  const escape = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const recordPattern = new RegExp(`^${escape(prefix)}-\\d{4}[-.]`);
+  const idPattern = new RegExp(`^(${escape(prefix)}-\\d{4})[-.]`);
   let indexText = "";
   try {
     indexText = await readFile(indexFile, "utf8");

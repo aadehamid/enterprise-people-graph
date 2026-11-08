@@ -4,15 +4,23 @@ How to set up the standard in a new repository, whichever of the three pieces
 it has. Written for the agent that does the setup, on the owner's behalf.
 The owner runs every setup or destructive tool command (`entire enable`,
 `entire disable`, `entire clean`, `entire login`); the agent runs everything
-else. This guide's decisions trace to
-[EPG-DEC-0001](../decisions/EPG-DEC-0001-reconcile-entire-and-dagger.md) in
-this repository (source: `gh/aadehamid/enterprise-people-graph`), which the
-owner confirmed on 2026-11-08.
+else.
+
+**Source.** Everything this guide says to copy comes from
+`gh/aadehamid/enterprise-people-graph`, pinned at commit `a51e8b03a77c552222c023eb7950ea25a6cde24c` — the commit
+the guide's review covered; a later reviewed commit on its main supersedes
+this pin, and the pin is updated at merge and together with any manifest
+change. This guide's decisions trace to
+[EPG-DEC-0001](https://github.com/aadehamid/enterprise-people-graph/blob/a51e8b03a77c552222c023eb7950ea25a6cde24c/docs/decisions/EPG-DEC-0001-reconcile-entire-and-dagger.md),
+which the owner confirmed on 2026-11-08. The copied target owns its own
+agrees-with-its-index checks; never link the target back into a
+source-record file that its manifest does not copy.
 
 ## The three layers
 
-1. **The `way-of-working` skill** — the owner's personal standard. It lives
-   outside any repository and mentions neither Entire nor Dagger. Never
+1. **The `way-of-working` skill** — the owner's personal standard. Its
+   installed copy lives outside the target repository; its source repository
+   is `personal-agent-skills`. It mentions neither Entire nor Dagger. Never
    modify it to accommodate Entire or Dagger: where review finds a genuine
    skill change, make it in `personal-agent-skills` through that
    repository's own pull request and record the changed files in the target
@@ -56,12 +64,17 @@ branch that carries this file.
 4. **Decision records.** Create the target's decision folder (default
    `docs/decisions/`) with an `INDEX.md` (Record | Title | Status) and a
    first record quoting the owner's words for this setup, then set the
-   target's decision folder and record prefix in three places so local and
-   container checks see one population: the environment or `DECISIONS_DIR` /
-   `DECISION_PREFIX` lines in `scripts/check.sh`, the
-   `check-decisions.mjs` arguments in the Dagger module (`src/index.ts`),
-   and the folder in the module's mount. The defaults in this repo are
-   `docs/decisions` and the record prefix `EPG-DEC`.
+   target's decision folder and record prefix in every place the checks read
+   them, so local and container checks see one population: the checker's own
+   defaults in `scripts/check-decisions.mjs` (function and command-line),
+   the `DECISIONS_DIR` / `DECISION_PREFIX` lines in `scripts/check.sh`, the
+   `check-decisions.mjs` arguments in the Dagger module's `decisions` check
+   (`src/index.ts`), and the folder in the module's mount. A target that
+   sets them anywhere else but leaves the checker defaults still fails
+   direct `node scripts/check-decisions.mjs` calls. The defaults in this
+   repo are `docs/decisions` and the record prefix `EPG-DEC`; a prefix uses
+   letters, digits and hyphens (anything else is a configuration error, not
+   a looser match).
 5. **The review standards file.** `docs/REVIEW_STANDARDS.md`, holding only
    the pointer to the instruction file it judges — the target's own
    `AGENTS.md` requirements — and empty of rules until a reviewer actually
@@ -69,7 +82,7 @@ branch that carries this file.
 6. **The hooks.** Copy `scripts/hooks/*` and `scripts/bootstrap.sh`. A git
    hook install is permitted only in the simple case of the skill's
    `guardrails.md` (default `hooksPath`, no other tool owns hooks, one
-   worktree); otherwise report and ask. When Entire is enabled (step 8),
+   worktree); otherwise report and ask. When Entire is enabled (step 9),
    diff each hook against the copy Entire installs in `.git/hooks`; every
    tracked hook stays a verbatim copy of Entire's, until the check chain in
    `pre-push`. Re-diff on Entire CLI updates.
@@ -79,8 +92,9 @@ branch that carries this file.
    module's mount to the population roots (all files under them, since link
    targets live there too), keep the `scripts/` and `.github/**` mounts that
    the tool tests and link targets need, install git (`apk add --no-cache
-   git` on Alpine) so no tool test silently skips, and run `dagger generate`
-   after any `src/index.ts` edit — the stale-source-map check fails first
+   git` on Alpine) so no tool test silently skips, and run `dagger generate -y`
+   (noninteractive apply; plain `dagger generate` exits 1 asking for
+   `-y/--auto-apply`, and `--no-apply` is the read-only preview) after any `src/index.ts` edit — the stale-source-map check fails first
    otherwise. Run `dagger check` and expect one passing check per check
    defined; then break one input and expect the container check to fail
    before restoring it. `scripts/check.sh --with-dagger` runs the same
