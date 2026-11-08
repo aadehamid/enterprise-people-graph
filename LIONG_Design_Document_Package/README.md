@@ -28,7 +28,7 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 | [LIONG-008 — Synthetic Data Generation Strategy](LIONG-008_Synthetic_Data_Generation_Strategy.md) | 0.5 | Connected synthetic histories and source projections | Approved baseline; expansion draft |
 | [LIONG-009 — Source Systems and Integration Architecture](LIONG-009_Source_Systems_and_Integration_Architecture.md) | 0.5 | Source contracts, integration, temporal authority and replay | Approved baseline; expansion draft |
 | [LIONG-010 — Enterprise Evidence Corpus Strategy](LIONG-010_Enterprise_Evidence_Corpus_Strategy.md) | 0.5 | Versioned author-visible evidence and passage retrieval | Approved baseline; scope-reference draft |
-| [LIONG-011 — Open Source Technology Options and Reference Stack](LIONG-011_Open_Source_Technology_Options_and_Reference_Stack.md) | 0.7 | Reference stack, exemptions and component gates | Approved baseline; expansion draft |
+| [LIONG-011 — Open Source Technology Options and Reference Stack](LIONG-011_Open_Source_Technology_Options_and_Reference_Stack.md) | 0.8 | Reference stack, exemptions and component gates | Approved baseline; expansion draft |
 | [LIONG-012 — End-to-End Solution Architecture](LIONG-012_End_To_End_Solution_Architecture.md) | 0.7 | R2 boundaries, serving projections and end-to-end flow | Approved baseline; expansion draft |
 | [LIONG-013 — Calibration Analytics and Decision Provenance](LIONG-013_Calibration_Analytics_and_Decision_Provenance.md) | 0.3 | Exact calibration measures and decision provenance | Approved; see register |
 | [LIONG-014 — Agent, MCP, and User Experience Design](LIONG-014_Agent_MCP_and_User_Experience_Design.md) | 0.4 | Read tools, MCP boundary, human forms and UI | Approved baseline; expansion draft |
@@ -39,7 +39,7 @@ Conversational tools are read-only. Human workflow forms enforce current authori
 ## 3. Supporting registers
 
 - [Assumptions, decisions and open questions](LIONG-REG-001_Assumptions_Decisions_and_Open_Questions.md): authoritative approval record through APR-018, decisions through DEC-088, and open questions through OI-15. It also maps the owner plan's working terms (MYCI, V2MOM, LPI, PIP, PEP, ESBP, DGC, MCP, and source-system names) to LIONG concepts and records the real-project status items.
-- [Consolidated reference register](LIONG-REF-001_Consolidated_Reference_Register.md): ontology descriptions, project uses, and source links, including the new public-reference assessment in version 0.2.
+- [Consolidated reference register](LIONG-REF-001_Consolidated_Reference_Register.md): ontology descriptions, project uses, and source links, including the public-reference assessment in version 0.3 and the 2026-11-08 additions of standards, registries, and research papers.
 
 The decision register controls approval status. Maintenance file numbers do not indicate a new policy approval. Earlier proposed wording is part of design history; use the recorded decisions and later approved rules when status differs.
 

@@ -5,7 +5,7 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.25 |
+| Version | 0.26 |
 | Date | 2026-11-07 |
 | Status | Working register |
 
@@ -286,7 +286,7 @@ A proposal does not become approved because it appears in the supplement. Each d
 | OI-06 | Which public datasets have adequate coverage and reuse terms? | LIONG-005 | Source and artifact assessment | Approved shortlist; exact artifact license/import closure remains open |
 | OI-07 | Which exact software components and model artifacts qualify? | LIONG-011 | Component versions, dependencies and provider terms | Approved reference stack and exemptions; exact selections remain open |
 | OI-08 | What query and evaluation thresholds fit the workload? | LIONG-016 | Defined scenarios and stack | Resolved at target-policy level by approved LIONG-016 v0.1; execution/measurement pending |
-| OI-09 | How will logical models map to physical graph implementations? | LIONG-007 and LIONG-012 | Canonical ontology and selected components | Open |
+| OI-09 | How will logical models map to physical graph implementations? | LIONG-007 and LIONG-012 | Canonical ontology and selected components | Open. Neo4j neosemantics (n10s) is now an optional projection mechanism assessed in LIONG-011 §7; its selection stays gated |
 
 OI-10: Resolve the PSDO artifact license mismatch, imported dependency terms, and exact term mappings. Owners: LIONG-005/006/007. Status: open.
 
@@ -294,7 +294,7 @@ OI-11: Pin shortlist artifacts, inspect licenses/imports, and complete definitio
 
 OI-12: Define the audience, evidence, suppression rules, eligibility dates, and waiting periods for each conversation pilot. Owner: project owner. Status: open. The four pilot purposes are in scope under REQ-11; exact triggers are not approved. The 2026-11-07 supplement adds candidate rules (DEC-084 through DEC-086) with recorded statuses: the year-end-preparation audience and signal remain undefined; an April 16 optional-eligibility cutoff was discussed, not confirmed; a 60-day time-in-role threshold was suggested, not agreed; the follow-up interval and its qualifying actions need agreement.
 
-OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision. The 2026-11-07 supplement proposes the sequence in DEC-087.
+OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision. The 2026-11-07 supplement proposes the sequence in DEC-087. SSSOM is a candidate mapping-exchange format assessed in LIONG-REF-001 §2, and qSKOS plus Skosify are optional review tools assessed in LIONG-011 §7.
 
 OI-14: Choose how the plan's outcome bullets are organized. Option A nests the four pilots and skills inference inside the plan's existing three outcome bullets. Option B replaces them with three new bullets covering graph-powered insights, the Signal Library, and graph-based skills inference. Resolve at the same time whether the strikethrough on the promotion-calibration and ratings-calibration bullets in the source document de-scopes those bullets. Owner: project owner. Status: open.
 
@@ -388,6 +388,7 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-008 | 0.5 | Expanded fixture strategy draft | Expansion draft |
 | LIONG-009 | 0.5 | Expanded logical source contract draft | Expansion draft |
 | LIONG-010 | 0.5 | Expanded-scope evidence reference draft | Expansion draft |
+| LIONG-011 | 0.8 | Adds four optional components: n10s, SSSOM, qSKOS, Skosify | Reference-addition draft |
 | LIONG-011 | 0.7 | Expanded source-to-component mapping draft | Expansion draft |
 | LIONG-012 | 0.7 | Expanded architecture responsibilities draft | Expansion draft |
 | LIONG-013 | 0.3 | Current approved-package maintenance revision | Maintenance revision |
@@ -396,6 +397,7 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
 | LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
 | LIONG-REG-001 | 0.25 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status; latest revision is wording only | Owner-supplement draft |
+| LIONG-REF-001 | 0.3 | Adds standards, registries, interface candidates, and KG-LLM papers | Reference-addition draft |
 | LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
@@ -437,3 +439,5 @@ Revision 0.23 records the owner's 2026-11-07 plan supplement: REQ-12, proposals 
 Revision 0.24 rewords the plan-outline terminology (OI-14). No requirement, decision, or approval status changes.
 
 Revision 0.25 replaces those document-term references with neutral wording: the OI-14 choice becomes the organization of the plan's outcome bullets. No requirement, decision, or approval status changes.
+
+Revision 0.26 adds the reference additions: OI-09 and OI-13 gain pointers to the new optional components and mapping-format candidates. No decision status changes.
