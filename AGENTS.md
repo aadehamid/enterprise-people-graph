@@ -81,7 +81,11 @@ To set this standard up in another repository, start at
 - **Everything degrades.** Without Entire, `commit-msg` prints a fallback
   note and the other four hooks run their non-Entire parts silently. Without
   Dagger, `check.sh` runs the same check steps through the local Node; with
-  no CI, the pre-push hook is still the gate.
+  no CI, the pre-push hook is still the gate. Independent reviewers run in
+  Kimi's Never Ask mode (`--auto`): approvals answer themselves, and what
+  the reviewer would have asked lands as an `Open questions` section of the
+  report, never a stall (decided in the `personal-agent-skills` repository,
+  2026-11-08).
 
 ## Agent skills
 
