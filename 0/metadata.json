@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6WRS1WYANJB29A9FPRPZJXN",
+  "session_id": "01a1b977-55ec-7072-a800-72b1d014f916",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-08T05:05:57.907616Z",
+  "branch": "docs/rename-sow-references",
+  "checkpoints_count": 1,
+  "files_touched": null,
+  "agent": "Codex",
+  "model": "gpt-6-luna",
+  "turn_id": "4778d3b5cf96",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 93818,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1573632,
+    "output_tokens": 9741,
+    "api_call_count": 23,
+    "subagent_tokens": {
+      "input_tokens": 15605,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 370048,
+      "output_tokens": 1196,
+      "api_call_count": 4
+    },
+    "subagent_tokens_complete": true
+  },
+  "redaction": {
+    "replacements": 30,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 30,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  },
+  "session_metrics": {
+    "turn_count": 1
+  }
+}
