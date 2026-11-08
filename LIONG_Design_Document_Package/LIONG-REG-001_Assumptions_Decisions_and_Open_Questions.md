@@ -5,13 +5,13 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.24 |
+| Version | 0.25 |
 | Date | 2026-11-07 |
 | Status | Working register |
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at the baselines recorded below. REQ-11 records the owner's 2026-10-27 scope expansion. REQ-12 records the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, success-criteria specifics, engagement-scope mapping options, and real-project status items. DEC-084 through DEC-088 hold those proposals; none is approved. The current document revisions describe the expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded below. REQ-11 records the owner's 2026-10-27 scope expansion. REQ-12 records the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, success-criteria specifics, outcome-bullet organization options, and real-project status items. DEC-084 through DEC-088 hold those proposals; none is approved. The current document revisions describe the expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -39,7 +39,7 @@ Retain decision IDs. Record a rationale and affected documents when a choice cha
 | REQ-01 | Use fictional LIONG and exclude original company and participant identities | User instruction | Confirmed |
 | REQ-02 | Retain promotion calibration, rating calibration, and conversational people insights in the MVP | User instruction and supplied notes | Confirmed |
 | REQ-11 | Expand the existing scope with four purpose-driven conversation pilots and bounded skills inference | User instruction, 2026-10-27: "it does not replace it . it expands it" | Confirmed scope; exact rules open |
-| REQ-12 | Record the owner's 2026-11-07 plan supplement as context: per-pilot trigger proposals (DEC-084 through DEC-086), skills sequencing (DEC-087), success-criteria specifics (DEC-088), promotion outcomes captured through an existing agentic workflow, engagement-scope mapping options (OI-14), and real-project status items (§6.2) | Owner-supplied consolidated plan, 2026-11-07 | Confirmed context; proposed rules not approved |
+| REQ-12 | Record the owner's 2026-11-07 plan supplement as context: per-pilot trigger proposals (DEC-084 through DEC-086), skills sequencing (DEC-087), success-criteria specifics (DEC-088), promotion outcomes captured through an existing agentic workflow, outcome-bullet organization options (OI-14), and real-project status items (§6.2) | Owner-supplied consolidated plan, 2026-11-07 | Confirmed context; proposed rules not approved |
 | REQ-03 | Retain later talent use cases in the roadmap | User instruction | Confirmed |
 | REQ-04 | Use public reference data and synthetic enterprise records | User instruction | Confirmed |
 | REQ-05 | Every non-exempt used component must be open source; Cloudflare, Databricks, and model choices are explicit exceptions | User instruction | Confirmed |
@@ -296,7 +296,7 @@ OI-12: Define the audience, evidence, suppression rules, eligibility dates, and 
 
 OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision. The 2026-11-07 supplement proposes the sequence in DEC-087.
 
-OI-14: Choose the integration approach for the engagement scope bullets. Option A nests the four pilots and skills inference inside the existing three scope bullets. Option B replaces them with three new bullets covering graph-powered insights, the Signal Library, and graph-based skills inference. Resolve at the same time whether the strikethrough on the promotion-calibration and ratings-calibration bullets in the source document de-scopes those bullets. Owner: project owner. Status: open.
+OI-14: Choose how the plan's outcome bullets are organized. Option A nests the four pilots and skills inference inside the plan's existing three outcome bullets. Option B replaces them with three new bullets covering graph-powered insights, the Signal Library, and graph-based skills inference. Resolve at the same time whether the strikethrough on the promotion-calibration and ratings-calibration bullets in the source document de-scopes those bullets. Owner: project owner. Status: open.
 
 OI-15: Track real-project delivery items that this simulation records but does not resolve: which MVP sources sit in the vendor pilot scope and their data volumes; whether MCP integration is vendor scope or internal engineering work after handover; DGC approval and offshore data access for sensitive data; and the IT platform decision on the graph engine. Owner: project owner. Status: open.
 
@@ -395,7 +395,7 @@ After each drafting stage, check the full set for conflicting definitions, stale
 | LIONG-015 | 0.4 | Expanded derived-record governance draft | Expansion draft |
 | LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
 | LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
-| LIONG-REG-001 | 0.24 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status | Owner-supplement draft |
+| LIONG-REG-001 | 0.25 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status; latest revision is wording only | Owner-supplement draft |
 | LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
@@ -434,4 +434,6 @@ Consolidation drafts: README v0.3 and LIONG-REF-001 v0.2. REQ-11 changes scope; 
 
 Revision 0.23 records the owner's 2026-11-07 plan supplement: REQ-12, proposals DEC-084 through DEC-088, updated OI-12, new OI-14 and OI-15, the source-plan vocabulary map, and real-project status items. README v0.4 matches.
 
-Revision 0.24 renames the engagement-scope terminology and drops a client-specific document term. No requirement, decision, or approval status changes.
+Revision 0.24 rewords the plan-outline terminology (OI-14). No requirement, decision, or approval status changes.
+
+Revision 0.25 replaces those document-term references with neutral wording: the OI-14 choice becomes the organization of the plan's outcome bullets. No requirement, decision, or approval status changes.
