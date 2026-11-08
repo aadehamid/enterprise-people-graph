@@ -31,6 +31,9 @@ function rebuildPeopleGraphCi(state: any): PeopleGraphCi {
     if (state["docs"] !== undefined && state["docs"] !== null) {
       __obj["docs"] = __loadCoreObject(state["docs"], "Directory")
     }
+    if (state["scripts"] !== undefined && state["scripts"] !== null) {
+      __obj["scripts"] = __loadCoreObject(state["scripts"], "Directory")
+    }
     if (state["tools"] !== undefined && state["tools"] !== null) {
       __obj["tools"] = __loadCoreObject(state["tools"], "Directory")
     }
@@ -43,6 +46,9 @@ async function serializePeopleGraphCi(__obj: PeopleGraphCi): Promise<any> {
   const __state: any = { ...__obj }
   if ((__obj as any)["docs"] !== undefined && (__obj as any)["docs"] !== null) {
     __state["docs"] = await ((__obj as any)["docs"]).id()
+  }
+  if ((__obj as any)["scripts"] !== undefined && (__obj as any)["scripts"] !== null) {
+    __state["scripts"] = await ((__obj as any)["scripts"]).id()
   }
   if ((__obj as any)["tools"] !== undefined && (__obj as any)["tools"] !== null) {
     __state["tools"] = await ((__obj as any)["tools"]).id()

@@ -1,13 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 # The one check script: every mechanical gate, run locally, by the pre-push
 # hook (scripts/hooks/pre-push) and by CI (.github/workflows/check.yml).
 #
 # Plain run: the check tools, directly, with the local Node. Works in any
 # clone and needs neither Entire nor Dagger.
-# `--with-dagger`: additionally runs the same three checks in the containers
-# of .dagger (module people-graph-ci) when the dagger CLI is on PATH.
-set -eu
+# `--with-dagger`: additionally runs the same checks in the containers of
+# .dagger (module people-graph-ci) when the dagger CLI is on PATH. Like every
+# step between the two snapshot points, a Dagger-side tree change fails the
+# check.
+set -euo pipefail
 cd "$(dirname "$0")/.."
+
+# The checks read the repository; none of them may change it. The guard
+# hashes every file system entry's contents, type, mode and symlink target,
+# plus the index blobs and git's status view, before and after
+# (scripts/tree-guard.mjs; its comment names the excluded paths and why).
+guard_state=$(mktemp "${TMPDIR:-/tmp}/check-tree-guard.XXXXXX")
+list_state=$(mktemp "${TMPDIR:-/tmp}/check-md-files.XXXXXX")
+md_list=$(mktemp "${TMPDIR:-/tmp}/check-md-existing.XXXXXX")
+trap 'rm -f "$guard_state" "$list_state" "$md_list"' EXIT
+node scripts/tree-guard.mjs snapshot "$guard_state"
 
 if [ "${1:-}" = "--with-dagger" ]; then
   if command -v dagger >/dev/null 2>&1; then
@@ -17,9 +29,8 @@ if [ "${1:-}" = "--with-dagger" ]; then
   fi
 fi
 
-# The checks read the tree; none may write it. Snapshot, run, compare.
-tree_before=$(git status --porcelain)
-
+# ci dependencies: install when the folder is missing or older than the
+# manifests. Installs outside the guarded population (see tree-guard).
 (
   cd ci
   if [ ! -d node_modules ] \
@@ -29,41 +40,50 @@ tree_before=$(git status --porcelain)
   fi
 )
 
-# 1. The check tool's own tests.
+# 1. The check tools' own tests (link checker, tree guard, decision guard).
 (cd ci && npm test)
 
-# 2. Markdown structure over the tracked set — the same population the Dagger
-# module mounts (see .dagger/modules/people-graph-ci/src/index.ts).
-git ls-files '*.md' | tr '\n' '\0' | xargs -0 \
-  ci/node_modules/.bin/markdownlint-cli2 --config ci/markdownlint-cli2.jsonc
-
-# 3. Local link and image targets. The checker skips node_modules and
-# dot-directories, so scanning the repository root matches the Dagger mount.
-node ci/check-links.mjs .
-
-# 4. Each decision record's Status agrees with docs/decisions/INDEX.md.
-status_failures=0
-for record in docs/decisions/EPG-DEC-*.md; do
-  [ -e "$record" ] || break
-  record_status=$(awk -F' *\\| *' '/^\| Status \|/ {print $3; exit}' "$record")
-  record_id=$(basename "$record" | cut -d- -f1-3)
-  index_status=$(grep -F -- "[$record_id](" docs/decisions/INDEX.md \
-    | awk -F' *\\| *' '{print $4; exit}')
-  if [ "$record_status" != "$index_status" ]; then
-    echo "check: $record Status '$record_status' disagrees with docs/decisions/INDEX.md '$index_status'" >&2
-    status_failures=1
-  fi
-done
-[ "$status_failures" -eq 0 ]
-
-tree_after=$(git status --porcelain)
-if [ "$tree_before" != "$tree_after" ]; then
-  echo "check: the checks modified the working tree" >&2
-  printf '%s\n' "$tree_before" > "${TMPDIR:-/tmp}/check-tree-before"
-  printf '%s\n' "$tree_after" > "${TMPDIR:-/tmp}/check-tree-after"
-  diff -u "${TMPDIR:-/tmp}/check-tree-before" "${TMPDIR:-/tmp}/check-tree-after" >&2 || true
-  rm -f "${TMPDIR:-/tmp}/check-tree-before" "${TMPDIR:-/tmp}/check-tree-after"
+# 2. Markdown structure over the tracked Markdown. The population is every
+# tracked *.md, and each file must live inside one of the Dagger mount's
+# roots (asserted here), so the local and container checks cannot silently
+# diverge (mount roots: .dagger/modules/people-graph-ci/src/index.ts).
+git ls-files -z -- '*.md' > "$list_state"
+if [ ! -s "$list_state" ]; then
+  echo "check: no tracked Markdown files; refusing to run an empty check" >&2
   exit 1
 fi
+status=0
+while IFS= read -r -d '' file; do
+  if [ ! -f "$file" ]; then
+    echo "check: tracked Markdown missing on disk: $file" >&2
+    exit 1
+  fi
+  case "$file" in
+    */*) case "$file" in
+           .github/*|docs/*|guideline_to_map_ontology_to_LPG/*|LIONG_Design_Document_Package/*) ;;
+           *) echo "check: tracked Markdown outside the checked population: $file — add its root to .dagger/modules/people-graph-ci/src/index.ts and this case" >&2
+              status=1 ;;
+         esac ;;
+  esac
+  printf '%s\0' "$file" >> "$md_list"
+done < "$list_state"
+[ "$status" -eq 0 ]
+bash scripts/lint-md.sh < "$md_list"
+
+# 3. Local link and image targets. The checker follows symlinks, skips
+# node_modules and tool dot-directories (except .github), and scans the
+# repository root, so a local scan matches the Dagger mount.
+node ci/check-links.mjs .
+
+# 4. Each decision record's Status agrees with docs/decisions/INDEX.md,
+# checked fail-closed (scripts/check-decisions.mjs).
+node scripts/check-decisions.mjs docs/decisions
+
+# 5. The behavioral harness for the gate itself.
+bash scripts/gates.test.sh
+
+# The tree must be exactly as the snapshot left it: contents, entry types,
+# modes, symlink targets, index blobs, and git's status view.
+node scripts/tree-guard.mjs verify "$guard_state"
 
 echo "check: all checks passed."

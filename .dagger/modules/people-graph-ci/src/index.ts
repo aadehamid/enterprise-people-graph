@@ -2,8 +2,15 @@ import { dag, Workspace, Directory, Container, object, func, check } from "@dagg
 
 @object()
 export class PeopleGraphCi {
+  // The Markdown mount must stay in step with scripts/check.sh: the local
+  // gate lints every tracked *.md and fails on a tracked Markdown file
+  // outside these roots, so the local and container checks cannot silently
+  // diverge.
   docs: Directory
   tools: Directory
+  // scripts/ holds the local gate's helpers (tree-guard, decision guard);
+  // ci/*.test.mjs import them from ../scripts, so the tool tests need it.
+  scripts: Directory
 
   constructor(ws: Workspace) {
     this.docs = ws.directory("/", {
@@ -21,6 +28,7 @@ export class PeopleGraphCi {
       gitignore: true,
     })
     this.tools = ws.directory("/ci", { exclude: ["node_modules"] })
+    this.scripts = ws.directory("/scripts", { gitignore: true })
   }
 
   private dependencies(): Container {
@@ -60,6 +68,7 @@ export class PeopleGraphCi {
   @func()
   async checkerTests(): Promise<void> {
     await this.dependencies()
+      .withDirectory("/scripts", this.scripts)
       .withDirectory("/checks", this.tools, { include: ["*.mjs"] })
       .withExec(["npm", "test"])
       .sync()

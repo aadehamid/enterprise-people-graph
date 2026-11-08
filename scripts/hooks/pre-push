@@ -5,17 +5,38 @@
 #
 # Tracked copy of Entire's pre-push hook with the repository's check script
 # chained ahead of the Entire delegation (scripts/bootstrap.sh points
-# core.hooksPath here; the check script is scripts/check.sh). A push whose
-# every ref is a deletion sends no commits and skips the checks. Re-diff
-# against `.git/hooks/pre-push` when updating the Entire CLI.
-input=$(cat)
-send_commits=$(printf '%s\n' "$input" | awk '$2 !~ /^0+$/ {found=1} END {print found+0}')
+# core.hooksPath here). Every failure blocks the push: a failed stdin capture
+# or ref-list parse, a failed check, or a failed Entire run. A push whose
+# every ref is a deletion sends no commits and skips the checks. Covered by
+# scripts/gates.test.sh. Re-diff against `.git/hooks/pre-push` when updating
+# the Entire CLI.
+set -eu
+
+# `git hook run pre-push` passes no arguments; default it empty.
+remote="${1:-}"
+
+input_file=$(mktemp "${TMPDIR:-/tmp}/pre-push-stdin.XXXXXX")
+trap 'rm -f "$input_file"' EXIT INT TERM HUP
+
+cat > "$input_file"
+
+send_commits=$(awk '
+  { lines++ }
+  $2 !~ /^0+$/ { commits = 1 }
+  END { if (lines == 0) print 0; else print commits + 0 }
+' "$input_file")
+
+if [ "$send_commits" != "0" ] && [ "$send_commits" != "1" ]; then
+  echo "pre-push: refused to parse the ref list; not running checks or Entire." >&2
+  exit 1
+fi
+
 if [ "$send_commits" -eq 1 ]; then
   "$(git rev-parse --show-toplevel)/scripts/check.sh" || exit 1
 fi
 
 if command -v entire >/dev/null 2>&1; then
-  printf '%s' "$input" | entire hooks git pre-push "$1"
+  entire hooks git pre-push "$remote" < "$input_file"
 else
   :
 fi
