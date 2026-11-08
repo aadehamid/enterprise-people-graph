@@ -1,8 +1,8 @@
 # LIONG People Graph — Document Index
 
-Version: 0.4. Date: 2026-11-07. Status: scope expansion draft with the 2026-11-07 plan supplement for review.
+Version: 0.5. Date: 2026-11-07. Status: scope expansion draft with the 2026-11-07 plan supplement for review.
 
-The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion and the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, and success-criteria specifics, held as proposals DEC-084 through DEC-088. The SOW integration choice (OI-14) and real-project delivery items (OI-15) are open. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
+The 17 design documents are approved at the baselines recorded in the decision register. The current draft records the owner's 2026-10-27 scope expansion and the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, and success-criteria specifics, held as proposals DEC-084 through DEC-088. The engagement-scope choice (OI-14) and real-project delivery items (OI-15) are open. Its pilot rules still need decisions and tests. No application has been built or deployed, and no acceptance benchmark has been executed.
 
 ## 1. Approved boundaries
 
