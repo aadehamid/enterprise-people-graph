@@ -35,24 +35,30 @@ type Entrypoint implements ModuleEntrypoint {
         .withFunction(
           function("checkerTests", typeDef.withKind(TypeDefKind.VOID_KIND).withOptional(true))
             .withDescription("Prove that the local link checker accepts valid input and rejects broken input.")
-            .withSourceMap(sourceMap("src/index.ts", 59, 9))
+            .withSourceMap(sourceMap("src/index.ts", 72, 9))
+            .withCheck,
+        )
+        .withFunction(
+          function("decisions", typeDef.withKind(TypeDefKind.VOID_KIND).withOptional(true))
+            .withDescription("Decision records and the index agree, by the same fail-closed code as the local gate.")
+            .withSourceMap(sourceMap("src/index.ts", 83, 9))
             .withCheck,
         )
         .withFunction(
           function("links", typeDef.withKind(TypeDefKind.VOID_KIND).withOptional(true))
             .withDescription("Validate local link and image targets, without making network requests.")
-            .withSourceMap(sourceMap("src/index.ts", 48, 9))
+            .withSourceMap(sourceMap("src/index.ts", 61, 9))
             .withCheck,
         )
         .withFunction(
           function("markdown", typeDef.withKind(TypeDefKind.VOID_KIND).withOptional(true))
             .withDescription("Check Markdown structure without reformatting the design documents.")
-            .withSourceMap(sourceMap("src/index.ts", 37, 9))
+            .withSourceMap(sourceMap("src/index.ts", 50, 9))
             .withCheck,
         )
         .withConstructor(
           function("", typeDef.withObject("PeopleGraphCi"))
-            .withArg("ws", typeDef.withObject("Workspace"), sourceMap: sourceMap("src/index.ts", 8, 15)),
+            .withArg("ws", typeDef.withObject("Workspace"), sourceMap: sourceMap("src/index.ts", 15, 15)),
         ),
     ]
   }

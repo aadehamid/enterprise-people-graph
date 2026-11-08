@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "markdownlint-cli2 --config markdownlint-cli2.jsonc '/docs/**/*.md'",
     "links": "node check-links.mjs /docs",
-    "test": "node --test check-links.test.mjs"
+    "test": "node --test check-links.test.mjs check-decisions.test.mjs tree-guard.test.mjs"
   },
   "dependencies": {
     "markdown-it": "15.0.3",
