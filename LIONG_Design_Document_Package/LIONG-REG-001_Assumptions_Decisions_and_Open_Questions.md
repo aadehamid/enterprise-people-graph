@@ -5,13 +5,13 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-REG-001 |
-| Version | 0.22 |
-| Date | 2026-10-27 |
+| Version | 0.23 |
+| Date | 2026-11-07 |
 | Status | Working register |
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at the baselines recorded below. REQ-11 records the owner's 2026-10-27 scope expansion. The current document revisions describe that expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded below. REQ-11 records the owner's 2026-10-27 scope expansion. REQ-12 records the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, success-criteria specifics, SOW mapping options, and real-project status items. DEC-084 through DEC-088 hold those proposals; none is approved. The current document revisions describe the expansion; exact conversation and skills rules remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -39,6 +39,7 @@ Retain decision IDs. Record a rationale and affected documents when a choice cha
 | REQ-01 | Use fictional LIONG and exclude original company and participant identities | User instruction | Confirmed |
 | REQ-02 | Retain promotion calibration, rating calibration, and conversational people insights in the MVP | User instruction and supplied notes | Confirmed |
 | REQ-11 | Expand the existing scope with four purpose-driven conversation pilots and bounded skills inference | User instruction, 2026-10-27: "it does not replace it . it expands it" | Confirmed scope; exact rules open |
+| REQ-12 | Record the owner's 2026-11-07 plan supplement as context: per-pilot trigger proposals (DEC-084 through DEC-086), skills sequencing (DEC-087), success-criteria specifics (DEC-088), promotion outcomes captured through an existing agentic workflow, SOW mapping options (OI-14), and real-project status items (§6.2) | Owner-supplied consolidated plan, 2026-11-07 | Confirmed context; proposed rules not approved |
 | REQ-03 | Retain later talent use cases in the roadmap | User instruction | Confirmed |
 | REQ-04 | Use public reference data and synthetic enterprise records | User instruction | Confirmed |
 | REQ-05 | Every non-exempt used component must be open source; Cloudflare, Databricks, and model choices are explicit exceptions | User instruction | Confirmed |
@@ -261,6 +262,18 @@ Descriptions and ontology links: LIONG-005 §8.2 and LIONG-006 §9.2. LIONG-007 
 | DEC-082 | Outbox, rollback and recovery procedures | LIONG-017 §§10/12 | Approved |
 | DEC-083 | Acceptance handover and documentation consolidation | LIONG-017 §13 | Approved |
 
+## 5.18 Owner-supplement proposals (2026-11-07, not approved)
+
+| ID | Proposal | Authority | Status |
+| --- | --- | --- | --- |
+| DEC-084 | Career-growth signal: the audience is managers of employees whose earlier nomination was not approved, and long-tenured high performers who have not been nominated; refine the criteria and suppress a prompt when a recent check-in already covered career growth; a nomination record alone does not trigger a prompt | Owner plan, 2026-11-07: "Nomination history alone should not trigger a conversation; refine criteria and account for whether a recent MYCI already covered career growth" | Proposed |
+| DEC-085 | New-to-role/new-hire signal: use the optional-check-in eligibility cutoff and a minimum time in role so new employees are not prompted too soon | Owner plan, 2026-11-07: "April 16 was discussed" and "A 60-day threshold was suggested, not agreed" | Proposed |
+| DEC-086 | Performance-follow-up signal: prompt the manager when an agreed number of days has passed after a recorded low-performance indicator without documented action; qualifying actions include a follow-up check-in, a structured improvement plan, or a managed-exit action | Owner plan, 2026-11-07: "where an agreed number of days has passed without clear documented action, such as a follow-up check-in or PIP/PEP activity" | Proposed |
+| DEC-087 | Skills pilot sequence: source-supplied skill records first, then one defined taxonomy, then inference that combines skills with profile and performance evidence | Owner plan, 2026-11-07: "starting point is 8Fold, then need taxonomy defined, then inference based on skills AND employee profile/performance information" | Proposed |
+| DEC-088 | Success-criteria specifics: five to ten defined promotion and rating questions answered correctly with reviewer sign-off, and two to three graph tools registered in the MCP catalogue returning authorized results | Owner plan, 2026-11-07: "5–10 defined promotion and ratings calibration questions answered correctly, signed off by ESBPs / calibration leads"; "2–3 graph tools registered ... returning correct, access-controlled results" | Proposed |
+
+A proposal does not become approved because it appears in the supplement. Each decision moves to Approved only through the owner's recorded words.
+
 ## 6. Open questions
 
 | ID | Question | Resolution owner | Dependencies | Status |
@@ -279,9 +292,45 @@ OI-10: Resolve the PSDO artifact license mismatch, imported dependency terms, an
 
 OI-11: Pin shortlist artifacts, inspect licenses/imports, and complete definition-level mappings. Owners: LIONG-005/006/007. Status: open.
 
-OI-12: Define the audience, evidence, suppression rules, eligibility dates, and waiting periods for each conversation pilot. Owner: project owner. Status: open. The four pilot purposes are in scope under REQ-11; exact triggers are not approved.
+OI-12: Define the audience, evidence, suppression rules, eligibility dates, and waiting periods for each conversation pilot. Owner: project owner. Status: open. The four pilot purposes are in scope under REQ-11; exact triggers are not approved. The 2026-11-07 supplement adds candidate rules (DEC-084 through DEC-086) with recorded statuses: the year-end-preparation audience and signal remain undefined; an April 16 optional-eligibility cutoff was discussed, not confirmed; a 60-day time-in-role threshold was suggested, not agreed; the follow-up interval and its qualifying actions need agreement.
 
-OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision.
+OI-13: Select a pinned public skills taxonomy release, review its reuse terms and role mappings, validate the source-supplied person-skill claim contract, and define how the bounded skills pilot marks inferences and checks them against evidence. Owners: LIONG-005/006/007/009. Status: open. REQ-11 includes the pilot, not an automatic employee decision. The 2026-11-07 supplement proposes the sequence in DEC-087.
+
+OI-14: Choose the SOW integration approach. Option A nests the four pilots and skills inference inside the existing three SOW bullets. Option B replaces them with three new bullets covering graph-powered insights, the Signal Library, and graph-based skills inference. Resolve at the same time whether the strikethrough on the promotion-calibration and ratings-calibration bullets in the source document de-scopes those bullets. Owner: project owner. Status: open.
+
+OI-15: Track real-project delivery items that this simulation records but does not resolve: which MVP sources sit in the vendor pilot scope and their data volumes; whether MCP integration is vendor scope or internal engineering work after handover; DGC approval and offshore data access for sensitive data; and the IT platform decision on the graph engine. Owner: project owner. Status: open.
+
+## 6.1 Source-plan vocabulary map
+
+The owner's plan uses working terms that this package maps to LIONG concepts. The fictional simulation continues to exclude original company and participant identities.
+
+| Source-plan term | Meaning in the source plan | LIONG treatment |
+| --- | --- | --- |
+| MYCI | Mid-year performance and development conversation | A check-in record with conversation topics; the recency filter for career-growth and new-hire prompts |
+| V2MOM | Goal framework (vision, values, methods, obstacles, measures) with documented progress and gaps | Goal records and documented progress; the year-end-preparation signal compares them with rated performance |
+| LPI | Low-performance indicator: a recorded flag that performance is not meeting expectations | A recorded performance concern; the performance-follow-up trigger |
+| PIP | Performance improvement plan: a structured 30–60 day improvement timeline | A qualifying follow-up action for the performance-follow-up signal |
+| PEP | Voluntary exit package offered in the performance workflow | A managed-exit qualifying action; access class needs LIONG-015 review before simulation use |
+| ES / ESBP | Employee Success function and its business partners | The HR partner persona and review audiences |
+| 8Fold | Internal skills baseline that starts the skills pipeline | Source-supplied skill records with provenance labels |
+| Snowflake data foundation | The governed analytical system of record for workforce data | The governed record store and analytical layer; LIONG-001 §11 owns this boundary |
+| ES Data Insights MCP | Relationship-aware MCP tools exposed beside the semantic layer | LIONG-014 §7 defines the read-only MCP pilot and its access controls |
+| Neo4j Bloom | Graph visualization interface | A LIONG-014 interface option; component selection stays with LIONG-011 |
+| DGC | Data governance council review for sensitive workforce data | Ownership and disclosure decisions in LIONG-015 |
+| Career Connect | Source that provisions skills data | A source of source-supplied skill records |
+| Workday / BaseCamp / Talent Review | HR, check-in, and talent-review systems of record | Logical source projections in LIONG-009; identity-neutral in the simulation |
+| Agentic promotion workflow | The existing workflow that captures promotion outcomes (approved, not approved) | Promotion case outcome recorded as a decision with provenance (LIONG-006, LIONG-013) |
+
+## 6.2 Real-project status items
+
+These items describe the real project's state as of the 2026-11-07 supplement. They are context for scope and planning. Only this package's own gates approve simulation work.
+
+| Item | Status in the supplement |
+| --- | --- |
+| Neo4j development environment onboarding | Completed |
+| Framework (Git repository and tooling) from the platform team | Expected the week of September 30 |
+| Confirm MVP sources in the data foundation for the MVP load | In progress |
+| Privacy and governance review for performance, feedback, and promotion data | Not started |
 
 ## 7. Deferred scope
 
@@ -327,27 +376,27 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 ## 10. Current change set
 
-| Artifact | Version | Change |
-| --- | --- | --- |
-| LIONG-001 | 0.20 | Expanded problem and scope draft |
-| LIONG-002 | 0.4 | Expanded-scope reference draft; workforce profile unchanged |
-| LIONG-REG-001 | 0.22 | Records REQ-11 and open pilot rules |
-| LIONG-004 | 0.4 | Expanded question catalogue draft |
-| LIONG-005 | 0.7 | Public reference assessment draft |
-| LIONG-006 | 0.6 | Expanded model concepts draft |
-| LIONG-007 | 0.6 | Current approved-package maintenance revision |
-| LIONG-008 | 0.5 | Expanded fixture strategy draft |
-| LIONG-009 | 0.5 | Expanded logical source contract draft |
-| LIONG-010 | 0.5 | Expanded-scope evidence reference draft |
-| LIONG-011 | 0.7 | Expanded source-to-component mapping draft |
-| LIONG-012 | 0.7 | Expanded architecture responsibilities draft |
-| LIONG-013 | 0.3 | Current approved-package maintenance revision |
-| LIONG-014 | 0.4 | Expanded read-tool catalogue draft |
-| LIONG-015 | 0.4 | Expanded derived-record governance draft |
-| LIONG-016 | 0.4 | Expanded scenario catalogue draft |
-| LIONG-017 | 0.3 | Expanded delivery sequence draft |
-| LIONG-003 | 0.4 | Expanded pilot requirements draft |
-| LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match |
+| Artifact | Version | Change | Status |
+| --- | --- | --- | --- |
+| LIONG-001 | 0.21 | Records 2026-11-07 supplement proposals and adds SC-14/SC-15 | Owner-supplement draft |
+| LIONG-002 | 0.4 | Expanded-scope reference draft; workforce profile unchanged | Expansion draft |
+| LIONG-003 | 0.5 | Records 2026-11-07 supplement pilot proposals in §7.7 | Owner-supplement draft |
+| LIONG-004 | 0.4 | Expanded question catalogue draft | Expansion draft |
+| LIONG-005 | 0.7 | Public reference assessment draft | Expansion draft |
+| LIONG-006 | 0.6 | Expanded model concepts draft | Expansion draft |
+| LIONG-007 | 0.6 | Current approved-package maintenance revision | Maintenance revision |
+| LIONG-008 | 0.5 | Expanded fixture strategy draft | Expansion draft |
+| LIONG-009 | 0.5 | Expanded logical source contract draft | Expansion draft |
+| LIONG-010 | 0.5 | Expanded-scope evidence reference draft | Expansion draft |
+| LIONG-011 | 0.7 | Expanded source-to-component mapping draft | Expansion draft |
+| LIONG-012 | 0.7 | Expanded architecture responsibilities draft | Expansion draft |
+| LIONG-013 | 0.3 | Current approved-package maintenance revision | Maintenance revision |
+| LIONG-014 | 0.4 | Expanded read-tool catalogue draft | Expansion draft |
+| LIONG-015 | 0.4 | Expanded derived-record governance draft | Expansion draft |
+| LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
+| LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
+| LIONG-REG-001 | 0.23 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status | Owner-supplement draft |
+| LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
 
@@ -382,3 +431,5 @@ Maintenance record: 0.21 recorded the later source plan as context on 2026-10-27
 Revision 0.22 records the owner's scope expansion and replaces the former scope question with open pilot-rule and taxonomy questions. README v0.3 is an expansion draft.
 
 Consolidation drafts: README v0.3 and LIONG-REF-001 v0.2. REQ-11 changes scope; exact pilot policies remain open.
+
+Revision 0.23 records the owner's 2026-11-07 plan supplement: REQ-12, proposals DEC-084 through DEC-088, updated OI-12, new OI-14 and OI-15, the source-plan vocabulary map, and real-project status items. README v0.4 matches.

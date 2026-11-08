@@ -5,8 +5,8 @@
 | Document control | Value |
 | --- | --- |
 | Document ID | LIONG-001 |
-| Version | 0.20 |
-| Date | 2026-10-27 |
+| Version | 0.21 |
+| Date | 2026-11-07 |
 | Status | Version 0.1 approved; scope expansion draft |
 | Enterprise | Lagos Integrated Oil and Gas Company (LIONG) |
 | Current scope | Promotion calibration, rating calibration, conversational people insights, conversation signals, and bounded skills inference |
@@ -14,7 +14,7 @@
 
 ## Scope and approval status — 2026-10-27
 
-LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
+LIONG-001 through LIONG-017 remain approved at the baselines recorded in LIONG-REG-001. This 2026-10-27 draft records the owner's expanded scope under REQ-11. The owner's 2026-11-07 plan supplement adds proposed pilot trigger rules, skills sequencing, and success-criteria specifics. The register records them as proposals (DEC-084 through DEC-088), not approvals. Exact conversation rules and skills mappings remain open in OI-12 and OI-13. Implementation gates and unexecuted tests remain open. See [README](README.md) for current versions and the [reference register](LIONG-REF-001_Consolidated_Reference_Register.md) for source links.
 
 ## 1. Purpose
 
@@ -153,12 +153,14 @@ The expanded MVP tests governed questions and candidate signals about these rela
 
 The expanded scope includes four conversation pilots. Their precise trigger rules remain open:
 
-| Possible conversation | Relationship question | Unsettled rule |
+| Possible conversation | Relationship question | Proposed rule (still unapproved) |
 | --- | --- | --- |
-| Career growth | Does the person's role, performance context, and prior conversation history support a useful discussion now? | A prior nomination or long tenure cannot trigger a prompt on its own. |
-| Year-end preparation | Do documented goals, feedback, and assessments show a gap worth clarifying before the review? | The audience and exact signal have not been defined. |
-| New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Eligibility dates and minimum time in role need approval. |
-| Performance follow-up | Is there a documented follow-up after a recorded concern? | The interval and qualifying actions need approval. |
+| Career growth | Does the person's role, performance context, and prior conversation history support a useful discussion now? | A prior nomination or long tenure cannot trigger a prompt on its own. The proposed audience is managers of employees whose earlier nomination was not approved, and long-tenured high performers who have not been nominated. Refine the criteria and suppress a prompt when a recent check-in already covered career growth. |
+| Year-end preparation | Do documented goals, feedback, and assessments show a gap worth clarifying before the review? | The purpose is to clarify gaps between perceived performance, documented goal progress, supporting evidence, and expectations before the review. The audience and exact signal remain undefined. |
+| New role or new hire | Has a person had enough time in a role to make an alignment conversation useful? | Set an optional-check-in eligibility cutoff and a minimum time in role, so a newly joined employee is not prompted too soon. Apply the cutoff and threshold only after OI-12 approves them. An April 16 cutoff was discussed, not confirmed. A 60-day threshold was suggested, not agreed. |
+| Performance follow-up | Is there a documented follow-up after a recorded concern? | Prompt when an agreed number of days has passed after a recorded low-performance indicator without documented action. Qualifying actions include a follow-up check-in, a structured improvement plan, or a managed-exit action. The interval and action list need agreement. |
+
+The owner's 2026-11-07 supplement proposes these candidate rules. Each keeps its recorded status: discussed, suggested, or undefined. OI-12 tracks their resolution.
 
 The expanded scope also includes bounded skills inference for career opportunities and redeployment questions. It needs a defined skill taxonomy and separate labels for supplied, assessed, and inferred skills. The simulation must not treat a role, rating, or course completion as proof that a person has a skill. LIONG-005 owns public reference candidates; LIONG-003 owns pilot behavior.
 
@@ -222,11 +224,11 @@ If evidence is missing or access is insufficient, the system must return a bound
 
 ### 5.4 Conversation signals
 
-The signal library must support the four pilot purposes in §3.6. It must connect the relevant records, apply the user's access scope, and explain why a person was included or excluded. It must suppress a prompt when a recent authorized conversation already covered the topic. Missing or restricted data must remain visible as a limitation, not become an adverse employee signal. Pilot audiences, date cutoffs, and waiting periods are open in OI-12.
+The signal library must support the four pilot purposes in §3.6. It must connect the relevant records, apply the user's access scope, and explain why a person was included or excluded. It must suppress a prompt when a recent authorized conversation already covered the topic. Missing or restricted data must remain visible as a limitation, not become an adverse employee signal. Pilot audiences, date cutoffs, and waiting periods are open in OI-12. The owner's 2026-11-07 supplement supplies candidate values for them; see §3.6.
 
 ### 5.5 Skills inference
 
-The first skills pilot must map a bounded set of fictional roles and skills to a reviewed public taxonomy. It must distinguish a source-supplied skill from a proposed inference and show which profile, work, or assessment evidence supports the inference. It may show gaps to a target role for a human to review. It must not make an automatic placement, redeployment, or promotion decision. LIONG-005 defines reference-source gates.
+The first skills pilot must map a bounded set of fictional roles and skills to a reviewed public taxonomy. The owner's 2026-11-07 supplement proposes one sequence: source-supplied skill records first, then one defined taxonomy, then inference that combines skills with profile and performance evidence. It must distinguish a source-supplied skill from a proposed inference and show which profile, work, or assessment evidence supports the inference. It may show gaps to a target role for a human to review. It must not make an automatic placement, redeployment, or promotion decision. LIONG-005 defines reference-source gates.
 
 ## 6. Later scope
 
@@ -399,6 +401,10 @@ The following criteria define the required behavior. Numerical performance thres
 | SC-11 | Conversational responses remain within the user's question and authority | Review task completion and bounded responses |
 | SC-12 | Conversation prompts cite their evidence and explain suppression or uncertainty | Test all four pilots, including recent-conversation and missing-record cases |
 | SC-13 | Skill suggestions distinguish source facts, assessments, and inferences | Compare role mappings and person-skill claims with independent fixtures |
+| SC-14 | Proposed (not approved): two or three graph tools are registered in the MCP tool catalogue and return authorized, traceable results | Inspect the registered tool list and run authorized and unauthorized calls against fixtures (LIONG-014, LIONG-016). Apply after DEC-088 gains approval |
+| SC-15 | Proposed (not approved): five to ten defined promotion and rating questions are answered correctly and signed off by authorized reviewers | Execute the LIONG-016 scenario set for those questions and record the sign-off. Apply after DEC-088 gains approval |
+
+SC-14 and SC-15 are additions proposed by the owner's 2026-11-07 supplement (DEC-088). They state counts, not measured results, and stay proposed until their owner records approval. LIONG-016 owns the executed measurement.
 
 Latency, scale, retrieval accuracy, and cohort minimum size are open design choices. This draft does not claim measured results.
 
@@ -510,3 +516,5 @@ Maintenance record: 0.18 consolidates the approved package status and index link
 Maintenance record: 0.19 clarified the source problem, conversation context, and analytical versus graph boundary on 2026-10-27.
 
 Revision 0.20 records the owner's scope expansion to conversation signals and bounded skills inference. Exact trigger and taxonomy choices remain open.
+
+Revision 0.21 records the owner's 2026-11-07 plan supplement: proposed pilot trigger rules, skills sequencing, and success-criteria specifics (SC-14, SC-15). The register holds these as proposals.
