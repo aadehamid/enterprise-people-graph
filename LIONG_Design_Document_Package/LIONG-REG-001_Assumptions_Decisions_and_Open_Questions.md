@@ -376,30 +376,27 @@ After each drafting stage, check the full set for conflicting definitions, stale
 
 ## 10. Current change set
 
-| Artifact | Version | Change |
-| --- | --- | --- |
-| LIONG-001 | 0.20 | Expanded problem and scope draft |
-| LIONG-002 | 0.4 | Expanded-scope reference draft; workforce profile unchanged |
-| LIONG-REG-001 | 0.22 | Records REQ-11 and open pilot rules |
-| LIONG-004 | 0.4 | Expanded question catalogue draft |
-| LIONG-005 | 0.7 | Public reference assessment draft |
-| LIONG-006 | 0.6 | Expanded model concepts draft |
-| LIONG-007 | 0.6 | Current approved-package maintenance revision |
-| LIONG-008 | 0.5 | Expanded fixture strategy draft |
-| LIONG-009 | 0.5 | Expanded logical source contract draft |
-| LIONG-010 | 0.5 | Expanded-scope evidence reference draft |
-| LIONG-011 | 0.7 | Expanded source-to-component mapping draft |
-| LIONG-012 | 0.7 | Expanded architecture responsibilities draft |
-| LIONG-013 | 0.3 | Current approved-package maintenance revision |
-| LIONG-014 | 0.4 | Expanded read-tool catalogue draft |
-| LIONG-015 | 0.4 | Expanded derived-record governance draft |
-| LIONG-016 | 0.4 | Expanded scenario catalogue draft |
-| LIONG-017 | 0.3 | Expanded delivery sequence draft |
+| Artifact | Version | Change | Status |
+| --- | --- | --- | --- |
 | LIONG-001 | 0.21 | Records 2026-11-07 supplement proposals and adds SC-14/SC-15 | Owner-supplement draft |
-| LIONG-REG-001 | 0.23 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status | Owner-supplement draft |
+| LIONG-002 | 0.4 | Expanded-scope reference draft; workforce profile unchanged | Expansion draft |
 | LIONG-003 | 0.5 | Records 2026-11-07 supplement pilot proposals in §7.7 | Owner-supplement draft |
-| LIONG-003 | 0.4 | Expanded pilot requirements draft |
-| LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match |
+| LIONG-004 | 0.4 | Expanded question catalogue draft | Expansion draft |
+| LIONG-005 | 0.7 | Public reference assessment draft | Expansion draft |
+| LIONG-006 | 0.6 | Expanded model concepts draft | Expansion draft |
+| LIONG-007 | 0.6 | Current approved-package maintenance revision | Maintenance revision |
+| LIONG-008 | 0.5 | Expanded fixture strategy draft | Expansion draft |
+| LIONG-009 | 0.5 | Expanded logical source contract draft | Expansion draft |
+| LIONG-010 | 0.5 | Expanded-scope evidence reference draft | Expansion draft |
+| LIONG-011 | 0.7 | Expanded source-to-component mapping draft | Expansion draft |
+| LIONG-012 | 0.7 | Expanded architecture responsibilities draft | Expansion draft |
+| LIONG-013 | 0.3 | Current approved-package maintenance revision | Maintenance revision |
+| LIONG-014 | 0.4 | Expanded read-tool catalogue draft | Expansion draft |
+| LIONG-015 | 0.4 | Expanded derived-record governance draft | Expansion draft |
+| LIONG-016 | 0.4 | Expanded scenario catalogue draft | Expansion draft |
+| LIONG-017 | 0.3 | Expanded delivery sequence draft | Expansion draft |
+| LIONG-REG-001 | 0.23 | Adds REQ-12, DEC-084 through DEC-088, OI-14/OI-15, vocabulary map, project status | Owner-supplement draft |
+| LIONG-REF-001 | 0.2 | Adds public reference links; both repository copies match | Reference draft |
 
 ## 11. Change history
 
