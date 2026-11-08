@@ -1,0 +1,41 @@
+{
+  "cli_version": "0.12.2",
+  "checkpoint_id": "01M6WTDW1FEMH9RHG13JX4GVBS",
+  "strategy": "manual-commit",
+  "branch": "docs/published-ontology-registry",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "LIONG-REF-001_Consolidated_Reference_Register.md",
+    "LIONG_Design_Document_Package/LIONG-REF-001_Consolidated_Reference_Register.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1685,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 385024,
+    "output_tokens": 1427,
+    "api_call_count": 2
+  },
+  "redaction": {
+    "replacements": 88,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 88,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
